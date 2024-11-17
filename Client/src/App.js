@@ -1,6 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Navigate, Routes, Route} from 'react-router-dom'
 import Savi from './screens/maths/savi';
+import LevelSelection from './screens/maths/LevelSelection';
+import QuestionDisplay from './screens/maths/QuestionDisplay';
+import AnswerFeedback from './screens/maths/AnswerFeedback';
+import NextQuestion from './screens/maths/NextQuestion';
+import QuizPage from './screens/maths/QuizPage';
+import ResultsPage from './screens/maths/ResultsPage';
 
 function App() {
   return (
@@ -11,8 +17,14 @@ function App() {
       <BrowserRouter>
           <Routes>
 
-            <Route path='/' element={<Savi/>} />
+            
 
+        <Route path="/" element={<LevelSelection />} />
+        <Route path="/questions/:category/:difficulty" element={<QuestionDisplay />} />
+        <Route path="/answer-feedback" element={<AnswerFeedback />} />
+        <Route path="/next-question" element={<NextQuestion />} />
+        <Route path="/quiz/:category/:difficulty" element={<QuizPage />} />
+        <Route path="/results" element={<ResultsPage />} />
           </Routes>
       </BrowserRouter>
     </div>
