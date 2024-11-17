@@ -8,6 +8,8 @@ import multer from 'multer'; // Multer is middleware that handles multipart/form
 import morgan from 'morgan'; // Used to log information of each request that the server receives.
 
 import test from './routes/test.js';
+import questionRoutes from './routes/maths/questions.js';
+import quiz from './routes/maths/quizController.js'
 
 const app = express();
 const forms = multer();
@@ -26,6 +28,8 @@ dotenv.config();
 
 // Use the Test routes
 app.use('/api', test);
+app.use('/api/questions', questionRoutes);
+app.use('/api/quizs', quiz)
 
 //middlewares
 const server = http.createServer(app);
