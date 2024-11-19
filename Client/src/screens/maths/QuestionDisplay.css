@@ -83,3 +83,22 @@ h2{
     background-color: #FF4500;
   }
   
+  .animation {
+    width: 300px; /* Adjust size as needed */
+    height: auto;
+    margin: 20px auto;
+    display: block;
+  }
+  
+  .message-display {
+    font-size: 30px;
+    font-weight: 500;
+    color: #333;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .feedbackpage{
+    padding: 50px;
+  }
+  
