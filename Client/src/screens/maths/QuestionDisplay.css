@@ -1,36 +1,104 @@
-/* QuestionDisplay.css */
+h2{
+  font-size: 50px;
+}
 
-.question-container {
+  .question-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    min-height: 100vh;
+    }
+  
+  .question-container {
+    flex: 4;
     text-align: center;
-    margin: 20px;
   }
   
-  .kids-font {
-    font-family: 'ChildhoodFont', sans-serif;
-    font-size: 2rem;
-    color: #FF4500; /* Bright color */
-    text-shadow: 1px 1px 2px #000000; /* Optional shadow for text */
+  .question-count-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 100px); 
+    grid-gap: 30px;
+   margin-left: 10%;
+    margin-right: 1%;
+    
   }
+  
+  .question-box {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #007bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 50px;
+    background-color: #f0f0f0; 
+  }
+  
+  .question-box.correct {
+    background-color: #28a745; 
+    color: #ffffff; 
+  }
+  
+  .question-box.wrong {
+    background-color: #dc3545; 
+    color: #ffffff; 
+  }
+  
+  .question11 {
+    font-family: 'Sour Gummy', sans-serif;
+    font-size: 250px;
+    font-weight: bold;
+  }
+  
   
   input {
     padding: 10px;
-    font-size: 1.2rem;
-    margin: 10px 0;
+    font-size: 80px;
+    width: 300px;
     border: 2px solid #FF4500;
     border-radius: 10px;
+    font-family: 'Sour Gummy', sans-serif;
+    font-weight: bold;
   }
   
-  button {
+  .button1 {
     background-color: #FF6347;
+    margin-top: 50px;
     color: white;
     border: none;
     border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 1.2rem;
+    padding: 10px 100px;
     cursor: pointer;
+    font-family: 'Sour Gummy', sans-serif;
+  font-size: 60px; /* Adjust the size as needed */
+  font-weight: bold;
   }
   
-  button:hover {
+  
+  .button1:hover {
     background-color: #FF4500;
+  }
+  
+  .animation {
+    width: 300px; /* Adjust size as needed */
+    height: auto;
+    margin: 20px auto;
+    display: block;
+  }
+  
+  .message-display {
+    font-size: 30px;
+    font-weight: 500;
+    color: #333;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .feedbackpage{
+    padding: 50px;
   }
   

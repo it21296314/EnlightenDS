@@ -1,65 +1,116 @@
-.container {
-    background-color: #f8f9fa;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
+
+
+   @import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+   .levelselection{
+    background-image: url('/public/images/maths/back13.png'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh; /* Use viewport height to prevent scrolling */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevent any overflow */
+  margin: 0; /* Remove any default margin */
+  padding: 0; /* Remove any default padding */
   }
-  
-  h1, h2 {
-    color: #343a40;
-  }
-  
-  .category-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .category-container {
-    margin-bottom: 1rem;
-  }
-  
-  .category-btn {
-    font-size: 1.2rem;
-    padding: 0.7rem 1.5rem;
-    width: 100%;
-    text-align: left;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .category-btn.selected {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .difficulty-buttons {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-    animation: fadeIn 0.5s ease-in-out forwards;
-  }
-  
-  .difficulty-btn {
-    font-size: 1.1rem;
-    padding: 0.7rem 1.5rem;
-    background-color: #28a745;
-    color: white;
-    transition: background-color 0.3s ease;
-  }
-  
-  .difficulty-btn:hover {
-    background-color: #218838;
-  }
-  
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+
+   .container {
+     transition: all 0.3s ease-in-out;
+    
+     margin-bottom: 200px;
+   }
+   
+   h1, h2 {
+     color: #343a40;
+     font-family: 'Sour Gummy', sans-serif;
+     font-weight: bolder;
+   }
+   
+   h2.selected-category-title {
+     font-size: 100px;
+     cursor: pointer;
+     color: #007bff;
+     margin-bottom: 20px;
+     transition: color 0.3s ease;
+   }
+   
+   h2.selected-category-title:hover {
+     color: #0056b3;
+   }
+   
+   .category-buttons {
+     display: flex;
+     flex-direction: column;
+     gap: 1rem;
+     opacity: 1;
+     
+     transition: opacity 0.5s ease-in-out;
+   }
+   
+   .category-container {
+     margin-bottom: 1rem;
+   }
+   
+   .category-btn {
+     font-size: 55px;
+     /* padding: 0.7rem 1.5rem; */
+     width: 38%;
+     text-align: center;
+     font-family: 'Sour Gummy', sans-serif;
+     font-weight: bolder;
+     transition: all 0.3s ease-in-out;
+     background-color: #21aed5;
+   }
+   
+   .category-btn.selected {
+     background-color: #aebac7;
+     color: white;
+   }
+   
+   .difficulty-selection {
+     animation: fadeIn 0.5s ease-in-out forwards;
+     
+   }
+   
+   .difficulty-buttons {
+     display: flex;
+     flex-direction: column;
+     margin-top: 1rem;
+     margin-right: 32%;
+     margin-left: 32%;
+   }
+   
+   .difficulty-btn {
+     font-size: 55px;
+     padding: 0.7rem 1.5rem;
+     margin-bottom: 20px;
+     background-color: #11c13a;
+     color: white;
+     font-family: 'Sour Gummy', sans-serif;
+     font-weight: bolder;
+     transition: background-color 0.3s ease;
+     width: 100%;
+   }
+   
+   .difficulty-btn:hover {
+     background-color: #1e9304;
+   }
+   
+   .fade-in {
+     opacity: 0;
+     animation: fadeIn 0.5s ease-in-out forwards;
+   }
+   
+   @keyframes fadeIn {
+     0% {
+       opacity: 0;
+       transform: translateY(-10px);
+     }
+     100% {
+       opacity: 1;
+       transform: translateY(0);
+     }
+   }
+   
