@@ -18,13 +18,9 @@
 
 import express from 'express';
 import { generateQuestionHandler } from '../../controllers/maths/questionController.js';
-
 const router = express.Router();
 
-// Route to generate a question dynamically based on difficulty
-// router.get('/generate/:difficulty', generateQuestionHandler);
-
-router.get('/generate/:category/:difficulty', generateQuestionHandler);
+router.get('/generate/:category/:difficulty/:subLevel', generateQuestionHandler);
 
 export default router;
 
