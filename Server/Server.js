@@ -1,55 +1,57 @@
 import express from 'express';
-import http from 'http';
 import bodyParser from 'body-parser';
-import mongoose from 'mongoose'; // MongoDB library
-import cors from 'cors'; // Cors will let us accept cross-origin requests from our frontend to backend.
-import dotenv from 'dotenv'; // For keeping secret and non-shareable properties
-import multer from 'multer'; // Multer is middleware that handles multipart/form data sent from our frontend form.
-import morgan from 'morgan'; // Used to log information of each request that the server receives.
+import cors from 'cors';
+import { SpeechClient } from '@google-cloud/speech';
+import dotenv from 'dotenv';
 
-import test from './routes/test.js';
-import questionRoutes from './routes/maths/questions.js';
-import quiz from './routes/maths/quizController.js'
-
-const app = express();
-const forms = multer();
-
-
-
-// API configuration
-app.use(express.json({ extended: true }));
-app.use(express.urlencoded({ extended: true }));
-app.use(forms.array());
-app.use(bodyParser.json({ limit: '30mb', extended: true }));
-app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
-app.use(morgan('common'));
-app.use(cors());
 dotenv.config();
 
-// Use the Test routes
-app.use('/api', test);
-app.use('/api/questions', questionRoutes);
-app.use('/api/quizs', quiz)
+const app = express();
+const PORT = 5000;
 
-//middlewares
-const server = http.createServer(app);
+// Middleware
+app.use(cors());
+app.use(bodyParser.json({ limit: '10mb' }));
 
+// Google Cloud Speech Client
+const client = new SpeechClient();
 
+// Route to analyze the pronunciation
+app.post('/analyze', async (req, res) => {
+    const { audioContent, word } = req.body;
 
-// MongoDB setup
-const PORT = process.env.PORT;
-mongoose.set('strictQuery', true);
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    server.listen(PORT, () => {
+    try {
+        const audio = {
+            content: audioContent,
+        };
 
-      console.log(`Server running on port ${PORT}`);
+        const config = {
+            encoding: 'LINEAR16',
+            sampleRateHertz: 16000,
+            languageCode: 'en-US',
+        };
 
-    });
-  })
-  .catch((err) => {
+        const request = {
+            audio,
+            config,
+        };
 
-    console.error('Error connecting to MongoDB:', err);
+        const [response] = await client.recognize(request);
+        const transcript = response.results
+            .map(result => result.alternatives[0].transcript)
+            .join(' ');
 
-  });
+        const pronunciationScore = transcript.toLowerCase() === word.toLowerCase() ? 100 : 0;
+        
+        const message = pronunciationScore === 100
+            ? 'Great job! You pronounced it correctly!'
+            : `Almost there! The correct pronunciation is "${word}". Keep trying!`;
+
+        res.json({ success: true, message, pronunciationScore });
+    } catch (error) {
+        console.error('Error analyzing audio:', error);
+        res.status(500).json({ success: false, message: 'Error processing audio' });
+    }
+});
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

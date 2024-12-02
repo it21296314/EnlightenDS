@@ -1,0 +1,56 @@
+.pronunciationHome {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 50px;
+  background-color: #f4f4f4;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between buttons */
+}
+
+.big-button {
+  font-size: 1.5rem;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.big-button.beginner {
+  background-color: #4caf50; /* Green */
+  color: white;
+}
+
+.big-button.advanced {
+  background-color: #2196f3; /* Blue */
+  color: white;
+}
+
+.big-button:hover {
+  transform: scale(1.1);
+  background-color: #45a049; /* Slightly brighter green for Beginner */
+}
+
+.big-button.advanced:hover {
+  background-color: #1e88e5; /* Slightly brighter blue for Advanced */
+}
+
+.big-button:active {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
