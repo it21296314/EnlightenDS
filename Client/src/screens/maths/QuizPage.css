@@ -1,0 +1,20 @@
+.quizppp{
+    background-image: url('./img/quiz2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .button2 {
+    background-color: #FF6347;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 50px;
+    cursor: pointer;
+    font-family: 'Sour Gummy', sans-serif;
+  font-size: 40px; /* Adjust the size as needed */
+  font-weight: bold;
+  }
