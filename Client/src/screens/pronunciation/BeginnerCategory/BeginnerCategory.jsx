@@ -6,7 +6,7 @@ const BeginnerCategory = () => {
   const navigate = useNavigate(); 
  
   const categories = [ 
-    { name: "Alphabet", route: "alphabet" }, 
+    { name: "Numbers", route: "numbers" }, 
     { name: "Animals", route: "animals" }, 
     { name: "Fruits", route: "fruits" }, 
     { name: "Objects", route: "objects" }, 
@@ -15,10 +15,8 @@ const BeginnerCategory = () => {
   ]; 
  
   return ( 
- 
-     
     <div className="beginner-category"> 
-      <h1>Select a Category</h1> 
+      <h1>Select Category</h1> 
       <div className="category-buttons"> 
         {categories.map((category) => ( 
           <button 
@@ -33,4 +31,5 @@ const BeginnerCategory = () => {
     </div> 
   ); 
 }; 
-export default BeginnerCategory; 
+
+export default BeginnerCategory;

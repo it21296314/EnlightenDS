@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Navigate, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
 import Savi from './screens/maths/savi';
 import MainPage from './screens/mainpage';
 import LevelSelection from './screens/maths/LevelSelection';
@@ -15,29 +15,30 @@ import PronunciationHome from "./screens/pronunciation/pronunciationHome/pronunc
 function App() {
   return (
     <div className="app" style={{
-          width: '100%',
-          height: '100%'
+      width: '100%',
+      height: '100%'
     }}>
       <BrowserRouter>
-          <Routes>
+        <Routes>
 
-            
 
-        <Route path="/" element={<MainPage />} />
-        <Route path="/LevelSelection" element={<LevelSelection />} />
-        <Route path="/questions/:category/:difficulty" element={<QuestionDisplay />} />
-        <Route path="/answer-feedback" element={<AnswerFeedback />} />
-        <Route path="/next-question" element={<NextQuestion />} />
-        <Route path="/quiz/:category/:difficulty" element={<QuizPage />} />
-        <Route path="/results" element={<ResultsPage />} />
-        <Route path="/pro" element={<PronunciationHome/>} />
-        <Route path="/beginner-category" element={<BeginnerCategory />} />
-        <Route
-          path="/pronunciation/checker/:category"
-          element={<PronunciationChecker />}
-        />
 
-          </Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/LevelSelection" element={<LevelSelection />} />
+          <Route path="/questions/:category/:difficulty" element={<QuestionDisplay />} />
+          <Route path="/answer-feedback" element={<AnswerFeedback />} />
+          <Route path="/next-question" element={<NextQuestion />} />
+          <Route path="/quiz/:category/:difficulty" element={<QuizPage />} />
+          <Route path="/results" element={<ResultsPage />} />
+          
+          <Route path="/pro" element={<PronunciationHome />} />
+          <Route path="/beginner-category" element={<BeginnerCategory />} />
+          <Route
+            path="/pronunciation/checker/:category"
+            element={<PronunciationChecker />}
+          />
+
+        </Routes>
       </BrowserRouter>
     </div>
   );
