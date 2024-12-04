@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+.checker-container {
+  text-align: center;
+  padding: 20px;
+  background-image: url('/public/images/maths/practiceback1.jpg');
+  background-size: 100% 120%; /* Ensures the width is 100% and height is 120% */
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  color: white;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 1200px; /* Limits the container width */
+}
+.left-side { 
+flex: 1; 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+padding-left: 300px; 
+margin-bottom: 20px; 
+} 
+.right-side { 
+flex: 2; 
+display: flex; 
+flex-direction: column; 
+justify-content: center; 
+align-items: center; 
+gap: 20px; /* Increase the gap between child elements */ 
+} 
+.word-title { 
+margin-top: 100px; /* Add margin for more space below the word title */ 
+margin-bottom: 20px; 
+color: black; 
+font-size: 2rem; /* Smaller size for word title */ 
+} 
+.image-display { 
+width: 300px; /* Increased image size */ 
+height: auto; 
+cursor: pointer; 
+border-radius: 10px; 
+} 
+.feedback-container { 
+color: black; 
+text-align: center; 
+width: 80%; 
+max-width: 400px; 
+margin: 0 auto; 
+font-family: Arial, sans-serif; /* Changed font to Arial */ 
+} 
+.feedback-container h3 { 
+font-size: 1.4rem; /* Decreased size for the text inside h3 */ 
+font-family: 'Sour Gummy', sans-serif; 
+font-weight: bolder; 
+} 
+/* Positive feedback animation */ 
+.success { 
+color: green; 
+animation: fadeInScale 0.5s ease-in-out; 
+} 
+@keyframes fadeInScale { 
+0% { 
+opacity: 0; 
+transform: scale(0.8); 
+} 
+100% { 
+opacity: 1; 
+transform: scale(1); 
+} 
+} 
+/* Negative feedback animation */ 
+.error { 
+color: red; 
+animation: shake 0.5s ease-in-out; 
+} 
+@keyframes shake { 
+0%, 100% { 
+transform: translateX(0); 
+} 
+25% { 
+transform: translateX(-5px); 
+} 
+50% { 
+transform: translateX(5px); 
+} 
+75% { 
+transform: translateX(-5px); 
+} 
+} 
+.button-group { 
+display: flex; 
+gap: 10px; 
+margin-bottom: 20px; 
+margin-top: 200px; /* Push the buttons down further */ 
+} 
+.btn { 
+padding: 8px 16px; /* Reduced padding for smaller buttons */ 
+font-size: 1rem; /* Decreased font size for buttons */ 
+border-radius: 5px; 
+font-family: 'Sour Gummy', sans-serif; 
+font-weight: bolder; 
+border: none; 
+cursor: pointer; 
+transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover transition */ 
+} 
+.record-btn { 
+background-color: #007bff; /* Blue button */ 
+color: white; 
+} 
+.record-btn:hover { 
+background-color: #0056b3; /* Darker blue on hover */ 
+transform: scale(1.05); /* Slightly scale button on hover */ 
+} 
+.next-btn { 
+background-color: #28a745; /* Green button */ 
+color: white; 
+} 
+.next-btn:hover { 
+background-color: #218838; /* Darker green on hover */ 
+transform: scale(1.05); /* Slightly scale button on hover */ 
+}

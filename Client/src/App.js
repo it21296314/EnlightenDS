@@ -8,6 +8,9 @@ import AnswerFeedback from './screens/maths/AnswerFeedback';
 import NextQuestion from './screens/maths/NextQuestion';
 import QuizPage from './screens/maths/QuizPage';
 import ResultsPage from './screens/maths/ResultsPage';
+import PronunciationChecker from './screens/pronunciation/PronunciationChecker/PronunciationChecker';
+import BeginnerCategory from './screens/pronunciation/BeginnerCategory/BeginnerCategory';
+import PronunciationHome from "./screens/pronunciation/pronunciationHome/pronunciationHome";
 
 function App() {
   return (
@@ -27,6 +30,13 @@ function App() {
         <Route path="/next-question" element={<NextQuestion />} />
         <Route path="/quiz/:category/:difficulty" element={<QuizPage />} />
         <Route path="/results" element={<ResultsPage />} />
+        <Route path="/pro" element={<PronunciationHome/>} />
+        <Route path="/beginner-category" element={<BeginnerCategory />} />
+        <Route
+          path="/pronunciation/checker/:category"
+          element={<PronunciationChecker />}
+        />
+
           </Routes>
       </BrowserRouter>
     </div>
