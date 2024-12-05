@@ -11,7 +11,7 @@ function PronunciationHome() {
 
   return (
     <div className="pronunciationHome">
-      <h1>Pronunciation Practice</h1>
+      <h1>Pronunciation Platform</h1>
       <div className="button-container">
         <button
           className="big-button beginner"
