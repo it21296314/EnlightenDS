@@ -6,7 +6,7 @@ const BeginnerCategory = () => {
   const navigate = useNavigate(); 
  
   const categories = [ 
-    { name: "Numbers", route: "numbers" }, 
+    { name: "Family", route: "family" }, 
     { name: "Animals", route: "animals" }, 
     { name: "Fruits", route: "fruits" }, 
     { name: "Objects", route: "objects" }, 

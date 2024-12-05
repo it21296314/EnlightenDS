@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* Overall Container */
 .checker-container {
   text-align: center;
   padding: 20px;
@@ -17,118 +18,196 @@
   align-items: center;
 }
 
+/* Content Layout */
 .content-container {
   display: flex;
   justify-content: space-between;
   width: 80%;
   max-width: 1200px; /* Limits the container width */
 }
-.left-side { 
-flex: 1; 
-display: flex; 
-justify-content: center; 
-align-items: center; 
-padding-left: 300px; 
-margin-bottom: 20px; 
-} 
-.right-side { 
-flex: 2; 
-display: flex; 
-flex-direction: column; 
-justify-content: center; 
-align-items: center; 
-gap: 20px; /* Increase the gap between child elements */ 
-} 
-.word-title { 
-margin-top: 100px; /* Add margin for more space below the word title */ 
-margin-bottom: 20px; 
-color: black; 
-font-size: 3em; /* Smaller size for word title */ 
-} 
-.image-display { 
-width: 300px; /* Increased image size */ 
-height: auto; 
-cursor: pointer; 
-border-radius: 10px; 
-} 
-.feedback-container { 
-color: black; 
-text-align: center; 
-width: 80%; 
-max-width: 400px; 
-margin: 0 auto; 
-font-family: Arial, sans-serif; /* Changed font to Arial */ 
-} 
-.feedback-container h3 { 
-font-size: 1.4rem; /* Decreased size for the text inside h3 */ 
-font-family: 'Sour Gummy', sans-serif; 
-font-weight: bolder; 
-} 
-/* Positive feedback animation */ 
-.success { 
-color: green; 
-animation: fadeInScale 0.5s ease-in-out; 
-} 
-@keyframes fadeInScale { 
-0% { 
-opacity: 0; 
-transform: scale(0.8); 
-} 
-100% { 
-opacity: 1; 
-transform: scale(1); 
-} 
-} 
-/* Negative feedback animation */ 
-.error { 
-color: red; 
-animation: shake 0.5s ease-in-out; 
-} 
-@keyframes shake { 
-0%, 100% { 
-transform: translateX(0); 
-} 
-25% { 
-transform: translateX(-5px); 
-} 
-50% { 
-transform: translateX(5px); 
-} 
-75% { 
-transform: translateX(-5px); 
-} 
-} 
-.button-group { 
-display: flex; 
-gap: 10px; 
-margin-bottom: 20px; 
-margin-right: 80px;
-margin-top: 200px; /* Push the buttons down further */ 
-} 
-.btn { 
-padding: 8px 16px; /* Reduced padding for smaller buttons */ 
-font-size: 1.2rem; /* Decreased font size for buttons */ 
-border-radius: 5px; 
-font-family: 'Sour Gummy', sans-serif; 
-font-weight: bolder;
-margin-right: 20px; 
-border: none; 
-cursor: pointer; 
-transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover transition */ 
-} 
-.record-btn { 
-background-color: #007bff; /* Blue button */ 
-color: white; 
-} 
-.record-btn:hover { 
-background-color: #0056b3; /* Darker blue on hover */ 
-transform: scale(1.05); /* Slightly scale button on hover */ 
-} 
-.next-btn { 
-background-color: #28a745; /* Green button */ 
-color: white; 
-} 
-.next-btn:hover { 
-background-color: #218838; /* Darker green on hover */ 
-transform: scale(1.05); /* Slightly scale button on hover */ 
+
+.left-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 300px;
+  margin-bottom: 20px;
+}
+
+.right-side {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Space between child elements */
+}
+
+/* Word Title Styling */
+.word-title {
+  margin-top: 100px; /* Add margin for space below the word title */
+  margin-bottom: 20px;
+  color: black;
+  font-size: 3em; /* Adjust word title size */
+}
+
+/* Image Styling */
+.image-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.image-display {
+  width: 300px; /* Set image size */
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Click Me Animation */
+.click-me {
+  position: absolute;
+  top: 50%;
+  left: -20%;
+  transform: translate(-50%, -50%);
+  color: #ff8d0a;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: 'Sour Gummy', sans-serif;
+  text-shadow: 2px 2px 4px rgba(237, 148, 59, 0.987);
+  pointer-events: none; /* Ensure the animation doesn't interfere with clicks */
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+/* Keyframe for Bounce Animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+/* Feedback Styling */
+.feedback-container {
+  color: black;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.feedback-container h3 {
+  font-size: 1.4rem; /* Adjust text size */
+  font-family: 'Sour Gummy', sans-serif;
+  font-weight: bolder;
+}
+
+/* Positive Feedback Animation */
+.success {
+  color: green;
+  animation: fadeInScale 0.5s ease-in-out;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Negative Feedback Animation */
+.error {
+  color: red;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+}
+
+/* Button Styling */
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-right: 80px;
+  margin-top: 200px; /* Push the buttons down further */
+}
+
+/* Back Button Styling */
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #ff5722; /* Orange color */
+  color: white;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: 'Sour Gummy', sans-serif;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn {
+  padding: 8px 16px; /* Adjust button padding */
+  font-size: 1.2rem; /* Adjust font size for buttons */
+  border-radius: 5px;
+  font-family: 'Sour Gummy', sans-serif;
+  font-weight: bolder;
+  margin-right: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover transition */
+}
+
+.record-btn {
+  background-color: #007bff; /* Blue button */
+  color: white;
+}
+
+.record-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slightly scale button on hover */
+}
+
+.next-btn {
+  background-color: #28a745; /* Green button */
+  color: white;
+}
+
+.next-btn:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly scale button on hover */
+}
+
+.back-btn1 {
+  background-color: #ff5722; /* Green button */
+  color: white;
+}
+
+.back-btn1:hover {
+  background-color: #c67537; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly scale button on hover */
 }
