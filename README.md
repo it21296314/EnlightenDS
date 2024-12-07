@@ -118,5 +118,5 @@ The major objective of this component is to identify the talented and interested
 
 ### Other Tools 
 •	Image Processing: OpenCV, NLP, CNN
-•	Deployment: Docker 
+
 
