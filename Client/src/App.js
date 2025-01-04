@@ -8,7 +8,7 @@ import AnswerFeedback from './screens/maths/AnswerFeedback';
 import NextQuestion from './screens/maths/NextQuestion';
 import QuizPage from './screens/maths/QuizPage';
 import ResultsPage from './screens/maths/ResultsPage';
-
+import QuizSummary from './screens/maths/QuizSummary';
 function App() {
   return (
     <div className="app" style={{
@@ -26,6 +26,7 @@ function App() {
         <Route path="/answer-feedback" element={<AnswerFeedback />} />
         <Route path="/next-question" element={<NextQuestion />} />
         <Route path="/quiz/:category/:difficulty" element={<QuizPage />} />
+        <Route path="/quiz-summary" element={<QuizSummary />} />
         <Route path="/results" element={<ResultsPage />} />
           </Routes>
       </BrowserRouter>
