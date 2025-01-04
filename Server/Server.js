@@ -6,6 +6,7 @@ import cors from 'cors'; // Cors will let us accept cross-origin requests from o
 import dotenv from 'dotenv'; // For keeping secret and non-shareable properties
 import multer from 'multer'; // Multer is middleware that handles multipart/form data sent from our frontend form.
 import morgan from 'morgan'; // Used to log information of each request that the server receives.
+// import { PythonShell } from "python-shell";
 
 import test from './routes/test.js';
 import questionRoutes from './routes/maths/questions.js';
@@ -34,6 +35,35 @@ app.use('/api/quizs', quiz)
 //middlewares
 const server = http.createServer(app);
 
+
+
+// app.post('/predict', (req, res) => {
+//   const inputData = req.body;
+
+//   console.log("Received request:", inputData);
+
+//   const options = {
+//     scriptPath: './ml/', // Adjust if necessary
+//     args: [JSON.stringify(inputData)]
+//   };
+
+//   PythonShell.run('predict_readiness.py', options, (err, results) => {
+//     if (err) {
+//       console.error("Python script error:", err);
+//       return res.status(500).send(err);
+//     }
+
+//     console.log("Python script output:", results);
+
+//     try {
+//       const output = JSON.parse(results[0]);
+//       return res.json(output);
+//     } catch (parseError) {
+//       console.error("Error parsing Python output:", parseError);
+//       return res.status(500).send({ error: "Invalid Python output" });
+//     }
+//   });
+// });
 
 
 // MongoDB setup
