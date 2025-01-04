@@ -17,10 +17,11 @@
 // module.exports = router;
 
 import express from 'express';
-import { generateQuestionHandler } from '../../controllers/maths/questionController.js';
+import { generateQuestionHandler, saveQuizData } from '../../controllers/maths/questionController.js';
 const router = express.Router();
 
 router.get('/generate/:category/:difficulty/:subLevel', generateQuestionHandler);
+router.post('/quiz', saveQuizData);
 
 export default router;
 
