@@ -203,7 +203,7 @@ const QuizPage = () => {
 
   return (
     <div className='quizppp'>
-
+<br></br><br></br>
       {score === null ? (
         <>
         {quizQuestions.length > 0 ? (
@@ -212,10 +212,11 @@ const QuizPage = () => {
               style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr', // Two columns of equal width
-                columnGap: '300px', // Spacing between columns and rows
+                columnGap: '200px', // Spacing between columns and rows
                 maxWidth: '1500px', // Adjust max width as needed
                 margin: '0 auto',
-                marginTop:'20px' // Center the grid
+               marginLeft:'10%',
+               marginRight:'10%'
               }}
             >
               {quizQuestions.map((question, index) => (
@@ -231,7 +232,7 @@ const QuizPage = () => {
                 >
                   <h2
                     style={{
-                      fontSize: '85px',
+                      fontSize: '65px',
                     }}
                   >
                     {question.question}
@@ -239,7 +240,7 @@ const QuizPage = () => {
                   <div
                     style={{
                       display: 'flex',
-                      width: '320px',
+                      width: '220px',
                     }}
                   >
                     <input
@@ -248,10 +249,10 @@ const QuizPage = () => {
                       onChange={(e) => handleInputChange(index, e.target.value)}
                       placeholder="Enter your answer"
                       style={{
-                        fontSize: '30px',
+                        fontSize: '20px',
                         flex: '1',
-                        marginLeft: '20px',
-                        width: '100px',
+                       
+                        width: '80px',
                       }}
                     />
                   </div>
@@ -263,7 +264,8 @@ const QuizPage = () => {
               onClick={handleSubmit}
              className="button1"
              style={{
-              marginLeft:'750px'
+              marginLeft:'40%',
+              
              }}
             >
               Submit
@@ -316,7 +318,7 @@ const QuizPage = () => {
                 <strong>Your Answer:</strong>{' '}
                 {userAnswers[currentIndex] !== undefined ? userAnswers[currentIndex] : 'Not Answered'}
               </h2>
-              <h2 style={{ fontSize: '40px', color:'green' }}>
+              <h2 style={{ fontSize: '60px', color:'green' }}>
                 <strong>Correct Answer:</strong> {quizQuestions[currentIndex].correctAnswer}
               </h2>
             </div>
@@ -347,14 +349,14 @@ const QuizPage = () => {
         <div style={{ marginTop: '20px', textAlign: 'center' }}>
   <h2
     style={{
-      fontSize: '60px',
+      fontSize: '50px',
     }}
   >
     Your Score is
   </h2>
   <h2
     style={{
-      fontSize: '250px',
+      fontSize: '200px',
     }}
   >
     {score}%
@@ -364,25 +366,25 @@ const QuizPage = () => {
   <div >
     {score <= 40 && (
       <>
-        <h2 style={{ fontSize: '100px'}}>Don't worry, let's try again!</h2>
+        <h2 style={{ fontSize: '50px'}}>Don't worry, let's try again!</h2>
         <img src={sadGif} alt="Cheering Animation" className="animation" />
               </>
     )}
     {score > 40 && score <= 60 && (
       <>
-        <h2 style={{ fontSize: '100px'}}>You are doing great, let's try again!</h2>
+        <h2 style={{ fontSize: '50px'}}>You are doing great, let's try again!</h2>
         <img src={cheerGif3} alt="Cheering Animation" className="animation" />
               </>
     )}
     {score > 60 && score <= 90 && (
       <>
-        <h2 style={{ fontSize: '100px'}}>You are awesome, congratulations!</h2>
+        <h2 style={{ fontSize: '50px'}}>You are awesome, congratulations!</h2>
         <img src={cheerGif2} alt="Cheering Animation" className="animation" />
         </>
     )}
     {score === 100 && (
       <>
-        <h2 style={{ fontSize: '100px'}}>You did it, perfect score!</h2>
+        <h2 style={{ fontSize: '50px'}}>You did it, perfect score!</h2>
         <img src={cheerGif1} alt="Cheering Animation" className="animation" />
         </>
     )}
@@ -401,7 +403,7 @@ const QuizPage = () => {
 };
 
 const buttonStyle = {
-fontSize: '80px',
+fontSize: '60px',
 padding: '10px 20px',
 backgroundColor: 'white',
 color: 'black',
