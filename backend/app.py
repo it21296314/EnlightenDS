@@ -1,5 +1,6 @@
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request
 from flask_cors import CORS
+from pymongo import MongoClient
 from gtts import gTTS
 import os
 import phonetics
@@ -7,77 +8,74 @@ import phonetics
 app = Flask(__name__)
 CORS(app)
 
-# Paths for images and audio
+# MongoDB setup
+client = MongoClient("mongodb+srv://it21342394:enlightends@cluster0.jflpe.mongodb.net/enlightends?retryWrites=true&w=majority&appName=Cluster0")
+db = client["quiz_app"]
+results_collection = db["results"]
+
 BASE_DIR = "./static"
 IMAGE_FOLDER = os.path.join(BASE_DIR, "images")
 AUDIO_FOLDER = os.path.join(BASE_DIR, "audio")
 
-# Utility function to create audio dynamically
 def generate_audio(word):
-    audio_file = os.path.join(AUDIO_FOLDER, f"{word}.mp3")
-    if not os.path.exists(audio_file):
-        tts = gTTS(word, lang='en')
-        tts.save(audio_file)
+    audio_path = os.path.join(AUDIO_FOLDER, f"{word}.mp3")
+    if not os.path.exists(audio_path):
+        tts = gTTS(word, lang="en")
+        tts.save(audio_path)
     return f"/static/audio/{word}.mp3"
 
-# Dynamic loading of categories and images
 def get_categories_and_images():
     categories = {}
-    if os.path.exists(IMAGE_FOLDER):
-        for category in os.listdir(IMAGE_FOLDER):
-            category_path = os.path.join(IMAGE_FOLDER, category)
-            if os.path.isdir(category_path):
-                categories[category] = [
-                    {
-                        "word": os.path.splitext(img)[0],
-                        "imageUrl": f"/static/images/{category}/{img}",
-                        "audioUrl": generate_audio(os.path.splitext(img)[0]),
-                    }
-                    for img in os.listdir(category_path)
-                    if os.path.isfile(os.path.join(category_path, img))
-                ]
+    for category in os.listdir(IMAGE_FOLDER):
+        category_path = os.path.join(IMAGE_FOLDER, category)
+        if os.path.isdir(category_path):
+            categories[category] = [
+                {
+                    "word": os.path.splitext(img)[0],
+                    "imageUrl": f"/static/images/{category}/{img}",
+                    "audioUrl": generate_audio(os.path.splitext(img)[0]),
+                }
+                for img in os.listdir(category_path)
+                if os.path.isfile(os.path.join(category_path, img))
+            ]
     return categories
 
 @app.route("/categories", methods=["GET"])
 def get_categories():
-    """Endpoint to list all available categories."""
     categories = get_categories_and_images()
     return jsonify({"categories": list(categories.keys())})
 
 @app.route("/get-images/<category>", methods=["GET"])
-def get_images_by_category(category):
-    """Endpoint to serve all images for a specific category."""
+def get_images(category):
     categories = get_categories_and_images()
     if category not in categories:
         return jsonify({"error": "Category not found"}), 404
     return jsonify({"images": categories[category]})
 
-@app.route("/get-audio/<word>", methods=["GET"])
-def get_audio(word):
-    """Endpoint to serve pre-generated audio for the word."""
-    audio_file = os.path.join(AUDIO_FOLDER, f"{word}.mp3")
-    if not os.path.exists(audio_file):
-        return jsonify({"error": "Audio not found"}), 404
-    return send_from_directory(AUDIO_FOLDER, f"{word}.mp3")
-
 @app.route("/check-pronunciation", methods=["POST"])
 def check_pronunciation():
-    """Endpoint to check user's pronunciation."""
     data = request.json
     target_word = data.get("word")
-    user_input = data.get("spokenWord")
+    spoken_word = data.get("spokenWord")
 
-    if not target_word or not user_input:
+    if not target_word or not spoken_word:
         return jsonify({"isCorrect": False, "message": "Invalid input."})
     
-    target_phonetics = phonetics.metaphone(target_word)
-    user_phonetics = phonetics.metaphone(user_input)
-
-    if target_phonetics == user_phonetics:
-        return jsonify({"isCorrect": True, "message": "Great job! Pronunciation is correct."})
+    if phonetics.metaphone(target_word) == phonetics.metaphone(spoken_word):
+        return jsonify({"isCorrect": True, "message": "Correct pronunciation!"})
     else:
-        return jsonify({"isCorrect": False, "message": "Try again. Focus on the sounds."})
+        return jsonify({"isCorrect": False, "message": "Try again."})
+
+@app.route("/save-results", methods=["POST"])
+def save_results():
+    data = request.json
+    results_collection.insert_one(data)
+    return jsonify({"message": "Results saved successfully."})
+
+@app.route("/analytics", methods=["GET"])
+def analytics():
+    records = list(results_collection.find({}, {"_id": 0}))
+    return jsonify(records)
 
 if __name__ == "__main__":
-    os.makedirs(AUDIO_FOLDER, exist_ok=True)
     app.run(debug=True, port=5000)

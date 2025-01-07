@@ -11,6 +11,9 @@ import ResultsPage from './screens/maths/ResultsPage';
 import PronunciationChecker from './screens/pronunciation/PronunciationChecker/PronunciationChecker';
 import BeginnerCategory from './screens/pronunciation/BeginnerCategory/BeginnerCategory';
 import PronunciationHome from "./screens/pronunciation/pronunciationHome/pronunciationHome";
+import Categories from "./components/pronunciation/Categories";
+import PronunciationChecker1 from './components/pronunciation/PronunciationChecker1';
+import Dashboard from './components/pronunciation/Dashboard';
 
 function App() {
   return (
@@ -37,6 +40,9 @@ function App() {
             path="/pronunciation/checker/:category"
             element={<PronunciationChecker />}
           />
+          <Route path="/categories" element={<Categories />} />
+        <Route path="/quiz/:category" element={<PronunciationChecker1 />} />
+        <Route path="/dashboard" element={<Dashboard />} />
 
         </Routes>
       </BrowserRouter>
