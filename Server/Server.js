@@ -7,10 +7,12 @@ import dotenv from 'dotenv'; // For keeping secret and non-shareable properties
 import multer from 'multer'; // Multer is middleware that handles multipart/form data sent from our frontend form.
 import morgan from 'morgan'; // Used to log information of each request that the server receives.
 // import { PythonShell } from "python-shell";
+import session from 'express-session';
 
 import test from './routes/test.js';
 import questionRoutes from './routes/maths/questions.js';
 import quiz from './routes/maths/quizController.js'
+import child from './routes/childRoutes.js';
 
 const app = express();
 const forms = multer();
@@ -24,13 +26,32 @@ app.use(forms.array());
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 app.use(morgan('common'));
-app.use(cors());
 dotenv.config();
+
+app.use(  cors({
+  origin: 'http://localhost:3000', // Allow only your frontend's origin
+ credentials: true, // Allow credentials (cookies, session)
+})
+);
+
+app.use(
+  session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+    },
+  })
+);
 
 // Use the Test routes
 app.use('/api', test);
 app.use('/api/questions', questionRoutes);
 app.use('/api/quizs', quiz)
+app.use('/api/child', child)
 
 //middlewares
 const server = http.createServer(app);
