@@ -17,7 +17,7 @@ const BeginnerCategory = () => {
   return ( 
     <div className="beginner-category"> 
       <h1>Select Category</h1> 
-      <div className="category-buttons"> 
+      <div className="category-buttons_2129"> 
         {categories.map((category) => ( 
           <button 
             key={category.route} 

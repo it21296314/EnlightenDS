@@ -40,6 +40,16 @@ function App() {
         <Route path="/quiz/:category/:difficulty" element={<QuizPage />} />
         <Route path="/quiz-summary" element={<QuizSummary />} />
         <Route path="/results" element={<ResultsPage />} />
+
+        <Route path="/pro" element={<PronunciationHome />} />
+          <Route path="/beginner-category" element={<BeginnerCategory />} />
+          <Route
+            path="/pronunciation/checker/:category"
+            element={<PronunciationChecker />}
+          />
+          <Route path="/categories" element={<Categories />} />
+        <Route path="/quiz/:category" element={<PronunciationChecker1 />} />
+        <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
       </BrowserRouter>
     </div>
