@@ -2,6 +2,9 @@ import React from 'react';
 import { BrowserRouter, Navigate, Routes, Route} from 'react-router-dom'
 import Savi from './screens/maths/savi';
 import MainPage from './screens/mainpage';
+import SignUp from './screens/signupPage';
+import SignIn from './screens/signinPage';
+import Home from './screens/Home';
 import LevelSelection from './screens/maths/LevelSelection';
 import QuestionDisplay from './screens/maths/QuestionDisplay';
 import AnswerFeedback from './screens/maths/AnswerFeedback';
@@ -20,7 +23,10 @@ function App() {
 
             
 
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<SignIn />} />
+        <Route path="/SignUp" element={<SignUp/>} />
+        <Route path="/Home" element={<Home/>} />
+        <Route path="/MainPage" element={<MainPage />} />
         <Route path="/LevelSelection" element={<LevelSelection />} />
         <Route path="/questions/:category/:difficulty" element={<QuestionDisplay />} />
         <Route path="/answer-feedback" element={<AnswerFeedback />} />
