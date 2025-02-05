@@ -14,6 +14,7 @@ function Level1G() {
   const [win, setWin] = useState(false);
 
   const webcamRef = useRef(null);
+  const audioRef = useRef(null); // Reference for background music
   const endpoint = 1000;
 
   // Character movement animation
@@ -75,15 +76,22 @@ function Level1G() {
     }
   }, [gameStarted, gameOver, win]);
 
-  const resetGame = () => {
-    setMovement(0);
-    setTimer(60);
-    setEmotion("");
-    setGameOver(false);
-    setGameStarted(false);
-    setWin(false);
-    setIsRunning(false);
-  };
+  useEffect(() => {
+    if (movement >= endpoint) {
+      setWin(true);
+      setIsRunning(false);
+    }
+  }, [movement]);
+
+  // Start and stop background music when game starts/stops
+  useEffect(() => {
+    if (gameStarted && audioRef.current) {
+      audioRef.current.play().catch((error) => console.log("Audio play error:", error));
+    } else if (gameOver || win) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0; // Reset audio
+    }
+  }, [gameStarted, gameOver, win]);
 
   const startGame = () => {
     setGameStarted(true);
@@ -93,15 +101,11 @@ function Level1G() {
     setMovement(0);
   };
 
-  useEffect(() => {
-    if (movement >= endpoint) {
-      setWin(true);
-      setIsRunning(false);
-    }
-  }, [movement]);
-
   return (
     <div className="game-container">
+      {/* Background Music */}
+      <audio ref={audioRef} src="/audio/background-music.mp3" loop />
+
       {/* Background Video */}
       <div className="background-wrapper">
         <animated.video className="background-video" style={backgroundAnimation} autoPlay loop muted>
@@ -112,26 +116,20 @@ function Level1G() {
         </animated.video>
       </div>
 
-      {/* Start & End Buttons */}
-      
-
+      {/* Game UI */}
       <div className="checker-container1">
         <h1>Level 1: Emotion-Based Running Game</h1>
 
-        {/* Timer and Emotion Detection in One Line */}
+        {/* Timer and Emotion Detection */}
         <div className="timer-emotion-container">
-
           <div className="button-container">
-        <button className="start-end-btn" onClick={startGame}>Start</button>
-        {/* <button className="start-end-btn" onClick={resetGame}>End</button> */}
-      </div>
+            <button className="start-end-btn" onClick={startGame}>Start</button>
+          </div>
 
           <div className="emotion-container1">
-
             <div className="smile-message1">
-              {emotion === "Happy" ? "Smile detected! Running!" : "Smile !"}
+              {emotion === "Happy" ? "Running!" : "Smile!"}
             </div>
-
             <ReactWebcam
               ref={webcamRef}
               audio={false}
@@ -140,21 +138,13 @@ function Level1G() {
               style={{ border: "2px solid white", borderRadius: "5px" }}
             />
             <h3>Emotion: {emotion || "Not detected yet"}</h3>
-
           </div>
-          <div className="timer1"> {timer} S</div>
+          <div className="timer1">{timer} S</div>
         </div>
 
-
-
-
-
         <div className="game-area1">
-          {/* Animated Character at Bottom */}
-          <animated.div
-            className="character"
-            style={characterAnimation}
-          >
+          {/* Animated Character */}
+          <animated.div className="character" style={characterAnimation}>
             <img src="/images/mario03.png" alt="Super Mario" className="character-img" />
           </animated.div>
         </div>
