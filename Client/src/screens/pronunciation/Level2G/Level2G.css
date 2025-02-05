@@ -1,0 +1,54 @@
+.checker-container {
+  text-align: center;
+  padding: 20px;
+  background: none !important;
+    background-image: none !important;
+}
+
+.timer {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.game-area {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ddd;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.character {
+  transition: left 0.5s ease-in-out;
+}
+
+.win-message, .game-over-message {
+  font-size: 24px;
+  font-weight: bold;
+  color: green;
+  margin-top: 20px;
+}
+
+.game-over-message {
+  color: red;
+}
+
+.start-btn, .reset-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reset-btn {
+  background-color: #f44336;
+}
+
+.start-btn:hover, .reset-btn:hover {
+  opacity: 0.8;
+}

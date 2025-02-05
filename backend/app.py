@@ -5,6 +5,9 @@ from routes.images import images_bp
 from routes.pronunciation import pronunciation_bp
 from routes.results import results_bp
 from routes.analytics import analytics_bp
+from routes.detect_emotion import detect_emotion_bp
+
+
 
 app = Flask(__name__)
 CORS(app)
@@ -15,6 +18,8 @@ app.register_blueprint(images_bp)
 app.register_blueprint(pronunciation_bp)
 app.register_blueprint(results_bp)
 app.register_blueprint(analytics_bp)
+app.register_blueprint(detect_emotion_bp)
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
