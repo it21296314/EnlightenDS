@@ -10,12 +10,14 @@
 .background-wrapper {
   display: flex;
   position: absolute;
-  top: 0; /* Adjust this value to move it up */
+  top: -50px;
+  /* Adjust this value to move it up */
   left: 0;
   width: 100%;
   height: 100%;
-  
+
 }
+
 .background-video {
   width: 100vw;
   height: 109vh;
@@ -29,21 +31,27 @@
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: 'Sour Gummy', sans-serif; 
+  font-family: 'Sour Gummy', sans-serif;
   display: flex;
- 
+
   gap: 20px;
 }
-.start-end-btn{
+
+.start-end-btn {
   font-size: 30px;
   font-weight: bold;
+  margin-inline-end: 1250%;
+  margin-top: -70px;
   border-radius: 10px;
-  background-color: #2196f3;;
-  
+  background-color: #2196f3;
+  ;
+
 }
+
 .start-end-btn:hover {
   transform: scale(1.1);
-  background-color: #1e88e5; /* Slightly brighter green for Beginner */
+  background-color: #1e88e5;
+  /* Slightly brighter green for Beginner */
 }
 
 .timer-emotion-container {
@@ -55,16 +63,20 @@
   bottom: 80px;
 }
 
-.timer1, .emotion-container1 h3 {
+.timer1,
+.emotion-container1 h3 {
   font-size: 1.5rem;
 }
-.emotion-container1{
+
+.emotion-container1 {
   margin-left: 35%;
   font-family: 'Sour Gummy', sans-serif;
   color: whitesmoke;
-  
+  margin-top: -88px;
+
 }
-.smile-message1{
+
+.smile-message1 {
   font-size: 30px;
   margin-bottom: 5px;
   font-weight: bold;
@@ -72,7 +84,8 @@
   background-color: #2196f3;
 
 }
-.emotion-container1 h3{
+
+.emotion-container1 h3 {
   font-size: 30px;
   font-weight: bold;
   border-radius: 10px;
@@ -94,9 +107,9 @@
 
   /* Centering text */
   display: flex;
-  align-items: center;  
-  justify-content: center; 
-  text-align: center; 
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 
@@ -124,9 +137,9 @@
   object-fit: contain;
 }
 
-.win-message1{
+.win-message1 {
   font-size: large;
   color: black;
- 
-  
+
+
 }

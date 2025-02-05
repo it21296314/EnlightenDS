@@ -113,16 +113,18 @@ function Level1G() {
       </div>
 
       {/* Start & End Buttons */}
-      {/* <div className="button-container">
-        <button className="start-end-btn" onClick={startGame}>Start</button>
-        <button className="start-end-btn" onClick={resetGame}>End</button>
-      </div> */}
+      
 
       <div className="checker-container1">
         <h1>Level 1: Emotion-Based Running Game</h1>
 
         {/* Timer and Emotion Detection in One Line */}
         <div className="timer-emotion-container">
+
+          <div className="button-container">
+        <button className="start-end-btn" onClick={startGame}>Start</button>
+        {/* <button className="start-end-btn" onClick={resetGame}>End</button> */}
+      </div>
 
           <div className="emotion-container1">
 
