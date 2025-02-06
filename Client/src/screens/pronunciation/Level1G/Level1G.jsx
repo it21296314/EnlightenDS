@@ -43,7 +43,7 @@ function Level1G() {
 
       if (detectedEmotion === "Happy" && !gameOver && !win && movement < endpoint) {
         setIsRunning(true);
-        setMovement((prev) => Math.min(prev + 5, endpoint));
+        setMovement((prev) => Math.min(prev + 7, endpoint));
       } else {
         setIsRunning(false);
       }
@@ -126,33 +126,60 @@ function Level1G() {
             <button className="start-end-btn" onClick={startGame}>Start</button>
           </div>
 
-          <div className="emotion-container1">
-            <div className="smile-message1">
-              {emotion === "Happy" ? "Running!" : "Smile!"}
+          {!win && !gameOver && (
+            <div className="emotion-container1">
+              <div className="smile-message1">
+                {emotion === "Happy" ? "Running! 🏃" : (
+                  <>
+                    Smile!
+                    <img src="/images/pronunciation/smile.gif" alt="Smile" className="smile-image" />
+                  </>
+                )}
+              </div>
+
+              <ReactWebcam
+                ref={webcamRef}
+                audio={false}
+                screenshotFormat="image/jpeg"
+                videoConstraints={{ width: 320, height: 240, facingMode: "user" }}
+                style={{ border: "2px solid white", borderRadius: "5px" }}
+              />
+              <h3>Emotion: {emotion || "Not detected yet"}</h3>
             </div>
-            <ReactWebcam
-              ref={webcamRef}
-              audio={false}
-              screenshotFormat="image/jpeg"
-              videoConstraints={{ width: 320, height: 240, facingMode: "user" }}
-              style={{ border: "2px solid white", borderRadius: "5px" }}
-            />
-            <h3>Emotion: {emotion || "Not detected yet"}</h3>
-          </div>
+          )}
           <div className="timer1">{timer} S</div>
         </div>
 
+        {/* Display Win or Game Over Message */}
+        {win && (
+          <div className="win-message1">
+            <p>You Win! 🎉</p>
+            <img src="/images/pronunciation/win.gif" alt="You Win!" />
+
+          </div>
+        )}
+
+        {gameOver && (
+          <div className="game-over-message1">
+            <p>Try Again! </p>
+            <img src="/images/pronunciation/sad.gif" alt="Game Over!" />
+
+          </div>
+        )}
+
+
         <div className="game-area1">
           {/* Animated Character */}
-          <animated.div className="character" style={characterAnimation}>
-            <img src="/images/mario03.png" alt="Super Mario" className="character-img" />
-          </animated.div>
+          {!win && !gameOver && (
+            <animated.div className="character" style={characterAnimation}>
+              <img src="/images/pronunciation/run.gif" alt="Running Character" className="character-img" />
+            </animated.div>
+          )}
         </div>
 
-        {win && <div className="win-message1"><h2>You Win!</h2></div>}
-        {gameOver && <div className="game-over-message1"><h2>Game Over!</h2></div>}
+
       </div>
-    </div>
+    </div >
   );
 }
 
