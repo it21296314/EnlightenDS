@@ -4,7 +4,6 @@ import EmotionDetection from './EmotionDetection.jsx';
 import WordPronunciation from './WordPronunciation.jsx';
 import './Level2G.css';
 
-
 function Level2G() {
   const [phase, setPhase] = useState('emotion'); // 'emotion' or 'pronunciation'
   const [movement, setMovement] = useState(0);
@@ -13,14 +12,14 @@ function Level2G() {
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
   const [currentWord, setCurrentWord] = useState('');
-  const [pronunciationCorrect, setPronunciationCorrect] = useState(false); // Tracks correctness of pronunciation
-  const [gameStarted, setGameStarted] = useState(false); // Tracks if the game has started
-  const words = ['Dog', 'Cat', 'Ball', 'Apple', 'Sun'];
+  const [imageUrl, setImageUrl] = useState('');
+  const [pronunciationCorrect, setPronunciationCorrect] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
 
   const endpoint = 1000;
   const animationProps = useSpring({
     left: `${movement}px`,
-    config: { tension: 500, friction: 50 }, // Adjusted for faster movement
+    config: { tension: 500, friction: 50 },
     immediate: isRunning,
   });
 
@@ -45,8 +44,8 @@ function Level2G() {
     if (phase === 'emotion') {
       const phaseTimer = setTimeout(() => {
         setPhase('pronunciation');
-        setPronunciationCorrect(false); // Reset correctness for the new word
-        setCurrentWord(words[Math.floor(Math.random() * words.length)]);
+        setPronunciationCorrect(false);
+        fetchRandomImage(); // Fetch a new image when switching to pronunciation phase
       }, 10000);
 
       return () => clearTimeout(phaseTimer);
@@ -63,7 +62,7 @@ function Level2G() {
   const handleSmileDetected = (isSmiling) => {
     if (phase === 'emotion' && isSmiling && !gameOver && !win) {
       setIsRunning(true);
-      setMovement((prev) => Math.min(prev + 20, endpoint)); // Increased movement speed
+      setMovement((prev) => Math.min(prev + 20, endpoint));
     } else {
       setIsRunning(false);
     }
@@ -80,15 +79,39 @@ function Level2G() {
     }
   };
 
+  const fetchRandomImage = async () => {
+    try {
+        const response = await fetch("http://localhost:5000/get-random-image");
+        const data = await response.json();
+
+        if (data.imageUrl && data.word) {
+            setCurrentWord(data.word);
+
+            // Ensure correct image path
+            const fullImageUrl = data.imageUrl.startsWith("/")
+                ? `http://localhost:5000${data.imageUrl}` // Serve from backend
+                : data.imageUrl; // Use as-is if full URL
+
+            setImageUrl(fullImageUrl);
+        } else {
+            console.error("Invalid data format:", data);
+        }
+    } catch (error) {
+        console.error("Error fetching image:", error);
+    }
+};
+
+
+  
+  
   const startGame = () => {
     setPhase('emotion');
     setMovement(0);
     setTimer(60);
     setGameOver(false);
     setWin(false);
-    setCurrentWord(words[Math.floor(Math.random() * words.length)]);
     setPronunciationCorrect(false);
-    setGameStarted(true); // Start the timer and game
+    setGameStarted(true);
   };
 
   return (
@@ -111,17 +134,17 @@ function Level2G() {
           />
         </animated.div>
       </div>
+
       {phase === 'emotion' && (
         <EmotionDetection onSmileDetected={handleSmileDetected} isActive={phase === 'emotion'} />
       )}
-      <div className="pronunciation-container">
-        {phase === 'pronunciation' && (
-          <WordPronunciation
-            targetWord={currentWord}
-            onPronunciationComplete={handlePronunciationCorrect}
-          />
-        )}
-      </div>
+
+      {phase === 'pronunciation' && imageUrl && (
+        <div className="pronunciation-container">
+          <img src={imageUrl} alt={currentWord} className="word-image" />
+          <WordPronunciation targetWord={currentWord} onPronunciationComplete={handlePronunciationCorrect} />
+        </div>
+      )}
 
       {win && <div className="win-message"><h2>You Win!</h2></div>}
       {gameOver && (

@@ -6,6 +6,7 @@ from routes.pronunciation import pronunciation_bp
 from routes.results import results_bp
 from routes.analytics import analytics_bp
 from routes.detect_emotion import detect_emotion_bp
+from routes.randomimages import randomimage_bp
 
 
 
@@ -19,6 +20,7 @@ app.register_blueprint(pronunciation_bp)
 app.register_blueprint(results_bp)
 app.register_blueprint(analytics_bp)
 app.register_blueprint(detect_emotion_bp)
+app.register_blueprint(randomimage_bp)
 
 
 if __name__ == "__main__":
