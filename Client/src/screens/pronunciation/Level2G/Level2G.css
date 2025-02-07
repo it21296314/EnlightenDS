@@ -19,6 +19,10 @@
   margin: 20px 0;
   overflow: hidden;
 }
+.word-image{
+  height: 100px;
+  width: 100%;
+}
 
 .character {
   transition: left 0.5s ease-in-out;
