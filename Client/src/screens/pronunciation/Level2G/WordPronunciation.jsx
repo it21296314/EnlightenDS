@@ -40,6 +40,17 @@ function WordPronunciation({ targetWord, onPronunciationComplete }) {
     };
   };
 
+  const playWordAudio = () => {
+    const utterance = new SpeechSynthesisUtterance(targetWord);
+    utterance.lang = 'en-US';
+    const voices = window.speechSynthesis.getVoices();
+    const childFriendlyVoice = voices.find(voice => voice.name.includes('Google UK English Female')) || voices[0];
+    utterance.voice = childFriendlyVoice;
+    utterance.pitch = 1.5; // Higher pitch for a more child-friendly tone
+    utterance.rate = 0.9; // Slightly slower for clarity
+    window.speechSynthesis.speak(utterance);
+  };
+
   return (
     <div className="pronunciation-container">
       <h3 className="word-title">Pronounce the word: {targetWord}</h3>
@@ -53,9 +64,10 @@ function WordPronunciation({ targetWord, onPronunciationComplete }) {
       </button>
   
       <p className="feedback-message">{feedback}</p>
+
+      <button className="audio-button" onClick={playWordAudio}>🔊 Play Word</button>
     </div>
   );
-  
 }
 
 export default WordPronunciation;
