@@ -878,6 +878,7 @@ const QuestionDisplay = () => {
                 color: answerResults[questionCount] ? 'green' : 'red',
                 fontSize: '100px',
                 fontWeight: 'bold',
+                marginTop:'10px'
               }}
             >
               {answerResults[questionCount] ? 'Correct!!' : 'Wrong!!'}
@@ -891,10 +892,10 @@ const QuestionDisplay = () => {
             </div>
             <h2 className="message-display">{message}</h2>
             {!answerResults[questionCount] && (
-              <h1>Correct Answer: {questionData?.correctAnswer}</h1>
+              <h1 style={{marginTop:'10px'}}>Correct Answer: {questionData?.correctAnswer}</h1>
             )}
             {questionCount < 14 ? (
-              <button className="button1" onClick={handleNextQuestion}>
+              <button className="button1111" onClick={handleNextQuestion}>
                 Next
               </button>
             ) : (
@@ -904,7 +905,7 @@ const QuestionDisplay = () => {
               // >
               //   Attempt Quiz
               // </button>
-              <button className="button1" onClick={handleFinalSubmit}>
+              <button className="button1111" onClick={handleFinalSubmit}>
     Submit
   </button>
             )}

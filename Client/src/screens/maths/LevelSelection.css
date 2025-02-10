@@ -53,8 +53,8 @@
      margin-bottom: 1rem;
    }
    
-   .category-btn {
-     font-size: 42px;
+   .categor-btn {
+    
      /* padding: 0.7rem 1.5rem; */
      width: 30%;
      height: 2%;
@@ -84,7 +84,7 @@
    }
    
    .difficulty-btn {
-     font-size: 40px;
+     font-size: 80px;
      padding: 0.7rem 1.5rem;
      margin-bottom: 20px;
      background-color: #11c13a;
