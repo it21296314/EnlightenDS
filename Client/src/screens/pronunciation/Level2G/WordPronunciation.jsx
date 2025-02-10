@@ -53,18 +53,18 @@ function WordPronunciation({ targetWord, onPronunciationComplete }) {
 
   return (
     <div className="pronunciation-container">
-      <h3 className="word-title">Pronounce the word: {targetWord}</h3>
-      
+      <h3 className="word-title"> Word: {targetWord}</h3>
+  
       <p className="recognized-text">
-        What you said: <span>{recognizedWord ? recognizedWord : '...'}</span>
+        What you said: <span>{recognizedWord ? recognizedWord : "..."}</span>
       </p>
   
       <button className="pronounce-button" onClick={startPronunciation} disabled={isListening}>
-        {isListening ? 'Listening...' : 'Start Pronunciation'}
+        {isListening ? "Listening..." : "Start Pronunciation"}
       </button>
   
       <p className="feedback-message">{feedback}</p>
-
+  
       <button className="audio-button" onClick={playWordAudio}>🔊 Play Word</button>
     </div>
   );

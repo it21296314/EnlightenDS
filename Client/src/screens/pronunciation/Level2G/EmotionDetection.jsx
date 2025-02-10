@@ -33,7 +33,7 @@ function EmotionDetection({ onSmileDetected, isActive }) {
 
   return (
     <div>
-      <h3>Emotion Detection: Smile to make the character run!</h3>
+     
       <ReactWebcam
         ref={webcamRef}
         audio={false}

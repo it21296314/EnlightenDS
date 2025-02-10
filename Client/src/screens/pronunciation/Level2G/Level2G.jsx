@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import EmotionDetection from './EmotionDetection.jsx';
 import WordPronunciation from './WordPronunciation.jsx';
@@ -15,13 +15,26 @@ function Level2G() {
   const [imageUrl, setImageUrl] = useState('');
   const [pronunciationCorrect, setPronunciationCorrect] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
+  const [emotion, setEmotion] = useState("");
 
+  const audioRef = useRef(null);
   const endpoint = 1000;
-  const animationProps = useSpring({
+
+
+  // Character movement animation
+  const characterAnimation = useSpring({
+    transform: "scale(2.0)",
     left: `${movement}px`,
-    config: { tension: 500, friction: 50 },
+    config: { tension: 170, friction: 20 },
     immediate: isRunning,
   });
+
+  // Background scrolling animation
+  const backgroundAnimation = useSpring({
+    transform: `translateX(-${movement / 2}px)`,
+    config: { tension: 100, friction: 20 },
+  });
+
 
   useEffect(() => {
     if (!gameStarted || timer <= 0) {
@@ -81,29 +94,29 @@ function Level2G() {
 
   const fetchRandomImage = async () => {
     try {
-        const response = await fetch("http://localhost:5000/get-random-image");
-        const data = await response.json();
+      const response = await fetch("http://localhost:5000/get-random-image");
+      const data = await response.json();
 
-        if (data.imageUrl && data.word) {
-            setCurrentWord(data.word);
+      if (data.imageUrl && data.word) {
+        setCurrentWord(data.word);
 
-            // Ensure correct image path
-            const fullImageUrl = data.imageUrl.startsWith("/")
-                ? `http://localhost:5000${data.imageUrl}` // Serve from backend
-                : data.imageUrl; // Use as-is if full URL
+        // Ensure correct image path
+        const fullImageUrl = data.imageUrl.startsWith("/")
+          ? `http://localhost:5000${data.imageUrl}` // Serve from backend
+          : data.imageUrl; // Use as-is if full URL
 
-            setImageUrl(fullImageUrl);
-        } else {
-            console.error("Invalid data format:", data);
-        }
+        setImageUrl(fullImageUrl);
+      } else {
+        console.error("Invalid data format:", data);
+      }
     } catch (error) {
-        console.error("Error fetching image:", error);
+      console.error("Error fetching image:", error);
     }
-};
+  };
 
 
-  
-  
+
+
   const startGame = () => {
     setPhase('emotion');
     setMovement(0);
@@ -115,52 +128,91 @@ function Level2G() {
   };
 
   return (
-    <div className="checker-container">
-      <h1>Level 1: Emotion + Pronunciation Game</h1>
-      <div className="timer">Time: {timer} seconds</div>
-      <div className="game-area">
-        <animated.div
-          className="character"
-          style={{
-            position: 'absolute',
-            top: '50px',
-            ...animationProps,
-          }}
-        >
-          <img
-            src="/images/mario03.png"
-            alt="Super Mario"
-            style={{ width: '80px', height: '80px', objectFit: 'contain' }}
-          />
-        </animated.div>
+
+    <div className='game-container'>
+      {/* Background Music */}
+      <audio ref={audioRef} src="/audio/background-music.mp3" loop />
+
+      {/* Background Video */}
+      <div className="background-wrapper">
+        <animated.video className="background-video" style={backgroundAnimation} autoPlay loop muted>
+          <source src="/videos/newgame4.mp4" type="video/mp4" />
+        </animated.video>
+        <animated.video className="background-video" style={backgroundAnimation} autoPlay loop muted>
+          <source src="/videos/newgame4.mp4" type="video/mp4" />
+        </animated.video>
       </div>
 
-      {phase === 'emotion' && (
-        <EmotionDetection onSmileDetected={handleSmileDetected} isActive={phase === 'emotion'} />
-      )}
+      <div className="checker-container">
+        <h1>Level 1: Emotion + Pronunciation Game</h1>
 
-      {phase === 'pronunciation' && imageUrl && (
-        <div className="pronunciation-container">
-          <img src={imageUrl} alt={currentWord} className="word-image" />
-          <WordPronunciation targetWord={currentWord} onPronunciationComplete={handlePronunciationCorrect} />
-        </div>
-      )}
+        <div className='timer-emotion-container'>
+          <div className="button-container">
+            <button className="start-end-btn" onClick={startGame}>Start</button>
+          </div>
 
-      {win && <div className="win-message"><h2>You Win!</h2></div>}
-      {gameOver && (
-        <div className="game-over-message">
-          <h2>Game Over!</h2>
-          <button onClick={startGame} className="reset-btn">
-            Restart Game
-          </button>
+          {!win && !gameOver && (
+            <div className="emotion-container1">
+              {phase === 'pronunciation' && imageUrl && (
+                <div className="pronunciation-container">
+                  <img src={imageUrl} alt={currentWord} className="word-image" />
+                  <WordPronunciation targetWord={currentWord} onPronunciationComplete={handlePronunciationCorrect} />
+                </div>
+              )}
+              {phase !== 'pronunciation' && (
+                <div className="smile-message1">
+                  {emotion === "Happy" ? "Running! 🏃" : (
+                    <>
+                      Smile!
+                      <img src="/images/pronunciation/smile.gif" alt="Smile" className="smile-image" />
+                    </>
+                  )}
+                </div>
+              )}
+
+
+
+              {phase === 'emotion' && (
+                <EmotionDetection onSmileDetected={handleSmileDetected} isActive={phase === 'emotion'} />
+              )}
+            </div>
+          )}
+
+
+          <div className="timer1">{timer} S</div>
         </div>
-      )}
-      {!win && !gameOver && !gameStarted && (
-        <button onClick={startGame} className="start-btn">
-          Start Game
-        </button>
-      )}
+
+        {/* Display Win or Game Over Message */}
+        {win && (
+          <div className="win-message1">
+            <p>You Win! 🎉</p>
+            <img src="/images/pronunciation/win.gif" alt="You Win!" />
+
+          </div>
+        )}
+
+        {gameOver && (
+          <div className="game-over-message1">
+            <p>Try Again! </p>
+            <img src="/images/pronunciation/sad.gif" alt="Game Over!" />
+
+          </div>
+        )}
+
+        <div className="game-area1">
+          {/* Animated Character */}
+          {!win && !gameOver && (
+            <animated.div className="character" style={characterAnimation}>
+              <img src="/images/pronunciation/run.gif" alt="Running Character" className="character-img" />
+            </animated.div>
+          )}
+        </div>
+
+
+      </div>
+
     </div>
+
   );
 }
 
