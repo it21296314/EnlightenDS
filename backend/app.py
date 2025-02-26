@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
+from dotenv import load_dotenv
 from routes.categories import categories_bp
 from routes.images import images_bp
 from routes.pronunciation import pronunciation_bp
@@ -8,7 +9,7 @@ from routes.analytics import analytics_bp
 from routes.detect_emotion import detect_emotion_bp
 from routes.randomimages import randomimage_bp
 
-
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
