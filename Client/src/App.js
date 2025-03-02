@@ -18,6 +18,8 @@ import Categories from "./components/pronunciation/Categories";
 import PronunciationChecker1 from './components/pronunciation/PronunciationChecker1';
 import Dashboard from './components/pronunciation/Dashboard';
 import QuizSummary from './screens/maths/QuizSummary';
+import Question from './components/maths/Question';
+import BallCountingAnimation from './components/maths/count';
 function App() {
   return (
     <div className="app" style={{
@@ -40,6 +42,8 @@ function App() {
         <Route path="/quiz/:category/:difficulty" element={<QuizPage />} />
         <Route path="/quiz-summary" element={<QuizSummary />} />
         <Route path="/results" element={<ResultsPage />} />
+        <Route path="/ani" element={<Question />} />
+        <Route path="/ball" element={<BallCountingAnimation />} />
 
         <Route path="/pro" element={<PronunciationHome />} />
           <Route path="/beginner-category" element={<BeginnerCategory />} />
