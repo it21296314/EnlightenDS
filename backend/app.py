@@ -8,6 +8,7 @@ from routes.results import results_bp
 from routes.analytics import analytics_bp
 from routes.detect_emotion import detect_emotion_bp
 from routes.randomimages import randomimage_bp
+from routes.chart import chart_bp
 
 load_dotenv()
 
@@ -22,6 +23,7 @@ app.register_blueprint(results_bp)
 app.register_blueprint(analytics_bp)
 app.register_blueprint(detect_emotion_bp)
 app.register_blueprint(randomimage_bp)
+app.register_blueprint(chart_bp, url_prefix="/chart")
 
 
 if __name__ == "__main__":
