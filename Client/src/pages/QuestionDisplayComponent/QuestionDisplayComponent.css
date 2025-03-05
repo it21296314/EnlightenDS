@@ -1,0 +1,43 @@
+.Q{
+ margin-left: 300px;
+ margin-bottom: 0px;
+
+ 
+}
+
+.NQ{
+    font-size:20px;
+    margin-right: 50px;
+}
+.hQ3{
+    font-size: 50px;
+    margin-top: 50px;
+    size: 100px;
+    margin-left: 500px;
+    color:#3b056ebd;
+    margin-bottom: 50px;
+}
+.hQ4{
+    font-size: 50px;
+    margin-top: 50px;
+    size: 100px;
+    margin-left: 100px;
+    color:#3b056ebd;
+    margin-bottom: 20px;
+}
+.answers{
+    font-size:20px;
+    margin-top: 50px;
+    
+   
+    color:#3b056ebd;
+   
+}
+.correct_answers{
+    font-size:15px;
+    margin-right: 100px;
+    margin-top: 20px;
+}
+.upForm{
+    color: beige;
+}

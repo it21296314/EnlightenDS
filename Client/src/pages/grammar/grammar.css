@@ -1,0 +1,60 @@
+.form1{
+    
+    width: 400px;
+    margin-left: 500px;
+    padding: 0;
+  
+}
+.btns{
+    border: none;
+	outline: none;
+	padding: 12px ;
+	background-color: #3b056ebd;
+	border-radius: 20px;
+	width: 180px;
+	font-weight: bold;
+	font-size: 24px;
+	cursor: pointer;
+	height: 60px;
+	color: #ffffff;
+    margin-left: 100px;
+}
+.select{
+    color: #3b056ebd;
+}
+.select1{
+    color: #3b056ebd;
+   
+}
+.maths{
+    font-size: 50PX;
+    /* margin-top: 0px;
+    margin-bottom: 30px; */
+    font-weight: bold;
+    color:#3b056ebd ;
+    text-align: center;
+    
+}
+.bodyq{
+
+    /* The image used */
+    background-image: url(../../assets/img/34014.jpg);
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 0px;
+    height: 1080px;
+}
+.form{
+    font-size: 30PX;
+    margin-top: 200px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color:#3b056ebd ;
+    margin-inline-end: auto;
+}
