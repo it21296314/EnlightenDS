@@ -945,7 +945,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import './QuestionDisplay.css';
 import cheerGif from './img/cheer.gif';
 import sadGif from './img/sad.gif';
@@ -985,6 +985,9 @@ const motivationalMessages = [
 const QuestionDisplay = () => {
   const { category, difficulty } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const childId = location.state?.childId; // Access the childId passed A231in the stat
+
 
   const [questionData, setQuestionData] = useState(null);
   const [userAnswer, setUserAnswer] = useState('');
@@ -1145,39 +1148,85 @@ const QuestionDisplay = () => {
     return messages[Math.floor(Math.random() * messages.length)];
   };
 
+  // const handleFinalSubmit = async () => {
+  //   const avgResponseTimes = subLevelStats.responseTimes.map(
+  //     (times) => (times.reduce((a, b) => a + b, 0) / times.length) || 0
+  //   );
+  //   const quizData = {
+  //     category,
+  //     difficulty,
+  //     noOfQuestions: questionCount + 1,
+  //     correctCount,
+  //     incorrectCount,
+  //     noOfAttemptsInSubLevel1: subLevelStats.attempts[0],
+  //     noOfAttemptsInSubLevel2: subLevelStats.attempts[1],
+  //     noOfAttemptsInSubLevel3: subLevelStats.attempts[2],
+  //     noOfAttemptsInSubLevel4: subLevelStats.attempts[3],
+  //     noOfCorrectQuestionsInSubLevel1: subLevelStats.correctAnswers[0],
+  //     noOfCorrectQuestionsInSubLevel2: subLevelStats.correctAnswers[1],
+  //     noOfCorrectQuestionsInSubLevel3: subLevelStats.correctAnswers[2],
+  //     noOfCorrectQuestionsInSubLevel4: subLevelStats.correctAnswers[3],
+  //     avgResponseTimeForSubLevel1: avgResponseTimes[0],
+  //     avgResponseTimeForSubLevel2: avgResponseTimes[1],
+  //     avgResponseTimeForSubLevel3: avgResponseTimes[2],
+  //     avgResponseTimeForSubLevel4: avgResponseTimes[3],
+  //     childId // Explicitly add childId
+  //   };
+
+
+  //   try {
+  //     const response = await axios.post('http://localhost:3001/api/questions/quiz', quizData);
+  //     console.log('Backend response:', response.data); // Debug backend response
+
+  //     // Ensure childId is still available
+  //     console.log('Navigating with:', { state: { quizData, childId } });
+
+  //     navigate('/quiz-summary', { state: { quizData, childId } });
+  //   } catch (error) {
+  //     console.error('Error saving quiz data:', error.response ? error.response.data : error.message);
+  //   }
+  // };
+
   const handleFinalSubmit = async () => {
     const avgResponseTimes = subLevelStats.responseTimes.map(
       (times) => (times.reduce((a, b) => a + b, 0) / times.length) || 0
     );
-    const quizData = {
-      category,
-      difficulty,
-      noOfQuestions: questionCount + 1,
-      correctCount,
-      incorrectCount,
-      noOfAttemptsInSubLevel1: subLevelStats.attempts[0],
-      noOfAttemptsInSubLevel2: subLevelStats.attempts[1],
-      noOfAttemptsInSubLevel3: subLevelStats.attempts[2],
-      noOfAttemptsInSubLevel4: subLevelStats.attempts[3],
-      noOfCorrectQuestionsInSubLevel1: subLevelStats.correctAnswers[0],
-      noOfCorrectQuestionsInSubLevel2: subLevelStats.correctAnswers[1],
-      noOfCorrectQuestionsInSubLevel3: subLevelStats.correctAnswers[2],
-      noOfCorrectQuestionsInSubLevel4: subLevelStats.correctAnswers[3],
-      avgResponseTimeForSubLevel1: avgResponseTimes[0],
-      avgResponseTimeForSubLevel2: avgResponseTimes[1],
-      avgResponseTimeForSubLevel3: avgResponseTimes[2],
-      avgResponseTimeForSubLevel4: avgResponseTimes[3],
-    };
 
     try {
-      await axios.post('http://localhost:3001/api/questions/quiz', quizData);
-      console.log('Quiz data saved successfully');
-      // Navigate to summary page and pass the quiz data
-      navigate('/quiz-summary', { state: quizData });
+      const response = await axios.post('http://localhost:3001/api/questions/quiz', {
+        category,
+        difficulty,
+        noOfQuestions: questionCount + 1,
+        correctCount,
+        incorrectCount,
+        noOfAttemptsInSubLevel1: subLevelStats.attempts[0],
+        noOfAttemptsInSubLevel2: subLevelStats.attempts[1],
+        noOfAttemptsInSubLevel3: subLevelStats.attempts[2],
+        noOfAttemptsInSubLevel4: subLevelStats.attempts[3],
+        noOfCorrectQuestionsInSubLevel1: subLevelStats.correctAnswers[0],
+        noOfCorrectQuestionsInSubLevel2: subLevelStats.correctAnswers[1],
+        noOfCorrectQuestionsInSubLevel3: subLevelStats.correctAnswers[2],
+        noOfCorrectQuestionsInSubLevel4: subLevelStats.correctAnswers[3],
+        avgResponseTimeForSubLevel1: avgResponseTimes[0],
+        avgResponseTimeForSubLevel2: avgResponseTimes[1],
+        avgResponseTimeForSubLevel3: avgResponseTimes[2],
+        avgResponseTimeForSubLevel4: avgResponseTimes[3],
+        childId // Explicitly add childId
+      });
+
+      console.log('Backend response:', response.data); // Debug backend response
+
+      const quizData = response.data; // Assign backend response to quizData
+
+      // Ensure childId is included
+      console.log('Navigating with:', { state: { quizData, childId } });
+
+      navigate('/quiz-summary', { state: { quizData, childId } });
     } catch (error) {
-      console.error('Error saving quiz data:', error);
+      console.error('Error saving quiz data:', error.response ? error.response.data : error.message);
     }
-  };
+};
+
 
   return (
     <div
