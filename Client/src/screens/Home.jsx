@@ -7,7 +7,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate('/LevelSelection'); // Adjust the path to match your route for the Level Selection Page
+    navigate('/LevelSelection',{ state: { childId: child._id } }); // Adjust the path to match your route for the Level Selection Page
   };
 
   useEffect(() => {
