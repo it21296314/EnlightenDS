@@ -4,11 +4,18 @@ import './QuizSummary.css'
 const QuizSummary = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const quizData = location.state; // Retrieve the quiz data passed during navigation
+  
+  const {quizData, childId} = location.state; // Retrieve the quiz data passed during navigation
+
+  if (!quizData || !childId) {
+    // Handle cases where quizData or childId might be missing (e.g. if navigation state is invalid)
+    return <p>Unable to load quiz data. Please try again.</p>;
+  }
 
   return (
     <div className="quiz-summary">
       <h1>Quiz Summary</h1>
+     {/* <p><strong>Quiz ID:</strong> {quizData._id}</p> Display the ObjectId */}
       <p>Category: {quizData.category}</p>
       <p>Difficulty: {quizData.difficulty}</p>
       <p>Total Questions: {quizData.noOfQuestions}</p>
@@ -25,12 +32,19 @@ const QuizSummary = () => {
           </li>
         ))}
       </ul>
+      {/* <button
+        className="button1"
+        onClick={() => navigate(`/quiz/${quizData.category}/${quizData.difficulty}`, { state: { childId } })}
+      >
+        Attempt Quiz
+      </button> */}
       <button
         className="button1"
-        onClick={() => navigate(`/quiz/${quizData.category}/${quizData.difficulty}`)}
+        onClick={() => navigate(`/quiz/${quizData.category}/${quizData.difficulty}`, { state: { childId, quizData } })}
       >
         Attempt Quiz
       </button>
+
     </div>
   );
 };
