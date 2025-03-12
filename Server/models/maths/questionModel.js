@@ -20,7 +20,11 @@ const quizSchema = new mongoose.Schema({
   avgResponseTimeForSubLevel2: { type: Number, default: 0 },
   avgResponseTimeForSubLevel3: { type: Number, default: 0 },
   avgResponseTimeForSubLevel4: { type: Number, default: 0 },
+  childId: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Child',  // Reference to the Child collection
+    required: true 
+  },
 }, { timestamps: true });
 
-const Quiz = mongoose.model('Quiz', quizSchema);
-export default Quiz;
+export default mongoose.model('Quizs', quizSchema);

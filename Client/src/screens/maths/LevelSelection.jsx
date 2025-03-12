@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LevelSelection.css'; // Include custom CSS for animations
 
@@ -10,13 +10,16 @@ const LevelSelection = () => {
 
   const categories = ['addition', 'subtraction', 'multiplication', 'division'];
   const difficulties = ['beginner', 'intermediate', 'advanced'];
+  const location = useLocation();
+  const childId = location.state?.childId;
 
   const handleCategorySelection = (category) => {
     setSelectedCategory(selectedCategory === category ? '' : category);
   };
 
   const handleDifficultySelection = (difficulty) => {
-    navigate(`/questions/${selectedCategory}/${difficulty}`);
+    navigate(`/questions/${selectedCategory}/${difficulty}`, { state: { childId } });
+
   };
 
   return (

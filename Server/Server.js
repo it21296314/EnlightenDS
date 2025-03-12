@@ -13,6 +13,8 @@ import test from './routes/test.js';
 import questionRoutes from './routes/maths/questions.js';
 import quiz from './routes/maths/quizController.js'
 import child from './routes/childRoutes.js';
+import dataPipeline from './controllers/maths/dataPipeLineController.js'
+import overall from'./controllers/maths/getChildPerformance.js'
 
 const app = express();
 const forms = multer();
@@ -52,6 +54,8 @@ app.use('/api', test);
 app.use('/api/questions', questionRoutes);
 app.use('/api/quizs', quiz)
 app.use('/api/child', child)
+app.use('/api/datapipeline', dataPipeline)
+app.use('/api/overall', overall)
 
 //middlewares
 const server = http.createServer(app);
