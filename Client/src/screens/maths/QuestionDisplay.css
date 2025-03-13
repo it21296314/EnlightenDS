@@ -140,6 +140,8 @@
       grid-gap: 30px;
      margin-left: 10%;
       margin-right: 1%;
+      margin-top: 2%;
+     
       
     }
     
@@ -307,4 +309,15 @@
     font-weight: bold;
     }
     
+    .question-progress {
+   
+      max-width: 800px;
+      margin-top: 30px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      box-shadow: var(--box-shadow);
+    }
+
     
+   
