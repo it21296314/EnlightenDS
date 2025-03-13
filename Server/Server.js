@@ -1,20 +1,21 @@
-import express from 'express';
-import http from 'http';
 import bodyParser from 'body-parser';
-import mongoose from 'mongoose'; // MongoDB library
 import cors from 'cors'; // Cors will let us accept cross-origin requests from our frontend to backend.
 import dotenv from 'dotenv'; // For keeping secret and non-shareable properties
-import multer from 'multer'; // Multer is middleware that handles multipart/form data sent from our frontend form.
+import express from 'express';
+import http from 'http';
+import mongoose from 'mongoose'; // MongoDB library
 import morgan from 'morgan'; // Used to log information of each request that the server receives.
+import multer from 'multer'; // Multer is middleware that handles multipart/form data sent from our frontend form.
 // import { PythonShell } from "python-shell";
 import session from 'express-session';
+import drawingRoutes from "./routes/interest/drawing.js";
 
-import test from './routes/test.js';
-import questionRoutes from './routes/maths/questions.js';
-import quiz from './routes/maths/quizController.js'
+import dataPipeline from './controllers/maths/dataPipeLineController.js';
+import overall from './controllers/maths/getChildPerformance.js';
 import child from './routes/childRoutes.js';
-import dataPipeline from './controllers/maths/dataPipeLineController.js'
-import overall from'./controllers/maths/getChildPerformance.js'
+import questionRoutes from './routes/maths/questions.js';
+import quiz from './routes/maths/quizController.js';
+import test from './routes/test.js';
 
 const app = express();
 const forms = multer();
@@ -27,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(forms.array());
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
+app.use(express.static("public"));
 app.use(morgan('common'));
 dotenv.config();
 
@@ -56,6 +58,7 @@ app.use('/api/quizs', quiz)
 app.use('/api/child', child)
 app.use('/api/datapipeline', dataPipeline)
 app.use('/api/overall', overall)
+app.use("/api/drawing", drawingRoutes);
 
 //middlewares
 const server = http.createServer(app);
