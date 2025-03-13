@@ -21,6 +21,7 @@ import QuizSummary from './screens/maths/QuizSummary';
 import Question from './components/maths/Question';
 import BallCountingAnimation from './components/maths/count';
 import DashboardMath from './screens/maths/Dashboard';
+
 function App() {
   return (
     <div className="app" style={{
@@ -46,6 +47,7 @@ function App() {
         <Route path="/ani" element={<Question />} />
         <Route path="/ball" element={<BallCountingAnimation />} />
         <Route path="/dashboard/math" element={<DashboardMath />} />
+       
 
         <Route path="/pro" element={<PronunciationHome />} />
           <Route path="/beginner-category" element={<BeginnerCategory />} />
