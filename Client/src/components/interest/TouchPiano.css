@@ -1,0 +1,111 @@
+/* src/components/TouchPiano.css*/
+/* .piano-container {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .piano {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .key {
+    width: 50px;
+    height: 200px;
+    margin: 2px;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    touch-action: manipulation; 
+    /*Prevent touch delay */
+    /*display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 14px;
+    font-weight: bold;
+    user-select: none;
+  }
+  
+  .key:active {
+    background-color: lightgray;
+  }
+    */
+
+   /* src/components/TouchPiano.css */
+
+
+
+
+/*    
+   .topic{
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    text-shadow: 10cm;
+   }
+ .piano {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  gap: 1px;
+  margin: 20px auto;
+  width: 90%;
+  height: 200px;
+}
+
+.key {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.white {
+  background-color: white;
+  border: 1px solid black;
+  height: 100%;
+}
+
+.black {
+  background-color: black;
+  z-index: 2;
+  margin: 0 -10px;
+  width: 70%;
+  height: 60%;
+  position: relative;
+}  */
+
+
+.piano-container {
+  text-align: center;
+}
+
+.piano {
+  display: flex;
+}
+
+.key {
+  width: 50px;
+  height: 200px;
+  margin: 2px;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.white {
+  background: white;
+  border: 1px solid black;
+}
+
+.black {
+  background: black;
+  color: white;
+  height: 130px;
+  position: relative;
+  margin-left: -25px;
+  z-index: 1;
+}
