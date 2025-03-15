@@ -23,7 +23,7 @@ app.register_blueprint(results_bp)
 app.register_blueprint(analytics_bp)
 app.register_blueprint(detect_emotion_bp)
 app.register_blueprint(randomimage_bp)
-app.register_blueprint(chart_bp, url_prefix="/chart")
+app.register_blueprint(chart_bp, url_prefix="/charts")
 
 
 if __name__ == "__main__":

@@ -12,15 +12,15 @@ function PronunciationHome() {
   return (
     <div className="pronunciationHome">
       <h1>Pronunciation Platform</h1>
-      <div className="button-container">
+      <div className="button-container1">
         <button
-          className="big-button beginner"
+          className="big-button beginner1"
           onClick={handleBeginnerClick}
         >
           Beginner
         </button>
         <button
-          className="big-button advanced"
+          className="big-button advanced1"
           onClick={() => navigate("/pronunciation/checker/advanced")}
         >
           Advanced

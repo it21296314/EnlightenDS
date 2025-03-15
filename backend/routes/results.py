@@ -5,6 +5,7 @@ import os
 from dotenv import load_dotenv
 from fpdf import FPDF
 
+
 # Load environment variables
 load_dotenv()
 
