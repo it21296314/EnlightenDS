@@ -1630,7 +1630,7 @@ const handleAnalyzeReadiness = async () => {
       color: '#333',
       margin: 0
     }}>
-      Math Quiz Challenge
+      🚀 Math Quiz Challenge
     </h1>
     
     <div className="timer-container">
@@ -1709,7 +1709,7 @@ const handleAnalyzeReadiness = async () => {
                 >
                   <h2
                     style={{
-                      fontSize: '65px',
+                      fontSize: '55px',
                       margin: '0',
                         color: '#333'
                     }}
@@ -1967,6 +1967,8 @@ const handleAnalyzeReadiness = async () => {
 
 
         </div>
+
+        
       )}
     </div>
   );
