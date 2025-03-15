@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LevelSelection.css'; // Include custom CSS for animations
-
+import Navbar from '../../components/Header';
 const LevelSelection = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const navigate = useNavigate();
@@ -23,7 +23,9 @@ const LevelSelection = () => {
   };
 
   return (
+    
     <div className='levelselection' >
+      
     <div className="container text-center mt-5">
       {/* <h1 className="mb-4">Select Category and Difficulty</h1> */}
 

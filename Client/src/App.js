@@ -23,7 +23,7 @@ import Level2G from './screens/pronunciation/Level2G/Level2G';
 import Question from './components/maths/Question';
 import BallCountingAnimation from './components/maths/count';
 import DashboardMath from './screens/maths/Dashboard';
-
+import Navbar from './components/Header';
 function App() {
   return (
     <div className="app" style={{
@@ -49,7 +49,7 @@ function App() {
         <Route path="/ani" element={<Question />} />
         <Route path="/ball" element={<BallCountingAnimation />} />
         <Route path="/dashboard/math" element={<DashboardMath />} />
-       
+        <Route path="/head" element={<Navbar/>} />
 
          
           {/* IT21293030 ROUTES */}
