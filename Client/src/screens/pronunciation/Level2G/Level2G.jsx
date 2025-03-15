@@ -20,7 +20,6 @@ function Level2G() {
   const audioRef = useRef(null);
   const endpoint = 1000;
 
-
   // Character movement animation
   const characterAnimation = useSpring({
     transform: "scale(2.0)",
@@ -34,7 +33,6 @@ function Level2G() {
     transform: `translateX(-${movement / 2}px)`,
     config: { tension: 100, friction: 20 },
   });
-
 
   useEffect(() => {
     if (!gameStarted || timer <= 0) {
@@ -114,9 +112,6 @@ function Level2G() {
     }
   };
 
-
-
-
   const startGame = () => {
     setPhase('emotion');
     setMovement(0);
@@ -124,11 +119,10 @@ function Level2G() {
     setGameOver(false);
     setWin(false);
     setPronunciationCorrect(false);
-    setGameStarted(true);
+    setGameStarted(true); // Ensure this is set to true
   };
 
   return (
-
     <div className='game-container'>
       {/* Background Music */}
       <audio ref={audioRef} src="/audio/background-music.mp3" loop />
@@ -148,7 +142,7 @@ function Level2G() {
 
         <div className='timer-emotion-container'>
           <div className="button-container">
-            <button className="start-end-btn" onClick={startGame}>Start</button>
+            <button className="start-end-btn-x" onClick={startGame}>Start</button>
           </div>
 
           {!win && !gameOver && (
@@ -170,14 +164,11 @@ function Level2G() {
                 </div>
               )}
 
-
-
               {phase === 'emotion' && (
                 <EmotionDetection onSmileDetected={handleSmileDetected} isActive={phase === 'emotion'} />
               )}
             </div>
           )}
-
 
           <div className="timer1">{timer} S</div>
         </div>
@@ -187,7 +178,6 @@ function Level2G() {
           <div className="win-message1">
             <p>You Win! 🎉</p>
             <img src="/images/pronunciation/win.gif" alt="You Win!" />
-
           </div>
         )}
 
@@ -195,7 +185,6 @@ function Level2G() {
           <div className="game-over-message1">
             <p>Try Again! </p>
             <img src="/images/pronunciation/sad.gif" alt="Game Over!" />
-
           </div>
         )}
 
@@ -207,12 +196,8 @@ function Level2G() {
             </animated.div>
           )}
         </div>
-
-
       </div>
-
     </div>
-
   );
 }
 

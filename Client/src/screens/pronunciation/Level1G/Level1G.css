@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 html, body {
-  overflow: hidden; /* Hides both horizontal and vertical scrollbars */
+  /* overflow: hidden;  */
 }
 .game-container {
   height: 100vh;
   width: 100vw; /* Ensures the game doesn't extend beyond the viewport */
-  overflow: hidden;
+   overflow: hidden;
 }
 
 .background-wrapper {
@@ -27,33 +27,36 @@ html, body {
 
 
 
-.button-container {
+.button-container-x {
   position: absolute;
   top: 20px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-107%);
   font-family: 'Sour Gummy', sans-serif;
   display: flex;
 
   gap: 20px;
 }
 
-.start-end-btn {
+.start-end-btn-x {
   font-size: 30px;
   font-weight: bold;
   margin-inline-end: 1250%;
   margin-top: -70px;
   border-radius: 10px;
   background-color: #2196f3;
-  ;
+  margin-right: 500px;
+  border: #1e88e5;
 
 }
 
-.start-end-btn:hover {
+.start-end-btn-x:hover {
   transform: scale(1.1);
-  background-color: #1e88e5;
-  /* Slightly brighter green for Beginner */
+  background-color: #1e88e5; /* Light blue color */
+  box-shadow: none; /* Remove box shadow on hover */
 }
+
+
 
 .timer-emotion-container {
   display: flex;
@@ -110,17 +113,28 @@ html, body {
 }
 
 
-.emotion-container1 h3 {
-  font-size: 30px;
-  font-weight: bold;
-  border-radius: 10px;
-  margin-inline-end: -50px;
-  margin-inline-start: -50px;
-  justify-content: center;
+.webcam-container {
   display: flex;
-  background-color: #2196f3;
-
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  margin-bottom: 10px; /* Space between the webcam and the text */
 }
+
+.emotion-container-y {
+  text-align: center; /* Center the text horizontally */
+  margin-top: 10px; /* Space between the webcam and the text */
+  padding: 5px;
+  border-radius: 5px;
+  width: 320px; /* Match the width of the webcam */
+  margin-left: -70px; /* Adjust this value to move the text to the left */
+}
+
+
+
+
+
+
+
 
 .timer1 {
   background-color: #e28d0e;

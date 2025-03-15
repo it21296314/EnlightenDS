@@ -122,8 +122,8 @@ function Level1G() {
 
         {/* Timer and Emotion Detection */}
         <div className="timer-emotion-container">
-          <div className="button-container">
-            <button className="start-end-btn" onClick={startGame}>Start</button>
+          <div className="button-container-x">
+            <button className="start-end-btn-x" onClick={startGame}>Start</button>
           </div>
 
           {!win && !gameOver && (
@@ -137,15 +137,21 @@ function Level1G() {
                 )}
               </div>
 
-              <ReactWebcam
-                ref={webcamRef}
-                audio={false}
-                screenshotFormat="image/jpeg"
-                videoConstraints={{ width: 320, height: 240, facingMode: "user" }}
-                style={{ border: "2px solid white", borderRadius: "5px" }}
-              />
-              <h3>Emotion: {emotion || "Not detected yet"}</h3>
+              <div className="webcam-container">
+                <ReactWebcam
+                  ref={webcamRef}
+                  audio={false}
+                  screenshotFormat="image/jpeg"
+                  videoConstraints={{ width: 320, height: 240, facingMode: "user" }}
+                  style={{ border: "2px solid white", borderRadius: "5px" }}
+                />
+                <div className="emotion-container-y">
+                  <h3 style={{ fontSize: '27px' }}>Emotion: {emotion || "Not detected yet"}</h3>
+                </div>
+
+              </div>
             </div>
+
           )}
           <div className="timer1">{timer} S</div>
         </div>
