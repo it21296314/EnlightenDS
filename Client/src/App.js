@@ -35,17 +35,6 @@ function App() {
 
 
 
-          <Route path="/" element={<SignIn />} />
-          <Route path="/SignUp" element={<SignUp />} />
-          <Route path="/Home" element={<Home />} />
-          <Route path="/MainPage" element={<MainPage />} />
-          <Route path="/LevelSelection" element={<LevelSelection />} />
-          <Route path="/questions/:category/:difficulty" element={<QuestionDisplay />} />
-          <Route path="/answer-feedback" element={<AnswerFeedback />} />
-          <Route path="/next-question" element={<NextQuestion />} />
-          <Route path="/quiz/:category/:difficulty" element={<QuizPage />} />
-          <Route path="/quiz-summary" element={<QuizSummary />} />
-          <Route path="/results" element={<ResultsPage />} />
         <Route path="/" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp/>} />
         <Route path="/Home" element={<Home/>} />
