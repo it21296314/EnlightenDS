@@ -30,27 +30,29 @@ h1 {
   border-radius: 10px;
 }
 
-.button-container {
+.button-container1 {
   display: flex;
   justify-content: center;
   gap: 20px; /* Space between buttons */
 }
 
-.big-button {
+.big-button1 {
   font-size: 2rem;
   padding: 15px 40px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s ease, background-color 0.3s ease;
+  margin-right: 20px; /* Adjust the value as needed */
 }
 
-.big-button.beginner {
+
+.big-button.beginner1 {
   background-color: #4caf50; /* Green */
   color: white;
 }
 
-.big-button.advanced {
+.big-button.advanced1 {
   background-color: #2196f3; /* Blue */
   color: white;
 }

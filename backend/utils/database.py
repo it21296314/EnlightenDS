@@ -1,5 +1,11 @@
 from pymongo import MongoClient
+import os
+from dotenv import load_dotenv
 
-client = MongoClient("mongodb+srv://it21342394:enlightends@cluster0.jflpe.mongodb.net/enlightends?retryWrites=true&w=majority&appName=Cluster0")
+# Load environment variables from .env file
+load_dotenv()
+
+# Connect to MongoDB
+client = MongoClient(os.getenv("MONGO_URI"))
 db = client["quiz_app"]
 results_collection = db["results"]

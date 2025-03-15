@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+.pronunciation-container {
+  font-family: 'Sour Gummy', sans-serif;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+  width: 500px;
+  margin: auto;
+}
+
+.word-title {
+  background-color: #ffcc00;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+}
+
+.recognized-text {
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+.recognized-text span {
+  font-weight: bold;
+  color: #ffcc00;
+}
+
+.pronounce-button,
+.audio-button {
+  font-size: 14px;
+  padding: 8px 12px;
+  margin: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #ffcc00;
+  color: black;
+}
+
+.pronounce-button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.feedback-message {
+  font-size: 16px;
+  margin-top: 12px;
+}
+
+img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
