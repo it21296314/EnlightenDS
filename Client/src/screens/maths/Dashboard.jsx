@@ -539,7 +539,7 @@ import QuizProgressChart from '../maths/QuizProgressChart';
 import PerformanceDashboard from "./OverallPerformace";
 import { Chart as ChartJS, CategoryScale, LinearScale } from "chart.js";
 import confetti from 'canvas-confetti';
-
+import cheer from './img/cheer1.gif'
 ChartJS.register(CategoryScale, LinearScale);
 
 const Dashboard = () => {
@@ -668,7 +668,7 @@ const Dashboard = () => {
     } else {
       return {
         message: "Keep practicing! You're making progress! 🌱",
-        animation: "https://i.giphy.com/media/3oEduVGyuRGuT6h0sM/giphy.gif",
+        animation: cheer,
         color: "bg-orange-100 border-orange-500"
       };
     }
@@ -677,7 +677,9 @@ const Dashboard = () => {
   const { message, animation, color } = getReadinessInfo();
 
   return (
-    <div className="p-4 md:p-6 space-y-8 bg-gradient-to-b from-blue-50 to-white min-h-screen">
+    <div className="p-4 md:p-6 space-y-8 bg-gradient-to-b from-blue-50 to-white min-h-screen"
+    style={{ fontFamily:'Sour Gummy' }}
+    >
       <div className="flex justify-between items-center">
         <h2 className="text-2xl md:text-3xl font-bold text-blue-700 flex items-center">
           <Award className="mr-2" size={28} color="#3B82F6" />
@@ -721,12 +723,12 @@ const Dashboard = () => {
                   
                   <div className="bg-white bg-opacity-70 p-4 rounded-xl shadow-sm">
                     <div className="text-sm text-gray-600 mb-1">Practice Needed</div>
-                    <div className="text-2xl font-bold text-orange-500">
+                    <div className="text-2xl font-bold text-red-500">
                       {Math.round(prediction.probability.not_ready * 100)}%
                     </div>
                     <div className="w-full bg-gray-200 h-3 rounded-full mt-2">
                       <div 
-                        className="bg-orange-500 h-3 rounded-full transition-all duration-1000 ease-out" 
+                        className="bg-red-500 h-3 rounded-full transition-all duration-1000 ease-out" 
                         style={{ width: `${prediction.probability.not_ready * 100}%` }}
                       ></div>
                     </div>
