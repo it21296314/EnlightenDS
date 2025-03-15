@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-
+import Navbar from '../components/Header';
+import Footer from '../components/Footer';
 const Home = () => {
   const [child, setChild] = useState(null); // Manages child profile state
   const navigate = useNavigate();
@@ -33,11 +34,13 @@ const Home = () => {
   return (
 
     <div className="home" style={{ backgroundColor: "lightblue" }}>
+      {/* <Navbar></Navbar> */}
   <div style={{ textAlign: 'center' }}>
     <h1 style={{ fontSize: '80px', fontWeight: 'bold', marginTop: '30px' }}>Welcome {child.name} !!</h1>
   </div>
 
   <div className="main-page">
+    
       <h1 className="main-title">Welcome to EnlightenDS</h1>
       <button className="start-button" onClick={handleNavigate}>
         Maths
@@ -52,6 +55,7 @@ const Home = () => {
         DILSHI
       </button>
     </div>
+    
 </div>
 
 
