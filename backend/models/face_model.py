@@ -57,12 +57,12 @@
 
 import os
 import cv2
-import numpy as npip
+import numpy as np
 import joblib
-from feature_utils import get_combined_features
+from utils.feature_utils import get_combined_features
 
 # Load the trained model and scaler
-MODEL_PATH = "trained_model.pkl"
+MODEL_PATH = "models/trained_model.pkl"
 model_pipeline = joblib.load(MODEL_PATH)
 scaler = model_pipeline['scaler']  # Extract the scaler
 model = model_pipeline['model']    # Extract the SVM model

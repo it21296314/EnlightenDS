@@ -25,7 +25,9 @@
 import numpy as np
 import cv2
 from skimage.feature import local_binary_pattern
-from face_utils import get_landmarks, align_face, crop_face
+# from face_utils import get_landmarks, align_face, crop_face
+from .face_utils import get_landmarks, align_face, crop_face
+
 
 # Constants
 RADIUS = 1
