@@ -20,6 +20,10 @@ import Dashboard from './components/pronunciation/Dashboard';
 import QuizSummary from './screens/maths/QuizSummary';
 import Level1G from './screens/pronunciation/Level1G/Level1G';
 import Level2G from './screens/pronunciation/Level2G/Level2G';
+import Question from './components/maths/Question';
+import BallCountingAnimation from './components/maths/count';
+import DashboardMath from './screens/maths/Dashboard';
+
 function App() {
   return (
     <div className="app" style={{
@@ -42,6 +46,21 @@ function App() {
           <Route path="/quiz/:category/:difficulty" element={<QuizPage />} />
           <Route path="/quiz-summary" element={<QuizSummary />} />
           <Route path="/results" element={<ResultsPage />} />
+        <Route path="/" element={<SignIn />} />
+        <Route path="/SignUp" element={<SignUp/>} />
+        <Route path="/Home" element={<Home/>} />
+        <Route path="/MainPage" element={<MainPage />} />
+        <Route path="/LevelSelection" element={<LevelSelection />} />
+        <Route path="/questions/:category/:difficulty" element={<QuestionDisplay />} />
+        <Route path="/answer-feedback" element={<AnswerFeedback />} />
+        <Route path="/next-question" element={<NextQuestion />} />
+        <Route path="/quiz/:category/:difficulty" element={<QuizPage />} />
+        <Route path="/quiz-summary" element={<QuizSummary />} />
+        <Route path="/results" element={<ResultsPage />} />
+        <Route path="/ani" element={<Question />} />
+        <Route path="/ball" element={<BallCountingAnimation />} />
+        <Route path="/dashboard/math" element={<DashboardMath />} />
+       
 
          
           {/* IT21293030 ROUTES */}

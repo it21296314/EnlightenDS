@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LevelSelection.css'; // Include custom CSS for animations
 
@@ -10,13 +10,16 @@ const LevelSelection = () => {
 
   const categories = ['addition', 'subtraction', 'multiplication', 'division'];
   const difficulties = ['beginner', 'intermediate', 'advanced'];
+  const location = useLocation();
+  const childId = location.state?.childId;
 
   const handleCategorySelection = (category) => {
     setSelectedCategory(selectedCategory === category ? '' : category);
   };
 
   const handleDifficultySelection = (difficulty) => {
-    navigate(`/questions/${selectedCategory}/${difficulty}`);
+    navigate(`/questions/${selectedCategory}/${difficulty}`, { state: { childId } });
+
   };
 
   return (
@@ -29,8 +32,9 @@ const LevelSelection = () => {
           {categories.map((cat) => (
             <div key={cat} className="category-container">
               <button
-                className={`btn btn-primary mb-2 category-btn ${selectedCategory === cat ? 'selected' : ''}`}
+                className={`btn btn-primary mb-2 categor-btn ${selectedCategory === cat ? 'selected' : ''}`}
                 onClick={() => handleCategorySelection(cat)}
+                style={{fontSize:'40px'}}
               >
                 {cat.charAt(0).toUpperCase() + cat.slice(1)}
               </button>
@@ -51,6 +55,7 @@ const LevelSelection = () => {
                 key={diff}
                 className="btn btn-success mt-3 difficulty-btn"
                 onClick={() => handleDifficultySelection(diff)}
+                style={{fontSize:'40px'}}
               >
                 {diff.charAt(0).toUpperCase() + diff.slice(1)}
               </button>
