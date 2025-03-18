@@ -602,33 +602,38 @@ const Dashboard = () => {
     }
   }, [prediction, showConfetti]);
 
+
+  
   const fetchData = async () => {
     if (!childId) return;
     setLoading(true);
     setError(null);
     setShowConfetti(false);
-
+  
     try {
       console.log("Fetching model data...");
       const response = await fetch(`http://localhost:3001/api/datapipeline/getModelData?childId=${childId}`);
       if (!response.ok) throw new Error("Failed to fetch model data");
-
+  
       const data = await response.json();
       console.log("Model Data:", data);
-
+  
       console.log("Sending data for prediction...");
       const predictionResponse = await fetch("http://127.0.0.1:5000/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-
+  
       if (!predictionResponse.ok) throw new Error("Failed to fetch prediction");
-
+  
       const predictionResult = await predictionResponse.json();
       console.log("Prediction Result:", predictionResult);
-
+  
       setPrediction(predictionResult);
+  
+      // **Update progress in the database**
+      await handlePredictionResult(predictionResult);
     } catch (err) {
       console.error(err);
       setError(err.message);
@@ -636,6 +641,8 @@ const Dashboard = () => {
       setLoading(false);
     }
   };
+  
+
 
   useEffect(() => {
     fetchData();
@@ -675,6 +682,46 @@ const Dashboard = () => {
   };
 
   const { message, animation, color } = getReadinessInfo();
+
+  // const handlePredictionResult = async (predictionResult) => {
+  //   try {
+  //     await fetch("http://localhost:3001/api/child/updateProgress", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         childId,
+  //         category,
+  //         difficulty,
+  //         readiness: predictionResult.probability.ready >= 0.7 ? 1 : 0, // 1 means ready, 0 means not ready
+  //       }),
+  //     });
+  //   } catch (error) {
+  //     console.error("Error updating progress:", error);
+  //   }
+  // };
+
+  const handlePredictionResult = async (predictionResult) => {
+    try {
+      const requestData = {
+        category,
+        difficulty,
+        readiness: predictionResult.probability.ready >= 0.7 ? 1 : 0,
+      };
+      
+      console.log("Sending data to updateProgress:", JSON.stringify(requestData, null, 2));
+      
+      await fetch("http://localhost:3001/api/child/updateProgress", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include", // Add this line to include cookies
+        body: JSON.stringify(requestData),
+      });
+    } catch (error) {
+      console.error("Error updating progress:", error);
+    }
+  };
+
+
 
   return (
     <div className="p-4 md:p-6 space-y-8 bg-gradient-to-b from-blue-50 to-white min-h-screen"
@@ -753,6 +800,7 @@ const Dashboard = () => {
                   src={animation} 
                   alt="Celebration animation" 
                   className="max-h-60 object-contain"
+                  style={{ width: "100%" }}
                 />
               </div>
             </div>
