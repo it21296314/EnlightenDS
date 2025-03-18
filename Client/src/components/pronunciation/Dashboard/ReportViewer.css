@@ -1,0 +1,228 @@
+/* ReportViewer.css - Blue and Yellow Theme for Parent/Teacher Reports */
+
+/* Main container styles */
+.report-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f8fbff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+  color: #333;
+  border: 3px solid #4191e1;
+}
+
+/* Report title */
+.report-title {
+  text-align: center;
+  color: #2064c8;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  text-shadow: 2px 2px 0px #ffd700;
+}
+
+.report-title:after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(to right, #4191e1, #ffd700, #4191e1);
+  margin: 0.5rem auto;
+  border-radius: 2px;
+}
+
+/* Section styling */
+.report-section {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-left: 8px solid #4191e1;
+  box-shadow: 0 3px 8px rgba(65, 145, 225, 0.1);
+}
+
+/* Section headers */
+.report-section h2 {
+  color: #1e5bb0;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.report-section h2:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #ffd700, rgba(255, 215, 0, 0.1));
+}
+
+/* Flexbox for report info section */
+.report-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.report-info p {
+  flex: 1 1 calc(50% - 1rem);
+  margin: 0.5rem 0;
+  min-width: 200px;
+}
+
+.report-info strong {
+  color: #ffc107;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+/* Incorrect words list */
+.incorrect-words-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style-type: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.incorrect-words-list li {
+  background-color: #fffbeb;
+  color: #d97706;
+  padding: 5px 15px;
+  border-radius: 20px;
+  border: 1px solid #ffd700;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* AI Feedback section */
+.ai-feedback-section {
+  line-height: 1.6;
+}
+
+/* Heading styles in feedback */
+.ai-feedback-section h3 {
+  color: #2064c8;
+  background-color: #f0f7ff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  margin: 1.5rem 0 0.8rem;
+  border-left: 5px solid #ffd700;
+}
+
+/* Practice category styles */
+.practice-category {
+  font-weight: bold;
+  color: #1e5bb0;
+  margin: 1rem 0 0.5rem;
+  text-decoration: underline;
+  text-decoration-color: #ffd700;
+  text-decoration-style: wavy;
+  text-underline-offset: 5px;
+}
+
+/* Practice words styles */
+.practice-words {
+  font-style: italic;
+  color: #4191e1;
+  margin: 0.5rem 0 0.5rem 1.5rem;
+}
+
+/* Strategy point styles */
+.strategy-point {
+  margin: 0.8rem 0 0.8rem 1rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.strategy-point:before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  color: #ffd700;
+}
+
+/* Download button */
+.download-section {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.download-button {
+  background-color: #4191e1;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 0 #1e5bb0, 0 5px 5px rgba(0, 0, 0, 0.2);
+  border: 2px solid #ffffff;
+}
+
+.download-button:hover {
+  background-color: #2064c8;
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #1e5bb0, 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.download-button:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+/* Loading and error states */
+.loading, .error, .no-data {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+.loading {
+  color: #4191e1;
+}
+
+.error {
+  color: #e74c3c;
+}
+
+.no-data {
+  color: #7f8c8d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .report-container {
+    padding: 1rem;
+  }
+  
+  .report-title {
+    font-size: 2rem;
+  }
+  
+  .report-info p {
+    flex: 1 1 100%;
+  }
+}
+
+/* Print styles */
+@media print {
+  .report-container {
+    box-shadow: none;
+    border: none;
+  }
+  
+  .download-section {
+    display: none;
+  }
+}

@@ -1,20 +1,37 @@
-h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  p {
-    font-size: 16px;
-  }
-  
-  .react-webcam {
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    width: 320px;
-    height: 240px;
-  }
-  
-  .strong {
-    font-weight: bold;
-  }
-  
+/* Emotion Detection Component Styles */
+.emotion-detection-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.emotion-detection-container h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.emotion-detection-status {
+  font-size: 16px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.emotion-detection-webcam {
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  width: 320px;
+  height: 240px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.emotion-detection-webcam:hover {
+  border-color: #aaa;
+}
+
+.emotion-detection-result {
+  font-weight: bold;
+  color: #0066cc;
+}

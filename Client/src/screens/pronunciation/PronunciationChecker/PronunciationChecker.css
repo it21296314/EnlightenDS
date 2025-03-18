@@ -10,7 +10,7 @@
   background-repeat: no-repeat;
   height: 100vh; /* Full viewport height */
   width: 100vw; /* Full viewport width */
-  color: white;
+  color: rgb(214, 135, 24);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -45,7 +45,7 @@
 }
 
 /* Word Title Styling */
-.word-title {
+.word-title h2 {
   margin-top: 100px; /* Add margin for space below the word title */
   margin-bottom: 20px;
   color: black;
