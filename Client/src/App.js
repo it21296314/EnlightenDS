@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
 import Savi from './screens/maths/savi';
-import MainPage from './screens/mainpage';
+import MainPage from './screens/main/mainpage';
 import SignUp from './screens/signupPage';
 import SignIn from './screens/signinPage';
 import Home from './screens/Home';
@@ -23,6 +23,9 @@ import Level2G from './screens/pronunciation/Level2G/Level2G';
 import Question from './components/maths/Question';
 import BallCountingAnimation from './components/maths/count';
 import DashboardMath from './screens/maths/Dashboard';
+// Import the new DetectionPage
+import DetectionPage from './screens/detection/DetectionPage';
+
 import Navbar from './components/Header';
 function App() {
   return (
@@ -49,6 +52,11 @@ function App() {
         <Route path="/ani" element={<Question />} />
         <Route path="/ball" element={<BallCountingAnimation />} />
         <Route path="/dashboard/math" element={<DashboardMath />} />
+        <Route path="/detection" element={<DetectionPage />} />
+ 
+        
+      
+        <Route path="/pro" element={<PronunciationHome />} />
         <Route path="/head" element={<Navbar/>} />
 
          
