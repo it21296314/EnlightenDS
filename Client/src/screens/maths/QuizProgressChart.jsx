@@ -170,9 +170,9 @@ const QuizProgressChart = ({ childId, difficulty, category }) => {
                         <span role="img" aria-label="star">⭐</span> Score: {payload[0].value}
                     </p>
                     <p className="text-xs mt-1 text-blue-600">
-                        {payload[0].value >= 80 ? "Excellent!" : 
-                         payload[0].value >= 60 ? "Good job!" : 
-                         payload[0].value >= 40 ? "Nice work!" : "Keep going!"}
+                        {payload[0].value >= 8 ? "Excellent!" : 
+                         payload[0].value >= 6 ? "Good job!" : 
+                         payload[0].value >= 4 ? "Nice work!" : "Keep going!"}
                     </p>
                 </div>
             );
@@ -225,7 +225,7 @@ const QuizProgressChart = ({ childId, difficulty, category }) => {
                             <Award className="mr-3" size={36} color="#2196F3" />
                             <div>
                                 <div className="text-sm text-gray-600">Your Best Score</div>
-                                <div className="text-2xl font-bold text-blue-700">{bestScore}%</div>
+                                <div className="text-2xl font-bold text-blue-700">{bestScore}/10</div>
                             </div>
                         </div>
                         
@@ -233,7 +233,7 @@ const QuizProgressChart = ({ childId, difficulty, category }) => {
                             <PieChart className="mr-3" size={36} color="#9C27B0" />
                             <div>
                                 <div className="text-sm text-gray-600">Average Score</div>
-                                <div className="text-2xl font-bold text-purple-700">{averageScore}%</div>
+                                <div className="text-2xl font-bold text-purple-700">{averageScore}/10</div>
                             </div>
                         </div>
                         
@@ -242,7 +242,7 @@ const QuizProgressChart = ({ childId, difficulty, category }) => {
                             <div>
                                 <div className="text-sm text-gray-600">Improvement</div>
                                 <div className="text-2xl font-bold" style={{ color: improvement >= 0 ? "#4CAF50" : "#F44336" }}>
-                                    {improvement > 0 ? "+" : ""}{improvement}%
+                                    {improvement > 0 ? "+" : ""}{improvement*10}%
                                 </div>
                             </div>
                         </div>
@@ -266,7 +266,7 @@ const QuizProgressChart = ({ childId, difficulty, category }) => {
                                     tickMargin={10}
                                 />
                                 <YAxis 
-                                    domain={[0, 100]} 
+                                    domain={[0, 10]} 
                                     stroke="#666"
                                     tick={{ fontSize: 12 }}
                                     tickMargin={10}
