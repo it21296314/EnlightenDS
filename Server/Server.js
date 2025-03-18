@@ -8,14 +8,20 @@ import morgan from 'morgan'; // Used to log information of each request that the
 import multer from 'multer'; // Multer is middleware that handles multipart/form data sent from our frontend form.
 // import { PythonShell } from "python-shell";
 import session from 'express-session';
-import drawingRoutes from "./routes/interest/drawing.js";
-
+// import drawingRoutes from "./routes/interest/drawing.js";
 import dataPipeline from './controllers/maths/dataPipeLineController.js';
 import overall from './controllers/maths/getChildPerformance.js';
 import child from './routes/childRoutes.js';
 import questionRoutes from './routes/maths/questions.js';
 import quiz from './routes/maths/quizController.js';
 import test from './routes/test.js';
+// import drawingRoutes from "./routes/interest/drawing.js"; 
+import quizRoutes from "./routes/interest/quizRoutes.js"; 
+import pianoRoutes from "./routes/interest/pianoRoutes.js";
+import drawingRoutes from "./routes/interest/drawing.js"; //
+// import newpianoRoutes from "./routes/interest/newPianoRoutes.js";
+// import StoredDrawing from "./routes/interest/StoredDrawing.js"; 
+import path from "path";
 
 const app = express();
 const forms = multer();
@@ -58,7 +64,12 @@ app.use('/api/quizs', quiz)
 app.use('/api/child', child)
 app.use('/api/datapipeline', dataPipeline)
 app.use('/api/overall', overall)
+// app.use("/api/drawing", drawingRoutes);
+
 app.use("/api/drawing", drawingRoutes);
+app.use("/api/quizzes", quizRoutes);
+app.use("/api/piano", pianoRoutes);
+
 
 //middlewares
 const server = http.createServer(app);

@@ -78,7 +78,7 @@
   position: relative;
 }  */
 
-
+/* 
 .piano-container {
   text-align: center;
 }
@@ -108,4 +108,340 @@
   position: relative;
   margin-left: -25px;
   z-index: 1;
+} */
+
+
+.piano-container {
+  text-align: center;
+      background: linear-gradient(to bottom, #ffb6c1, #ff69b4, #db7093);
+      padding: 10px 10px 30px;
+  border-radius: 0;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  width: 100vw;
+  max-width: 100%;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+}
+
+
+.piano-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="50" font-family="Arial" font-size="30" fill="rgba(255,255,255,0.2)">♪</text><text x="50" y="30" font-family="Arial" font-size="20" fill="rgba(255,255,255,0.2)">♫</text><text x="70" y="70" font-family="Arial" font-size="25" fill="rgba(255,255,255,0.2)">♩</text></svg>');
+  opacity: 0.5;
+  z-index: 0;
+}
+
+h1 {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px #333;
+  font-size: 42px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  
+}
+
+.introduction {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 0 auto 20px;
+  max-width: 80%;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.introduction p {
+  color: #333;
+  font-size: 18px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.instruction-cards {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.instruction-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 12px;
+  width: 30%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.instruction-card img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
+}
+
+.instruction-card p {
+  color: #333;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 16px;
+  text-align: center;
+}
+
+.piano-graphic {
+  font-size: 36px;
+  margin: 0 0 15px 0;
+  animation: bounce 2s infinite;
+  display: inline-block;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.piano {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.key {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.1s;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 20px;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.white {
+  width: 60px;
+  height: 200px;
+  background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+  border: 2px solid #ddd;
+  z-index: 0;
+  margin: 0 2px;
+  font-weight: bold;
+  color: #333;
+  border-bottom-width: 8px;
+}
+
+.black {
+  width: 40px;
+  height: 130px;
+  background: linear-gradient(to bottom, #333, #000);
+  color: white;
+  z-index: 1;
+  margin-left: -22px;
+  margin-right: -22px;
+  font-weight: bold;
+  border: 1px solid #000;
+  font-size: 14px;
+}
+
+
+.key.active {
+  transform: translateY(5px);
+  box-shadow: 0 0 15px rgba(255,255,255,0.8);
+}
+
+.white.active {
+  background: linear-gradient(to bottom, #e6e6e6, #ffffff);
+}
+
+.black.active {
+  background: linear-gradient(to bottom, #000, #333);
+}
+
+.stats-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 20px auto;
+  width: 80%;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.stats-container p {
+  color: #333;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+
+.feedback {
+  position: absolute;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 24px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2;
+}
+
+.feedback.visible {
+  opacity: 1;
+  animation: fadeInOut 2s forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-20px); }
+  20% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(20px); }
+}
+
+
+.save-button {
+  background: linear-gradient(to bottom, #f000a0, #f69dc8);
+  color: black;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.save-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.save-button:active {
+  transform: scale(0.95);
+}
+
+.decorative-element {
+  position: absolute;
+  font-size: 60px;
+  opacity: 0.4;
+  z-index: 0;
+  animation: float 8s infinite ease-in-out;
+}
+
+.decorative-element:nth-child(1) {
+  top: 5%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.decorative-element:nth-child(2) {
+  top: 15%;
+  right: 5%;
+  animation-delay: 1s;
+}
+
+.decorative-element:nth-child(3) {
+  bottom: 15%;
+  left: 10%;
+  animation-delay: 2s;
+}
+
+.decorative-element:nth-child(4) {
+  bottom: 10%;
+  right: 8%;
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+@media (max-width: 768px) {
+  .white {
+    width: 40px;
+    height: 150px;
+  }
+  
+  .black {
+    width: 30px;
+    height: 100px;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  
+  h1 {
+    font-size: 28px;
+  }
+  
+  .instruction-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .instruction-card {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+}
+
+@keyframes successPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.success-feedback {
+  animation: successPulse 0.5s;
+}
+
+
+.achievement-ribbon {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.achievement-ribbon::before {
+  content: "Great Job!";
+  position: absolute;
+  display: block;
+  width: 150px;
+  padding: 10px 0;
+  background-color: #f8e71c;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  color: #333;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  right: -35px;
+  top: 25px;
+  transform: rotate(45deg);
 }

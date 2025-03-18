@@ -143,6 +143,74 @@
 
 
 
+// import express from "express";
+// // import PianoInteraction from "../../models/interest/PianoInteraction.js";
+// import PianoInteraction from "../../models/interest/PianoInteraction.js";
+
+
+// const router = express.Router();
+
+// // // Save piano interaction
+// // router.post("/save-interaction", async (req, res) => {
+// //   try {
+// //     const { userId, keyPressCount, startTime, endTime, duration } = req.body;
+
+// //     const interaction = new PianoInteraction({
+// //       userId,
+// //       keyPressCount,
+// //       startTime,
+// //       endTime,
+// //       duration,
+// //     });
+
+// //     await interaction.save();
+// //     res.status(201).json({ message: "Interaction saved successfully!", interaction });
+// //   } catch (error) {
+// //     res.status(500).json({ error: "Failed to save interaction." });
+// //   }
+// // });
+
+// // Save piano interaction
+// router.post("/save-interaction", async (req, res) => {
+//   try {
+//     const { userId, keyPressCount, startTime, endTime, duration } = req.body;
+
+//     if (!userId || !startTime || !endTime || !duration) {
+//       return res.status(400).json({ error: "Missing required fields!" });
+//     }
+
+//     const interaction = new PianoInteraction({
+//       userId,
+//       keyPressCount,
+//       startTime,
+//       endTime,
+//       duration,
+//     });
+
+//     await interaction.save();
+//     res.status(201).json({ message: "Interaction saved successfully!", interaction });
+//   } catch (error) {
+//     console.error("Error saving interaction:", error);  // Print the error in console
+//     res.status(500).json({ error: "Internal Server Error", details: error.message });
+//   }
+// });
+
+// // Get user piano interactions
+// router.get("/interactions/:userId", async (req, res) => {
+//   try {
+//     const { userId } = req.params;
+//     const interactions = await PianoInteraction.find({ userId });
+
+//     res.status(200).json(interactions);
+//   } catch (error) {
+//     res.status(500).json({ error: "Failed to fetch interactions." });
+//   }
+// });
+
+// export default router;
+
+
+
 import express from "express";
 // import PianoInteraction from "../../models/interest/PianoInteraction.js";
 import PianoInteraction from "../../models/interest/PianoInteraction.js";
@@ -173,8 +241,8 @@ const router = express.Router();
 // Save piano interaction
 router.post("/save-interaction", async (req, res) => {
   try {
-    const { userId, keyPressCount, startTime, endTime, duration } = req.body;
-
+    const { userId, keyPressCount, startTime, endTime, duration, totalInteractionTime } = req.body;
+//totalInteractionTime
     if (!userId || !startTime || !endTime || !duration) {
       return res.status(400).json({ error: "Missing required fields!" });
     }
@@ -185,6 +253,7 @@ router.post("/save-interaction", async (req, res) => {
       startTime,
       endTime,
       duration,
+      totalInteractionTime,
     });
 
     await interaction.save();
