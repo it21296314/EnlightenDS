@@ -944,6 +944,260 @@
 
 //correct code with probability
 
+// import React, { useState, useRef, useCallback } from 'react';
+// import ReactWebcam from 'react-webcam';
+// import axios from 'axios';
+// import './DetectionPage.css';
+
+// // Import your assets here
+// import happyCharacter from 'Client/public/images/detection/happy.jpg';
+// import supportCharacter from 'Client/public/images/detection/happy.jpg';
+
+// const DetectionPage = () => {
+//   const [selectedImage, setSelectedImage] = useState(null);
+//   const [capturedImage, setCapturedImage] = useState(null);
+//   const [prediction, setPrediction] = useState(null);
+//   const [loading, setLoading] = useState(false);
+//   const [activeTab, setActiveTab] = useState('upload');
+//   const webcamRef = useRef(null);
+
+//   const downSyndromeSymptoms = [
+//     "Flattened facial features",
+//     "Small head and ears",
+//     "Short neck",
+//     "Protruding tongue",
+//     "Upward slanting eyes",
+//     "Unusually shaped or positioned ears",
+//     "Poor muscle tone"
+//   ];
+
+//   const handleImageUpload = (event) => {
+//     const file = event.target.files[0];
+//     if (file) {
+//       setSelectedImage(file);
+//       setCapturedImage(null);
+//       setPrediction(null);
+//     }
+//   };
+
+//   const captureImage = useCallback(() => {
+//     if (webcamRef.current) {
+//       const imageSrc = webcamRef.current.getScreenshot();
+//       setCapturedImage(imageSrc);
+//       setSelectedImage(null);
+//       setPrediction(null);
+//     }
+//   }, [webcamRef]);
+
+//   const checkDownSyndrome = async (image) => {
+//     if (!image) {
+//       alert('Please upload or capture an image first!');
+//       return;
+//     }
+
+//     setLoading(true);
+//     const formData = new FormData();
+
+//     if (image instanceof File) {
+//       formData.append('image', image);
+//     } else {
+//       const blob = await fetch(image).then(res => res.blob());
+//       formData.append('image', blob, 'captured_image.jpg');
+//     }
+
+//     try {
+//       const response = await axios.post('http://localhost:5000/predict', formData, {
+//         headers: { 'Content-Type': 'multipart/form-data' },
+//       });
+      
+//       const { prediction: pred, confidence } = response.data;
+//       const dsPercentage = (confidence * 100).toFixed(1);
+//       const nonDsPercentage = (100 - dsPercentage).toFixed(1);
+      
+//       setPrediction({ 
+//         label: pred, 
+//         dsProb: parseFloat(dsPercentage),
+//         nonDsProb: parseFloat(nonDsPercentage),
+//         symptoms: pred === "Down Syndrome Detected" ? downSyndromeSymptoms : []
+//       });
+//     } catch (error) {
+//       console.error('Error detecting Down Syndrome:', error);
+//       setPrediction({ 
+//         label: 'Error', 
+//         dsProb: 0,
+//         nonDsProb: 100,
+//         symptoms: ['Check connection or try again'] 
+//       });
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const resetDetection = () => {
+//     setSelectedImage(null);
+//     setCapturedImage(null);
+//     setPrediction(null);
+//     if (document.querySelector('.file-input')) {
+//       document.querySelector('.file-input').value = '';
+//     }
+//   };
+
+//   return (
+//     <div className="detection-page">
+//       {/* Header with purple background */}
+//       <header className="header22">
+//         <h1>Down Syndrome Facial Detection</h1>
+//         <p>Upload a photo or use your webcam for analysis</p>
+//       </header>
+
+//       {/* Main content area */}
+//       <main className="main-content">
+//         <div className="card22">
+//           {!prediction ? (
+//             <>
+//               {/* Tabs */}
+//               <div className="tabs">
+//                 <button 
+//                   className={`tab ${activeTab === 'upload' ? 'active' : ''}`}
+//                   onClick={() => setActiveTab('upload')}
+//                 >
+//                   <span className="tab-icon">📁</span> Upload Photo
+//                 </button>
+//                 <button 
+//                   className={`tab ${activeTab === 'webcam' ? 'active' : ''}`}
+//                   onClick={() => setActiveTab('webcam')}
+//                 >
+//                   <span className="tab-icon">📹</span> Use Webcam
+//                 </button>
+//               </div>
+
+//               {/* Tab content */}
+//               <div className="tab-content">
+//                 {activeTab === 'upload' && (
+//                   <div className="upload-content">
+//                     {!selectedImage && (
+//                       <label className="upload-area">
+//                         <input 
+//                           type="file" 
+//                           accept="image/*" 
+//                           onChange={handleImageUpload} 
+//                           className="file-input" 
+//                         />
+//                         <div className="upload-placeholder">
+//                           <p>Drag & drop your image or click to browse</p>
+//                         </div>
+//                       </label>
+//                     )}
+
+//                     {selectedImage && !loading && (
+//                       <div className="image-preview">
+//                         <img 
+//                           src={URL.createObjectURL(selectedImage)} 
+//                           alt="Preview" 
+//                           className="preview-img" 
+//                         />
+//                         <div className="action-buttons">
+//                           <button className="remove-button" onClick={resetDetection}>
+//                             Remove
+//                           </button>
+//                           <button className="analyze-button" onClick={() => checkDownSyndrome(selectedImage)}>
+//                             Analyze Face
+//                           </button>
+//                         </div>
+//                       </div>
+//                     )}
+//                   </div>
+//                 )}
+
+//                 {activeTab === 'webcam' && (
+//                   <div className="webcam-content">
+//                     <ReactWebcam 
+//                       ref={webcamRef} 
+//                       screenshotFormat="image/jpeg" 
+//                       className="webcam" 
+//                     />
+                    
+//                     {!capturedImage ? (
+//                       <button className="capture-button" onClick={captureImage}>
+//                         Capture Image
+//                       </button>
+//                     ) : !loading ? (
+//                       <div className="image-preview">
+//                         <img 
+//                           src={capturedImage} 
+//                           alt="Captured" 
+//                           className="preview-img" 
+//                         />
+//                         <div className="action-buttons">
+//                           <button className="remove-button" onClick={resetDetection}>
+//                             Remove
+//                           </button>
+//                           <button className="analyze-button" onClick={() => checkDownSyndrome(capturedImage)}>
+//                             Analyze Face
+//                           </button>
+//                         </div>
+//                       </div>
+//                     ) : null}
+//                   </div>
+//                 )}
+
+//                 {loading && (
+//                   <div className="loading">
+//                     <div className="spinner"></div>
+//                     <p>Analyzing facial features...</p>
+//                   </div>
+//                 )}
+//               </div>
+//             </>
+//           ) : (
+//             <div className="results-page">
+//               <h2 className="results-title">Detection Results</h2>
+//               <div className="results-progress-bar">
+//                 <div className="progress-filled" style={{ width: `${prediction.dsProb}%` }}></div>
+//               </div>
+              
+//               <div className="results-content">
+//                 <div className="results-text">
+//                   <h3 className="detection-result">{prediction.label}</h3>
+                  
+//                   <div className="probability-section">
+//                     <p className="probability-label">Probability of having Down Syndrome:</p>
+//                     <p className="probability-value">{prediction.dsProb}%</p>
+//                   </div>
+                  
+//                   <div className="probability-section">
+//                     <p className="probability-label">Probability of not having Down Syndrome:</p>
+//                     <p className="probability-value">{prediction.nonDsProb}%</p>
+//                   </div>
+//                 </div>
+                
+//                 <div className="results-image">
+//                   <img 
+//                     src={prediction.label === "Down Syndrome Detected" ? supportCharacter : happyCharacter} 
+//                     alt="Character" 
+//                     className="character-img" 
+//                   />
+//                 </div>
+//               </div>
+              
+//               <button className="try-another-button" onClick={resetDetection}>
+//                 Try Another Photo
+//               </button>
+//             </div>
+//           )}
+//         </div>
+//       </main>
+
+//       <footer className="footer">
+//         <p>This tool is for educational purposes only. Please consult with healthcare professionals for medical diagnosis.</p>
+//       </footer>
+//     </div>
+//   );
+// };
+
+// export default DetectionPage;
+
+
 import React, { useState, useRef, useCallback } from 'react';
 import ReactWebcam from 'react-webcam';
 import axios from 'axios';
@@ -994,31 +1248,35 @@ const DetectionPage = () => {
       alert('Please upload or capture an image first!');
       return;
     }
-
+  
     setLoading(true);
     const formData = new FormData();
-
+  
     if (image instanceof File) {
       formData.append('image', image);
     } else {
       const blob = await fetch(image).then(res => res.blob());
       formData.append('image', blob, 'captured_image.jpg');
     }
-
+  
     try {
       const response = await axios.post('http://localhost:5000/predict', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       
-      const { prediction: pred, confidence } = response.data;
-      const dsPercentage = (confidence * 100).toFixed(1);
-      const nonDsPercentage = (100 - dsPercentage).toFixed(1);
+      // Get the raw response from the model API
+      const { prediction: modelPrediction, confidence } = response.data;
       
-      setPrediction({ 
-        label: pred, 
-        dsProb: parseFloat(dsPercentage),
-        nonDsProb: parseFloat(nonDsPercentage),
-        symptoms: pred === "Down Syndrome Detected" ? downSyndromeSymptoms : []
+      // Use the actual confidence values from the model
+      // Multiply by 100 to convert from decimal to percentage
+      const dsProb = parseFloat((confidence * 100).toFixed(1));
+      const nonDsProb = parseFloat((100 - dsProb).toFixed(1));
+      
+      setPrediction({
+        label: modelPrediction,
+        dsProb: dsProb,
+        nonDsProb: nonDsProb,
+        symptoms: modelPrediction === "Down Syndrome Detected" ? downSyndromeSymptoms : []
       });
     } catch (error) {
       console.error('Error detecting Down Syndrome:', error);
@@ -1045,14 +1303,14 @@ const DetectionPage = () => {
   return (
     <div className="detection-page">
       {/* Header with purple background */}
-      <header className="header">
+      <header className="header22">
         <h1>Down Syndrome Facial Detection</h1>
         <p>Upload a photo or use your webcam for analysis</p>
       </header>
 
       {/* Main content area */}
       <main className="main-content">
-        <div className="card">
+        <div className="card22">
           {!prediction ? (
             <>
               {/* Tabs */}
@@ -1169,6 +1427,17 @@ const DetectionPage = () => {
                     <p className="probability-label">Probability of not having Down Syndrome:</p>
                     <p className="probability-value">{prediction.nonDsProb}%</p>
                   </div>
+                  
+                  {prediction.label === "Down Syndrome Detected" && (
+                    <div className="symptoms-section">
+                      <h4>Common Facial Features:</h4>
+                      <ul className="symptoms-list">
+                        {prediction.symptoms.map((symptom, index) => (
+                          <li key={index}>{symptom}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
                 
                 <div className="results-image">
@@ -1188,7 +1457,7 @@ const DetectionPage = () => {
         </div>
       </main>
 
-      <footer className="footer">
+      <footer className="footerDec">
         <p>This tool is for educational purposes only. Please consult with healthcare professionals for medical diagnosis.</p>
       </footer>
     </div>
@@ -1196,9 +1465,6 @@ const DetectionPage = () => {
 };
 
 export default DetectionPage;
-
-
-
 
 
 
