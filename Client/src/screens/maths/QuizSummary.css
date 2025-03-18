@@ -45,14 +45,23 @@
    */
 
    /* Quiz summary styles */
+
+   .backkk{
+    background-image: url('/public/images/maths/par.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+ 
+   }
 .quiz-summary {
-  max-width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f7ff;
+  max-width: 60%;
+margin-left: 40%;
+  padding: 30px;
+  background-color: #fdfdfd61;
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   font-family: 'Sour Gummy', sans-serif;
+
 }
 
 /* Header styles */
@@ -64,6 +73,7 @@
 .summary-header p {
   font-size: 2.5rem;
   color: #6a5acd;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
