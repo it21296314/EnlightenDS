@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./Server/ml/predict_",
+        "./backend/utils"
+    ]
+}

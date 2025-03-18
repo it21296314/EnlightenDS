@@ -539,7 +539,7 @@ import QuizProgressChart from '../maths/QuizProgressChart';
 import PerformanceDashboard from "./OverallPerformace";
 import { Chart as ChartJS, CategoryScale, LinearScale } from "chart.js";
 import confetti from 'canvas-confetti';
-
+import cheer from './img/cheer1.gif'
 ChartJS.register(CategoryScale, LinearScale);
 
 const Dashboard = () => {
@@ -602,33 +602,38 @@ const Dashboard = () => {
     }
   }, [prediction, showConfetti]);
 
+
+  
   const fetchData = async () => {
     if (!childId) return;
     setLoading(true);
     setError(null);
     setShowConfetti(false);
-
+  
     try {
       console.log("Fetching model data...");
       const response = await fetch(`http://localhost:3001/api/datapipeline/getModelData?childId=${childId}`);
       if (!response.ok) throw new Error("Failed to fetch model data");
-
+  
       const data = await response.json();
       console.log("Model Data:", data);
-
+  
       console.log("Sending data for prediction...");
       const predictionResponse = await fetch("http://127.0.0.1:5000/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-
+  
       if (!predictionResponse.ok) throw new Error("Failed to fetch prediction");
-
+  
       const predictionResult = await predictionResponse.json();
       console.log("Prediction Result:", predictionResult);
-
+  
       setPrediction(predictionResult);
+  
+      // **Update progress in the database**
+      await handlePredictionResult(predictionResult);
     } catch (err) {
       console.error(err);
       setError(err.message);
@@ -636,6 +641,8 @@ const Dashboard = () => {
       setLoading(false);
     }
   };
+  
+
 
   useEffect(() => {
     fetchData();
@@ -668,7 +675,7 @@ const Dashboard = () => {
     } else {
       return {
         message: "Keep practicing! You're making progress! 🌱",
-        animation: "https://i.giphy.com/media/3oEduVGyuRGuT6h0sM/giphy.gif",
+        animation: cheer,
         color: "bg-orange-100 border-orange-500"
       };
     }
@@ -676,8 +683,50 @@ const Dashboard = () => {
 
   const { message, animation, color } = getReadinessInfo();
 
+  // const handlePredictionResult = async (predictionResult) => {
+  //   try {
+  //     await fetch("http://localhost:3001/api/child/updateProgress", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         childId,
+  //         category,
+  //         difficulty,
+  //         readiness: predictionResult.probability.ready >= 0.7 ? 1 : 0, // 1 means ready, 0 means not ready
+  //       }),
+  //     });
+  //   } catch (error) {
+  //     console.error("Error updating progress:", error);
+  //   }
+  // };
+
+  const handlePredictionResult = async (predictionResult) => {
+    try {
+      const requestData = {
+        category,
+        difficulty,
+        readiness: predictionResult.probability.ready >= 0.7 ? 1 : 0,
+      };
+      
+      console.log("Sending data to updateProgress:", JSON.stringify(requestData, null, 2));
+      
+      await fetch("http://localhost:3001/api/child/updateProgress", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include", // Add this line to include cookies
+        body: JSON.stringify(requestData),
+      });
+    } catch (error) {
+      console.error("Error updating progress:", error);
+    }
+  };
+
+
+
   return (
-    <div className="p-4 md:p-6 space-y-8 bg-gradient-to-b from-blue-50 to-white min-h-screen">
+    <div className="p-4 md:p-6 space-y-8 bg-gradient-to-b from-blue-50 to-white min-h-screen"
+    style={{ fontFamily:'Sour Gummy' }}
+    >
       <div className="flex justify-between items-center">
         <h2 className="text-2xl md:text-3xl font-bold text-blue-700 flex items-center">
           <Award className="mr-2" size={28} color="#3B82F6" />
@@ -721,12 +770,12 @@ const Dashboard = () => {
                   
                   <div className="bg-white bg-opacity-70 p-4 rounded-xl shadow-sm">
                     <div className="text-sm text-gray-600 mb-1">Practice Needed</div>
-                    <div className="text-2xl font-bold text-orange-500">
+                    <div className="text-2xl font-bold text-red-500">
                       {Math.round(prediction.probability.not_ready * 100)}%
                     </div>
                     <div className="w-full bg-gray-200 h-3 rounded-full mt-2">
                       <div 
-                        className="bg-orange-500 h-3 rounded-full transition-all duration-1000 ease-out" 
+                        className="bg-red-500 h-3 rounded-full transition-all duration-1000 ease-out" 
                         style={{ width: `${prediction.probability.not_ready * 100}%` }}
                       ></div>
                     </div>
@@ -751,6 +800,7 @@ const Dashboard = () => {
                   src={animation} 
                   alt="Celebration animation" 
                   className="max-h-60 object-contain"
+                  style={{ width: "100%" }}
                 />
               </div>
             </div>

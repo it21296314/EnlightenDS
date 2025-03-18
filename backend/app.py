@@ -11,6 +11,8 @@ from routes.randomimages import randomimage_bp
 from routes.chart import chart_bp
 
 load_dotenv()
+from routes.predict import predict_bp
+from routes.status import status_bp
 
 app = Flask(__name__)
 CORS(app)
@@ -25,6 +27,8 @@ app.register_blueprint(detect_emotion_bp)
 app.register_blueprint(randomimage_bp)
 app.register_blueprint(chart_bp, url_prefix="/charts")
 
+app.register_blueprint(predict_bp)
+app.register_blueprint(status_bp)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
