@@ -95,6 +95,7 @@ const QuizSummary = () => {
   }
 
   return (
+    <div className="backkk">
     <div className="quiz-summary">
       <div className="summary-header">
         <p>Your Quiz Results {emoji}</p>
@@ -172,7 +173,7 @@ const QuizSummary = () => {
           Back
         </button>
       </div>
-    </div>
+    </div></div>
   );
 };
 
