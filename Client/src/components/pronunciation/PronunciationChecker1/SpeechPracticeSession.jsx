@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./SpeechPracticeSession.css";
 
-const PronunciationChecker1 = () => {
+const SpeechPracticeSession = () => {
   const { category } = useParams();
   const navigate = useNavigate();
   const [images, setImages] = useState([]);
@@ -12,6 +13,7 @@ const PronunciationChecker1 = () => {
   const [results, setResults] = useState({ correct: 0, incorrect: 0, incorrectWords: [] });
   const [startTime, setStartTime] = useState(Date.now());
   const [userId] = useState(Math.floor(Math.random() * 10000) + 1);
+  const [quizNumber] = useState(Math.floor(Math.random() * 5) + 1);
 
   const getRandomImages = (allImages) => {
     return allImages.sort(() => 0.5 - Math.random()).slice(0, 5);
@@ -30,6 +32,8 @@ const PronunciationChecker1 = () => {
     recognition.lang = "en-US";
     recognition.start();
 
+    setFeedback("");
+
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
       setSpokenWord(transcript);
@@ -47,6 +51,11 @@ const PronunciationChecker1 = () => {
           incorrectWords: isCorrect ? prev.incorrectWords : [...prev.incorrectWords, currentImage.word]
         }));
       }).catch((error) => console.error("Error checking pronunciation:", error));
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Speech recognition error", event.error);
+      setFeedback("Sorry, there was an error with the speech recognition. Please try again.");
     };
   };
 
@@ -86,46 +95,72 @@ const PronunciationChecker1 = () => {
     }
   };
 
-  const handleDownloadPDF = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/generate-report?user_id=${userId}&format=pdf`,
-        { responseType: "blob" }
-      );
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", `Feedback_Report_${userId}.pdf`);
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    } catch (error) {
-      console.error("Error generating PDF:", error);
-    }
-  };
+  if (images.length === 0) {
+    return (
+      <div className="speech-practice-container">
+        <div className="speech-practice-header">
+          <h1>Loading Pronunciation Practice</h1>
+          <p>Please wait while we prepare your practice session...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div>
+    <div className={`speech-practice-container quiz-${quizNumber}`}>
+      <div className="speech-practice-header">
+        <h1>Pronunciation Quiz</h1>
+        <p>Category: {category}</p>
+      </div>
       {images[currentImageIndex] && (
         <div>
-          <img
-            src={`http://localhost:5000${images[currentImageIndex].imageUrl}`}
-            alt={images[currentImageIndex].word}
-            onClick={() => new Audio(`http://localhost:5000${images[currentImageIndex].audioUrl}`).play()}
-          />
-          <button onClick={startRecording}>Record Pronunciation</button>
-          <p>{spokenWord && `You said: ${spokenWord}`}</p>
-          <p>{feedback}</p>
-          <button onClick={nextImage}>
-            {currentImageIndex === images.length - 1 ? "Finish" : "Next"}
-          </button>
-          {currentImageIndex === images.length - 1 && (
-            <button onClick={handleDownloadPDF}>Download Report</button>
-          )}
+
+          <div className="speech-practice-progress">
+            {images.map((_, index) => (
+              <div
+                key={index}
+                className={`progress-dot ${index === currentImageIndex ? 'active' : ''} ${index < currentImageIndex ? 'completed' : ''}`}
+              />
+            ))}
+          </div>
+          <div className="speech-practice-progress-xx">
+
+            <div className="speech-practice-image-container">
+              <img
+                className="speech-practice-word-image"
+                src={`http://localhost:5000${images[currentImageIndex].imageUrl}`}
+                alt={images[currentImageIndex].word}
+                onClick={() => new Audio(`http://localhost:5000${images[currentImageIndex].audioUrl}`).play()}
+              />
+              <span className="speech-practice-audio-hint">Click image to hear pronunciation</span>
+            </div>
+            <div className="feedback-header-xx">
+              {(spokenWord || feedback) && (
+                <div className="speech-practice-output">
+                  {spokenWord && <div className="speech-practice-user-speech">You said: {spokenWord}</div>}
+                  {feedback && (
+                    <div className={`speech-practice-feedback ${feedback.includes("Correct") ? "correct" : "incorrect"}`}>
+                      {feedback}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+          </div>
+          <div className="speech-practice-controls">
+            <button className="speech-practice-record-btn" onClick={startRecording}>
+              Record Pronunciation
+            </button>
+            <button className="speech-practice-next-btn" onClick={nextImage}>
+              {currentImageIndex === images.length - 1 ? "Finish" : "Next"}
+            </button>
+          </div>
+
         </div>
       )}
     </div>
   );
 };
 
-export default PronunciationChecker1;
+export default SpeechPracticeSession;

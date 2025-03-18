@@ -1,10 +1,9 @@
-from flask import Blueprint, request, jsonify, send_file
+from datetime import datetime
+from flask import Blueprint, request, jsonify
 from utils.database import results_collection
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
-from fpdf import FPDF
-
 
 # Load environment variables
 load_dotenv()
@@ -33,9 +32,8 @@ def save_results():
 
 @results_bp.route("/generate-report", methods=["GET"])
 def generate_report():
-    """Generate AI-based feedback report for parents using Google Gemini API and provide a PDF report."""
+    """Generate AI-based feedback report and return the data for frontend processing."""
     user_id = request.args.get("user_id")
-    format_type = request.args.get("format")
 
     if not user_id:
         return jsonify({"error": "User ID is required"}), 400
@@ -65,6 +63,7 @@ def generate_report():
         Correct answers: {total_correct}, Incorrect answers: {total_incorrect}.
         {incorrect_words_text}
         Suggest improvement strategies, practice words, and engaging activities.
+        Format your response with clear sections and headers for readability.
         """
 
         try:
@@ -74,36 +73,7 @@ def generate_report():
         except Exception as e:
             feedback = f"Error generating feedback: {str(e)}"
 
-        if format_type == "pdf":
-            pdf = FPDF()
-            pdf.set_auto_page_break(auto=True, margin=15)
-            pdf.add_page()
-            pdf.set_font("Arial", style="B", size=16)
-            pdf.cell(200, 10, "AI Feedback Report", ln=True, align="C")
-            pdf.set_font("Arial", size=12)
-            pdf.ln(10)
-            pdf.cell(200, 10, f"User ID: {user_id}", ln=True)
-            pdf.cell(200, 10, f"Category: {category}", ln=True)
-            pdf.cell(200, 10, f"Correct Count: {total_correct}", ln=True)
-            pdf.cell(200, 10, f"Incorrect Count: {total_incorrect}", ln=True)
-            pdf.cell(200, 10, f"Marks Percentage: {marks_percentage:.2f}%", ln=True)
-            pdf.cell(200, 10, f"Time Spent: {time_spent}", ln=True)
-            pdf.ln(10)
-            pdf.set_font("Arial", style="B", size=14)
-            pdf.cell(200, 10, "Incorrect Words:", ln=True)
-            pdf.set_font("Arial", size=12)
-            for word in incorrect_words:
-                pdf.cell(200, 10, f"- {word}", ln=True)
-            pdf.ln(10)
-            pdf.set_font("Arial", style="B", size=14)
-            pdf.cell(200, 10, "AI Feedback:", ln=True)
-            pdf.set_font("Arial", size=12)
-            pdf.multi_cell(0, 10, feedback)
-
-            pdf_file = "feedback_report.pdf"
-            pdf.output(pdf_file)
-            return send_file(pdf_file, as_attachment=True)
-
+        # Return all data needed for frontend PDF generation
         return jsonify({
             "user_id": user_id,
             "category": category,
@@ -112,7 +82,10 @@ def generate_report():
             "marks_percentage": marks_percentage,
             "time_spent": time_spent,
             "incorrect_words": incorrect_words,
-            "feedback": feedback
+            "feedback": feedback,
+            "date": {
+                "formatted": datetime.now().strftime("%B %d, %Y at %H:%M")
+            }
         })
 
     except ValueError:

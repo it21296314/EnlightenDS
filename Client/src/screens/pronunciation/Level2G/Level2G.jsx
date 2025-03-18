@@ -20,7 +20,6 @@ function Level2G() {
   const audioRef = useRef(null);
   const endpoint = 1000;
 
-
   // Character movement animation
   const characterAnimation = useSpring({
     transform: "scale(2.0)",
@@ -34,7 +33,6 @@ function Level2G() {
     transform: `translateX(-${movement / 2}px)`,
     config: { tension: 100, friction: 20 },
   });
-
 
   useEffect(() => {
     if (!gameStarted || timer <= 0) {
@@ -114,9 +112,6 @@ function Level2G() {
     }
   };
 
-
-
-
   const startGame = () => {
     setPhase('emotion');
     setMovement(0);
@@ -124,53 +119,50 @@ function Level2G() {
     setGameOver(false);
     setWin(false);
     setPronunciationCorrect(false);
-    setGameStarted(true);
+    setGameStarted(true); // Ensure this is set to true
   };
 
   return (
-
-    <div className='game-container'>
+    <div className='l2g-game-container'>
       {/* Background Music */}
       <audio ref={audioRef} src="/audio/background-music.mp3" loop />
 
       {/* Background Video */}
-      <div className="background-wrapper">
-        <animated.video className="background-video" style={backgroundAnimation} autoPlay loop muted>
+      <div className="l2g-background-wrapper">
+        <animated.video className="l2g-background-video" style={backgroundAnimation} autoPlay loop muted>
           <source src="/videos/newgame4.mp4" type="video/mp4" />
         </animated.video>
-        <animated.video className="background-video" style={backgroundAnimation} autoPlay loop muted>
+        <animated.video className="l2g-background-video" style={backgroundAnimation} autoPlay loop muted>
           <source src="/videos/newgame4.mp4" type="video/mp4" />
         </animated.video>
       </div>
 
-      <div className="checker-container">
-        <h1>Level 1: Emotion + Pronunciation Game</h1>
+      <div className="l2g-checker-container">
+       
 
-        <div className='timer-emotion-container'>
-          <div className="button-container">
-            <button className="start-end-btn" onClick={startGame}>Start</button>
+        <div className='l2g-timer-emotion-container'>
+          <div className="l2g-button-container">
+            <button className="l2g-start-end-btn" onClick={startGame}>Start</button>
           </div>
 
           {!win && !gameOver && (
-            <div className="emotion-container1">
+            <div className="l2g-emotion-container">
               {phase === 'pronunciation' && imageUrl && (
-                <div className="pronunciation-container">
-                  <img src={imageUrl} alt={currentWord} className="word-image" />
+                <div className="l2g-pronunciation-container">
+                  <img src={imageUrl} alt={currentWord} className="l2g-word-image" />
                   <WordPronunciation targetWord={currentWord} onPronunciationComplete={handlePronunciationCorrect} />
                 </div>
               )}
               {phase !== 'pronunciation' && (
-                <div className="smile-message1">
+                <div className="l2g-smile-message">
                   {emotion === "Happy" ? "Running! 🏃" : (
                     <>
                       Smile!
-                      <img src="/images/pronunciation/smile.gif" alt="Smile" className="smile-image" />
+                      <img src="/images/pronunciation/smile.gif" alt="Smile" className="l2g-smile-image" />
                     </>
                   )}
                 </div>
               )}
-
-
 
               {phase === 'emotion' && (
                 <EmotionDetection onSmileDetected={handleSmileDetected} isActive={phase === 'emotion'} />
@@ -178,41 +170,34 @@ function Level2G() {
             </div>
           )}
 
-
-          <div className="timer1">{timer} S</div>
+          <div className="l2g-timer">{timer} S</div>
         </div>
 
         {/* Display Win or Game Over Message */}
         {win && (
-          <div className="win-message1">
+          <div className="l2g-win-message">
             <p>You Win! 🎉</p>
             <img src="/images/pronunciation/win.gif" alt="You Win!" />
-
           </div>
         )}
 
         {gameOver && (
-          <div className="game-over-message1">
+          <div className="l2g-game-over-message">
             <p>Try Again! </p>
             <img src="/images/pronunciation/sad.gif" alt="Game Over!" />
-
           </div>
         )}
 
-        <div className="game-area1">
+        <div className="l2g-game-area">
           {/* Animated Character */}
           {!win && !gameOver && (
-            <animated.div className="character" style={characterAnimation}>
-              <img src="/images/pronunciation/run.gif" alt="Running Character" className="character-img" />
+            <animated.div className="l2g-character" style={characterAnimation}>
+              <img src="/images/pronunciation/run.gif" alt="Running Character" className="l2g-character-img" />
             </animated.div>
           )}
         </div>
-
-
       </div>
-
     </div>
-
   );
 }
 
