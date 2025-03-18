@@ -328,7 +328,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { generateMathSteps } from "./AiMathSolver";
-import bbb from './img/bbb.jpg';
+import ex from './img/ex.jpg';
 import cheer from './img/cheer1.gif'
 const MathExplanationAI = ({ problem, onClose }) => {
   const explanationRef = useRef(null);
@@ -500,7 +500,7 @@ const MathExplanationAI = ({ problem, onClose }) => {
     <div 
       className="fullscreen-explanation" 
       style={{
-        backgroundImage: `url(${bbb})`,
+        backgroundImage: `url(${ex})`,
         backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
