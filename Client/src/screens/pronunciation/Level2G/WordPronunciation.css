@@ -1,36 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 
-.pronunciation-container {
+.wp-container {
   font-family: 'Sour Gummy', sans-serif;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(8px);
-
   border-radius: 12px;
   text-align: center;
   color: white;
   width: 500px;
-  margin: auto;
+  top: 50px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
 }
 
-.word-title {
+.wp-target-word {
   background-color: #ffcc00;
   font-size: 22px;
   font-weight: bold;
   color: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-.recognized-text {
+.wp-transcript {
   font-size: 18px;
   margin-top: 8px;
 }
 
-.recognized-text span {
+.wp-transcript span {
   font-weight: bold;
   color: #ffcc00;
+  text-decoration: underline;
 }
 
-.pronounce-button,
-.audio-button {
+.wp-pronunciation-btn,
+.wp-audio-btn {
   font-size: 14px;
   padding: 8px 12px;
   margin: 8px;
@@ -39,16 +45,27 @@
   cursor: pointer;
   background-color: #ffcc00;
   color: black;
+  font-weight: bold;
+  transition: transform 0.2s, background-color 0.2s;
 }
 
-.pronounce-button:disabled {
+.wp-pronunciation-btn:hover,
+.wp-audio-btn:hover {
+  transform: scale(1.05);
+  background-color: #ffd633;
+}
+
+.wp-pronunciation-btn:disabled {
   background-color: gray;
   cursor: not-allowed;
+  transform: none;
 }
 
-.feedback-message {
+.wp-feedback {
   font-size: 16px;
   margin-top: 12px;
+  font-weight: bold;
+  min-height: 24px;
 }
 
 img {
@@ -56,4 +73,29 @@ img {
   height: 80px;
   object-fit: cover;
   border-radius: 8px;
+  margin-top: 10px;
+ 
+}
+
+.speak-now-button{
+  background-color: #ffcc00;
+  border-radius: 5px;
+
+}
+
+.listen-sound-button{
+  background-color: #ffcc00;
+  border-radius: 5px;
+
+}
+
+/* .speech-result-text{
+  background-color: #ffcc00;
+  border-radius: 5px;
+} */
+
+.gummy-word-title{
+  background-color: #ffcc00;
+  border-radius: 5px;
+
 }

@@ -1,193 +1,270 @@
 @import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
 html, body {
-  overflow: hidden; 
-}
-.game-container {
-  height: 100vh;
-  width: 100vw; /* Ensures the game doesn't extend beyond the viewport */
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-.background-wrapper {
+/* Main container */
+.l2g-game-container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Sour Gummy', sans-serif;
+}
+
+/* Background videos */
+.l2g-background-wrapper {
   display: flex;
   position: absolute;
   top: -50px;
-  /* Adjust this value to move it up */
   left: 0;
   width: 100%;
   height: 100%;
-
+  z-index: -1;
 }
 
-.background-video {
+.l2g-background-video {
   width: 100vw;
   height: 109vh;
   object-fit: cover;
 }
 
+/* Game UI container */
+.l2g-checker-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
 
+.l2g-checker-container h1 {
+  text-align: center;
+  font-size: 3rem;
+  color: #ff6b6b;
+  text-shadow: 3px 3px 0 #fff, -3px -3px 0 #fff, 3px -3px 0 #fff, -3px 3px 0 #fff;
+  margin-bottom: 20px;
+  animation: bounce 2s infinite;
+}
 
-.button-container {
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Timer and emotion container - modified to position elements in corners */
+.l2g-timer-emotion-container {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Button container - positioned in top left */
+.l2g-button-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
+
+.l2g-start-end-btn {
+  font-family: 'Sour Gummy', sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  padding: 10px 30px;
+  border-radius: 25px;
+  background: linear-gradient(to bottom, #ffde59, #ff914d);
+  color: #fff;
+  border: 5px solid #fff;
+  box-shadow: 0 8px 0 #cc7333, 0 15px 20px rgba(0, 0, 0, 0.35);
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.l2g-start-end-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 0 #cc7333, 0 8px 10px rgba(0, 0, 0, 0.35);
+}
+
+.l2g-start-end-btn:active {
+  transform: translateY(4px) scale(0.95);
+  box-shadow: 0 2px 0 #cc7333, 0 4px 5px rgba(0, 0, 0, 0.35);
+}
+
+/* Emotion container - centered */
+.l2g-emotion-container {
   position: absolute;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: 'Sour Gummy', sans-serif;
   display: flex;
-
-  gap: 20px;
+  flex-direction: column;
+  align-items: center;
 }
 
-.word-image {
+.l2g-smile-message {
+  font-size: 30px;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: linear-gradient(to bottom, #4facfe, #00f2fe);
+  color: white;
+  box-shadow: 0 6px 0 #2a8ad4, 0 10px 15px rgba(0, 0, 0, 0.25);
+  min-width: 200px;
+}
+
+.l2g-smile-image {
+  width: 50px;
+  height: auto;
+  margin-left: 15px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.l2g-smile-image:hover {
+  transform: scale(1.5) rotate(15deg);
+}
+
+/* Pronunciation container */
+.l2g-pronunciation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.l2g-word-image {
   width: 300px;
   height: 300px;
-  object-fit: cover;
-  border-radius: 10px;
-  display: block;
-  margin: 10px auto;
+  object-fit: contain;
+  border: 2px solid white;
+  
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  margin-bottom: 15px;
 }
 
-.start-end-btn {
-  font-size: 30px;
-  font-weight: bold;
-  margin-inline-end: 1250%;
-  margin-top: -70px;
-  border-radius: 10px;
-  background-color: #2196f3;
-  ;
-
-}
-
-.start-end-btn:hover {
-  transform: scale(1.1);
-  background-color: #1e88e5;
-  /* Slightly brighter green for Beginner */
-}
-
-.timer-emotion-container {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-  margin: 0 auto;
-  position: relative;
-  bottom: 80px;
-}
-
-.timer1,
-.emotion-container1 h3 {
-  font-size: 1.5rem;
-}
-
-.emotion-container1 {
-  margin-left: 35%;
-  font-family: 'Sour Gummy', sans-serif;
-  color: whitesmoke;
-  margin-top: -88px;
-
-}
-
-
-
-.smile-message1 {
-  font-size: 30px;
-  width: 200px;
-  margin-bottom: 4px;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  /* Center horizontally */
-  margin-inline-start: 50px;
-  border-radius: 10px;
-  background-color: #2196f3;
-
-
-}
-.smile-image {
-  width: 50px;
-
-  height: auto;
-  margin-inline-start: 10px;
-  border-radius: 50px;
-
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-
-}
-
-.smile-image:hover {
-  transform: scale(2.0); /* Slightly enlarge on hover */
-  transition: transform 0.3s ease-in-out;
-}
-
-
-.emotion-container1 h3 {
-  font-size: 30px;
-  font-weight: bold;
-  border-radius: 10px;
-margin-left: 100px;
-  width: 60%;
-  justify-content: center;
-  display: flex;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-
-}
-
-.timer1 {
-  background-color: #e28d0e;
-  font-family: 'Sour Gummy', sans-serif;
+/* Timer - positioned in top right */
+.l2g-timer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(to bottom, #ddb62c, #cc7333);
   color: white;
   font-weight: bold;
   font-size: 50px;
-  height: 150px;
-  width: 150px;
-  margin-top: -100px;
-  margin-right: -100px;
-  border-radius: 100px;
-
-  /* Centering text */
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  border: 5px solid white;
+  box-shadow: 0 10px 0 #d1976e, 0 15px 25px rgba(0, 0, 0, 0.35);
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  transform: rotate(5deg);
 }
 
-
-.game-area1 {
+/* Game area */
+.l2g-game-area {
   position: relative;
   width: 100%;
-  height: 265px;
-  margin-bottom: -46px;
-  /* background-color: aqua; */
-  
+  height: 200px;
   overflow: hidden;
+  margin-top: auto;
+  margin-bottom: 20px;
 }
 
-.character {
+/* Character - reduced size */
+.l2g-character {
   position: absolute;
-  bottom: 35px;
+  bottom: 0;
   left: 10px;
   transition: left 0.1s linear;
+  z-index: 5;
 }
 
-.character-img {
-  width: 170px;
-  height: 150px;
-  margin-block-end: 30px;
+.l2g-character-img {
+  width: 120px; /* Reduced from 200px */
+  height: 180px; /* Reduced from 180px */
   object-fit: contain;
+  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.3));
 }
-.win-message1,
-.game-over-message1 {
+
+/* Win and game over messages */
+.l2g-win-message,
+.l2g-game-over-message {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: 50px;
   transform: translate(-50%, -50%);
-  font-size: 50px;
+  font-size: 60px;
   font-weight: bold;
-  color: red;
-  
-  padding: 20px 40px;
-  border-radius: 20px;
+  padding: 30px 50px;
+  border-radius: 30px;
   text-align: center;
-  font-family: 'Sour Gummy', sans-serif;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 8px solid;
+  z-index: 100;
+}
+
+.l2g-win-message {
+  color: #4CAF50;
+  border-color: #4CAF50;
+  animation: pulse 1s infinite alternate;
+}
+
+.l2g-game-over-message {
+  color: #da6e21;
+  border-color: #da6e21;
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* EmotionDetection component styling */
+.l2g-webcam-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.l2g-webcam {
+  border: 8px solid white !important;
+  border-radius: 15px !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3) !important;
+  transform: rotate(-2deg);
+}
+
+.l2g-status {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  margin-top: 15px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: 3px dashed #ff9e9e;
+  transform: rotate(2deg);
+}
+
+.l2g-status h3 {
+  font-size: 24px;
+  color: #ff6b6b;
+  margin: 0;
 }

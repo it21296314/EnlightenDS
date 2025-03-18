@@ -14,9 +14,10 @@ import ResultsPage from './screens/maths/ResultsPage';
 import PronunciationChecker from './screens/pronunciation/PronunciationChecker/PronunciationChecker';
 import BeginnerCategory from './screens/pronunciation/BeginnerCategory/BeginnerCategory';
 import PronunciationHome from "./screens/pronunciation/pronunciationHome/pronunciationHome";
-import Categories from "./components/pronunciation/Categories";
-import PronunciationChecker1 from './components/pronunciation/PronunciationChecker1';
-import Dashboard from './components/pronunciation/Dashboard';
+import Categories from './components/pronunciation/Categories/Categories';
+
+import SpeechPracticeSession from './components/pronunciation/PronunciationChecker1/SpeechPracticeSession';
+import Dashboard from './components/pronunciation/Dashboard/Dashboard';
 import QuizSummary from './screens/maths/QuizSummary';
 import Level1G from './screens/pronunciation/Level1G/Level1G';
 import Level2G from './screens/pronunciation/Level2G/Level2G';
@@ -57,7 +58,7 @@ function App() {
           <Route path="/beginner-category" element={<BeginnerCategory />} />
           <Route path="/pronunciation/checker/:category" element={<PronunciationChecker />}/>
           <Route path="/categories" element={<Categories />} />
-          <Route path="/quiz/:category" element={<PronunciationChecker1 />} />
+          <Route path="/quiz/:category" element={<SpeechPracticeSession />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/level1" element={<Level1G />} />
           <Route path="/level2" element={<Level2G />} />

@@ -102,90 +102,94 @@ function Level1G() {
   };
 
   return (
-    <div className="game-container">
+    <div className="emotion-game-container">
       {/* Background Music */}
       <audio ref={audioRef} src="/audio/background-music.mp3" loop />
-
+  
       {/* Background Video */}
-      <div className="background-wrapper">
-        <animated.video className="background-video" style={backgroundAnimation} autoPlay loop muted>
+      <div className="emotion-game-background-wrapper">
+        <animated.video className="emotion-game-background-video" style={backgroundAnimation} autoPlay loop muted>
           <source src="/videos/newgame4.mp4" type="video/mp4" />
         </animated.video>
-        <animated.video className="background-video" style={backgroundAnimation} autoPlay loop muted>
+        <animated.video className="emotion-game-background-video" style={backgroundAnimation} autoPlay loop muted>
           <source src="/videos/newgame4.mp4" type="video/mp4" />
         </animated.video>
       </div>
-
+  
       {/* Game UI */}
-      <div className="checker-container1">
-        <h1>Level 1: Emotion-Based Running Game</h1>
-
-        {/* Timer and Emotion Detection */}
-        <div className="timer-emotion-container">
-          <div className="button-container-x">
-            <button className="start-end-btn-x" onClick={startGame}>Start</button>
+      <div className="emotion-game-checker-container">
+        <div className="emotion-game-content">
+          {/* Controls Row - Start Button and Timer */}
+          <div className="emotion-game-controls-row">
+            {/* Start Button - Left side */}
+            <div className="emotion-game-button-container">
+              <button className="emotion-game-start-btn" onClick={startGame}>
+                Start
+              </button>
+            </div>
+  
+            {/* Timer - Right side */}
+            <div className="emotion-game-timer">
+              {timer} S
+            </div>
           </div>
-
-          {!win && !gameOver && (
-            <div className="emotion-container1">
-              <div className="smile-message1">
+  
+          {/* Webcam and Emotion Detection - Center of page */}
+          {!win && !gameOver && gameStarted ? (
+            <div className="emotion-game-detection-container">
+              <div className="emotion-game-smile-message">
                 {emotion === "Happy" ? "Running! 🏃" : (
                   <>
                     Smile!
-                    <img src="/images/pronunciation/smile.gif" alt="Smile" className="smile-image" />
+                    <img src="/images/pronunciation/smile.gif" alt="Smile" className="emotion-game-smile-image" />
                   </>
                 )}
               </div>
-
-              <div className="webcam-container">
+  
+              <div className="emotion-game-webcam-container">
                 <ReactWebcam
                   ref={webcamRef}
                   audio={false}
                   screenshotFormat="image/jpeg"
                   videoConstraints={{ width: 320, height: 240, facingMode: "user" }}
-                  style={{ border: "2px solid white", borderRadius: "5px" }}
+                  className="emotion-game-webcam"
                 />
-                <div className="emotion-container-y">
-                  <h3 style={{ fontSize: '27px' }}>Emotion: {emotion || "Not detected yet"}</h3>
+                <div className="emotion-game-status">
+                  <h3>Emotion: {emotion || "Not detected yet"}</h3>
                 </div>
-
               </div>
             </div>
-
+          ) : (
+            <div className="emotion-game-detection-placeholder"></div>
           )}
-          <div className="timer1">{timer} S</div>
-        </div>
-
-        {/* Display Win or Game Over Message */}
-        {win && (
-          <div className="win-message1">
-            <p>You Win! 🎉</p>
-            <img src="/images/pronunciation/win.gif" alt="You Win!" />
-
-          </div>
-        )}
-
-        {gameOver && (
-          <div className="game-over-message1">
-            <p>Try Again! </p>
-            <img src="/images/pronunciation/sad.gif" alt="Game Over!" />
-
-          </div>
-        )}
-
-
-        <div className="game-area1">
-          {/* Animated Character */}
-          {!win && !gameOver && (
-            <animated.div className="character" style={characterAnimation}>
-              <img src="/images/pronunciation/run.gif" alt="Running Character" className="character-img" />
-            </animated.div>
+  
+          {/* Display Win or Game Over Message */}
+          {win && (
+            <div className="emotion-game-win-message">
+              <p>You Win! 🎉</p>
+              <img src="/images/pronunciation/win.gif" alt="You Win!" className="emotion-game-result-image" />
+            </div>
           )}
+  
+          {gameOver && (
+            <div className="emotion-game-over-message">
+              <p>Try Again! </p>
+              <img src="/images/pronunciation/sad.gif" alt="Game Over!" className="emotion-game-result-image" />
+            </div>
+          )}
+  
+          {/* Character Running Area - Bottom of screen */}
+          <div className="emotion-game-area">
+            {/* Animated Character */}
+            {!win && !gameOver && gameStarted && (
+              <animated.div className="emotion-game-character" style={characterAnimation}>
+                <img src="/images/pronunciation/run.gif" alt="Running Character" className="emotion-game-character-img" />
+              </animated.div>
+            )}
+          </div>
         </div>
-
-
       </div>
-    </div >
+    </div>
   );
 }
 
