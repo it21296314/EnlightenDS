@@ -188,12 +188,34 @@ export default function generateQuestion(category, difficulty, subLevel) {
     advanced: [10, 100],
   };
 
+  // if (category === 'division') {
+  //   const [min, max] = getRange(subLevel, ranges[difficulty]);
+  //   const divisorRange = difficulty === 'beginner' ? [2, 5] : difficulty === 'intermediate' ? [6, 9] : [10, 15];
+  //   const dividend = Math.floor(Math.random() * (max - min + 1)) + min;
+  //   const divisor = Math.floor(Math.random() * (divisorRange[1] - divisorRange[0] + 1)) + divisorRange[0];
+  //   nums = [dividend * divisor, divisor];
+  // } else {
+  //   const [min, max] = getRange(subLevel, ranges[difficulty]);
+  //   nums = [
+  //     Math.floor(Math.random() * (max - min + 1)) + min,
+  //     Math.floor(Math.random() * (max - min + 1)) + min,
+  //   ];
+  // }
+
+  
   if (category === 'division') {
     const [min, max] = getRange(subLevel, ranges[difficulty]);
     const divisorRange = difficulty === 'beginner' ? [2, 5] : difficulty === 'intermediate' ? [6, 9] : [10, 15];
     const dividend = Math.floor(Math.random() * (max - min + 1)) + min;
     const divisor = Math.floor(Math.random() * (divisorRange[1] - divisorRange[0] + 1)) + divisorRange[0];
     nums = [dividend * divisor, divisor];
+  } else if (category === 'subtraction') {
+    // For subtraction, ensure first number > second number
+    const [min, max] = getRange(subLevel, ranges[difficulty]);
+    const num2 = Math.floor(Math.random() * (max - min + 1)) + min;
+    // Make sure num1 is greater than num2
+    const num1 = num2 + Math.floor(Math.random() * (max - num2 + 1)) + 1;
+    nums = [num1, num2];
   } else {
     const [min, max] = getRange(subLevel, ranges[difficulty]);
     nums = [

@@ -854,7 +854,7 @@ router.get('/getModelData', async (req, res) => {
             // Lookup child data
             {
                 $lookup: {
-                    from: "children", // Ensure this matches your actual MongoDB collection name
+                    from: "childs", // Ensure this matches your actual MongoDB collection name
                     localField: "childId",
                     foreignField: "_id",
                     as: "childData"

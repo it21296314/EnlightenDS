@@ -1669,6 +1669,7 @@ const QuestionDisplay = () => {
                 fontSize: '100px',
                 fontWeight: 'bold',
                 marginTop: '10px',
+                marginBottom: '5px',
               }}
             >
               {answerResults[questionCount] ? 'Correct!!' : 'Wrong!!'}
@@ -1677,18 +1678,31 @@ const QuestionDisplay = () => {
               {answerResults[questionCount] ? (
                 <img src={cheerGif} alt="Cheering Animation" className="animation" />
               ) : (
-                <img src={sadGif} alt="Sad Animation" className="animation" />
+                // <img src={sadGif} alt="Sad Animation" className="animation" />
+                <div class="tooltip-container">
+                  
+  <button class="show-explanation-btn" onClick={() => setShowExplanation(true)}>
+  <img src="/images/owllll.png" alt="Show Explanation"/>
+  </button>
+  <span class="tooltip-text">Show Explanation</span>
+</div>
               )}
             </div>
             <h2 className="message-display">{message}</h2>
 
             {!answerResults[questionCount] && (
   <>
-    <h1 style={{ marginTop: '10px' }}>Correct Answer: {questionData?.correctAnswer}</h1>
+    <h1 style={{ marginTop: '10px',marginBottom:'10px' }}>Correct Answer: {questionData?.correctAnswer}</h1>
     
-          <button className="show-explanation-btn" onClick={() => setShowExplanation(true)}>
+           {/* <button className="show-explanation-btn" onClick={() => setShowExplanation(true)}>
         Show Explanation
-      </button>
+      </button>  */}
+      {/* <div class="tooltip-container">
+  <button class="show-explanation-btn" onClick={() => setShowExplanation(true)}>
+  <img src="/images/owllll.png" alt="Show Explanation"/>
+  </button>
+  <span class="tooltip-text">Show Explanation</span>
+</div> */}
 
       {showExplanation && (
         <MathExplanationAI problem={questionData?.question} onClose={() => setShowExplanation(false)} />

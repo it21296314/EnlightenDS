@@ -1897,17 +1897,17 @@ const handleAnalyzeReadiness = async () => {
 </button>
 
  <div style={{ textAlign: 'center', padding: '20px' }}>
-      <button
+      <button className="button2"
         onClick={handleAnalyzeReadiness}
         disabled={loading}
-        style={{
-          backgroundColor: loading ? '#ccc' : '#007bff',
-          color: 'white',
-          padding: '10px 20px',
-          borderRadius: '5px',
-          border: 'none',
-          cursor: loading ? 'not-allowed' : 'pointer',
-        }}
+        // style={{
+        //   backgroundColor: loading ? '#ccc' : '#007bff',
+        //   color: 'white',
+        //   padding: '10px 20px',
+        //   borderRadius: '5px',
+        //   border: 'none',
+        //   cursor: loading ? 'not-allowed' : 'pointer',
+        // }}
       >
         {loading ? 'Analyzing...' : 'Analyze Readiness'}
       </button>
