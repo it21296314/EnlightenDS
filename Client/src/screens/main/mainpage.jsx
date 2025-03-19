@@ -315,7 +315,7 @@ const [child, setChild] = useState(null); // Manages child profile state
       icon: "🗣️",
       bgImage: "url('/images/pronunciation-bg.jpg')",
       color: "#e5574b",
-      path: "/pronunciation",
+      path: "/pro",
       features: ["Interactive Quizzes", "Learning Games", "Progress Reports"]
     },
     {
@@ -341,7 +341,7 @@ const [child, setChild] = useState(null); // Manages child profile state
   const navItems = [
     { label: "Home", path: "/" },
     { label: "Detection", path: "/detection" },
-    { label: "Pronunciation", path: "/pronunciation" },
+    { label: "Pronunciation", path: "/categories" },
     { label: "Mathematics", path: "/LevelSelection" },
     { label: "Talents", path: "/talents" },
     { label: "About Us", path: "/about" },
