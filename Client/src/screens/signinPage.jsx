@@ -31,7 +31,7 @@ const handleSubmit = async (e) => {
     setMessage(response.data.message); // This assumes message exists in the response
 
     // Redirect to profile with child data
-    navigate("../Home", { state: { child: response.data.child } });
+    navigate("../MainPage", { state: { child: response.data.child } });
   } catch (error) {
     if (error.response) {
       console.error("Error response: ", error.response); // Debugging line

@@ -608,17 +608,17 @@ body {
 
 
 
-/* Main container styling */
+
 .detection-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: 'Comic Sans MS', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Sour Gummy', sans-serif;
   background-color: #f9f7ff;
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* Animated Header */
+
 .header22 {
   background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
   background-size: 400% 400%;
@@ -638,7 +638,7 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Floating bubbles in header */
+
 .header22::before {
   content: '';
   position: absolute;
@@ -668,7 +668,7 @@ body {
   display: inline-block;
 }
 
-/* Rainbow underline animation for title */
+
 .header22 h1::after {
   content: '';
   position: absolute;
@@ -696,7 +696,6 @@ body {
   position: relative;
 }
 
-/* Main content styling */
 .main-content {
   flex: 1;
   padding: 2rem;
@@ -719,7 +718,6 @@ body {
   transform: translateY(-5px);
 }
 
-/* Tab styling */
 .tabs {
   display: flex;
   border-bottom: 3px solid #f0f0f0;
@@ -771,13 +769,12 @@ body {
   font-size: 1.2rem;
 }
 
-/* Tab content */
 .tab-content {
   padding: 2rem;
   background-color: #ffffff;
 }
 
-/* Upload area styling */
+
 .upload-area {
   border: 3px dashed #fbc2eb;
   border-radius: 20px;
@@ -851,7 +848,7 @@ body {
   60% { transform: translateY(-10px); }
 }
 
-/* Webcam styling */
+
 .webcam-content {
   display: flex;
   flex-direction: column;
@@ -872,17 +869,19 @@ body {
   box-shadow: 0 8px 25px rgba(161, 140, 209, 0.3);
 }
 
-/* Image preview styling */
-.image-preview {
+
+.image-previeww {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
 }
 
-.preview-img {
+.preview-imgg {
   max-width: 100%;
   max-height: 350px;
+  height: 500px;
+  width:500px;
   border-radius: 15px;
   object-fit: contain;
   border: 5px solid #fef9ff;
@@ -894,7 +893,7 @@ body {
   gap: 1.5rem;
 }
 
-/* Button styling */
+
 .capture-button,
 .analyze-button,
 .remove-button,
@@ -964,7 +963,7 @@ body {
   box-shadow: 0 4px 15px rgba(161, 140, 209, 0.4);
 }
 
-/* Loading animation */
+
 .loading {
   display: flex;
   flex-direction: column;
@@ -1007,7 +1006,7 @@ body {
   66% { content: '...'; }
 }
 
-/* Results page styling */
+
 .results-page {
   padding: 2rem;
 }
@@ -1132,12 +1131,7 @@ body {
   border-radius: 2px;
 }
 
-.results-image {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .character-img {
   max-width: 100%;
@@ -1154,7 +1148,6 @@ body {
   transform: scale(1.05);
 }
 
-/* Footer styling */
 .footerDec {
   background-color: #fcf9ff;
   padding: 1.2rem;
@@ -1164,7 +1157,7 @@ body {
   border-top: 1px solid #f0f0f0;
 }
 
-/* Responsive styling */
+
 @media (max-width: 768px) {
   .header22 h1 {
     font-size: 1.8rem;
@@ -1199,78 +1192,23 @@ body {
   }
 }
 
-/* Symptoms list */
-/* .symptoms-section {
-  right: 0;
-  width: 90%;
-  background-color: rgba(161, 140, 209, 0.1);
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
 
-.symptoms-list {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
- } 
-
-.symptoms-list h4 {
-  color: #a18cd1;
-  margin-bottom: 0.8rem;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-}
-
-.symptoms-list h4::before {
-  content: '📋';
-  margin-right: 0.5rem;
-}
-
-.symptoms-list ul {
-  list-style-type: none;
-  padding-left: 0.5rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 10px;
-}
-
-.symptoms-list li {
-  padding: 0.5rem 0;
-  position: relative;
-  padding-left: 1.5rem;
-  color: #555;
-}
-
-.symptoms-list li::before {
-  content: '✦';
-  position: absolute;
-  left: 0;
-  color: #fbc2eb;
-}  */
-
-
-
-/* Symptoms list */
 .symptoms-section {
   position: absolute;
-  right: 20px; /* Add some right margin */
-  top: 120px; /* Adjust based on where you want it to appear */
-  width: 280px; /* Fixed width for consistency */
-  background-color: white; /* Changed to white for cleaner look */
+  right: 20px; 
+  top: 120px; 
+  width: 280px; 
+  background-color: white; 
   border-radius: 12px;
   padding: 0.75rem;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
-  z-index: 100; /* Ensure it appears above other elements */
+  z-index: 100; 
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s, visibility 0.2s;
 }
 
-/* Make visible on hover */
+
 .trigger-element:hover + .symptoms-section,
 .symptoms-section:hover {
   opacity: 1;
@@ -1302,7 +1240,7 @@ body {
   left: 0;
   color: #fbc2eb;
 }
-/* Add some accessibility features */
+
 @media (prefers-reduced-motion: reduce) {
   .header22,
   .header22::before,
@@ -1320,7 +1258,7 @@ body {
   }
 }
 
-/* High contrast mode */
+
 @media (prefers-contrast: high) {
   .header22 {
     background: #6a4ca0 !important;
@@ -1340,6 +1278,79 @@ body {
   }
 }
 
+.no-detection-animation {
+  text-align: center;
+  padding: 20px;
+}
+
+.checkmark-animation {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+}
+
+.checkmark-circle {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 4px solid #4CAF50;
+  top: 10px;
+  left: 10px;
+  animation: circle-fade-in 0.5s ease-in-out;
+}
+
+.checkmark-stem {
+  position: absolute;
+  width: 3px;
+  height: 30px;
+  background-color: #4CAF50;
+  left: 28px;
+  top: 30px;
+  transform: rotate(45deg);
+  animation: stem-fade-in 0.5s ease-in-out 0.3s both;
+}
+
+.checkmark-kick {
+  position: absolute;
+  width: 15px;
+  height: 3px;
+  background-color: #4CAF50;
+  left: 18px;
+  top: 45px;
+  transform: rotate(45deg);
+  animation: kick-fade-in 0.5s ease-in-out 0.3s both;
+}
+
+.no-detection-message {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #4CAF50;
+}
+
+.medical-disclaimer {
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+}
+
+@keyframes circle-fade-in {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes stem-fade-in {
+  0% { height: 0; opacity: 0; }
+  100% { height: 30px; opacity: 1; }
+}
+
+@keyframes kick-fade-in {
+  0% { width: 0; opacity: 0; }
+  100% { width: 15px; opacity: 1; }
+}
 
 
 

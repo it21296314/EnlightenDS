@@ -252,22 +252,43 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './mainpage.css';
-
+import axios from "axios";
 const MainPage = () => {
   const navigate = useNavigate();
   const [activeCard, setActiveCard] = useState(null);
   const [animateIn, setAnimateIn] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
+const [child, setChild] = useState(null); // Manages child profile state
+  // const navigate = useNavigate();
   useEffect(() => {
-    // Trigger animation after component mounts
-    setTimeout(() => {
-      setAnimateIn(true);
-    }, 300);
-  }, []);
+    const fetchProfile = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:3001/api/child/profile", {
+          withCredentials: true, // Include cookies for authentication
+        });
+        setChild(data); // Set the child's profile data
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+        navigate("/signin"); // Redirect to sign-in if not authenticated
+      }
+    };
+
+    fetchProfile();
+  }, [navigate]);
+
+  if (!child) {
+    return <p>Loading profile...</p>;
+  }
+
+  // useEffect(() => {
+  //   // Trigger animation after component mounts
+  //   setTimeout(() => {
+  //     setAnimateIn(true);
+  //   }, 300);
+  // }, []);
 
   const handleNavigate = (path) => {
-    navigate(path);
+    navigate(path,{ state: { childId: child._id } });
   };
 
   const handleCardHover = (index) => {
@@ -294,7 +315,7 @@ const MainPage = () => {
       icon: "🗣️",
       bgImage: "url('/images/pronunciation-bg.jpg')",
       color: "#e5574b",
-      path: "/pronunciation",
+      path: "/pro",
       features: ["Interactive Quizzes", "Learning Games", "Progress Reports"]
     },
     {
@@ -303,7 +324,7 @@ const MainPage = () => {
       icon: "🧮",
       bgImage: "url('/images/math-bg.jpg')",
       color: "#45c496",
-      path: "/math",
+      path: "/LevelSelection",
       features: ["Adaptive Difficulty", "Interactive Problems", "Visual Learning"]
     },
     {
@@ -320,8 +341,8 @@ const MainPage = () => {
   const navItems = [
     { label: "Home", path: "/" },
     { label: "Detection", path: "/detection" },
-    { label: "Pronunciation", path: "/pronunciation" },
-    { label: "Mathematics", path: "/math" },
+    { label: "Pronunciation", path: "/categories" },
+    { label: "Mathematics", path: "/LevelSelection" },
     { label: "Talents", path: "/talents" },
     { label: "About Us", path: "/about" },
     { label: "Contact", path: "/contact" }
@@ -374,7 +395,8 @@ const MainPage = () => {
         </div>
       </div>
 
-      <div className={`welcome-section ${animateIn ? 'animate-in' : ''}`}>
+      {/* <div className={`welcome-section ${animateIn ? 'animate-in' : ''}`}> */}
+      <div className="welcome-section">
         <h1>Welcome to EnlightenDS</h1>
         <div className="tagline">
           <span className="highlight">Detect</span> • 
