@@ -445,9 +445,94 @@ tts_client = texttospeech.TextToSpeechClient()
 class MathProblem(BaseModel):
     problem: str
 
+# @app.post("/solve-math-tts")
+# async def solve_math_tts(data: MathProblem):
+#     input_text = f"""Create a very short, simple step-by-step explanation for children with Down syndrome. 
+#     Keep it brief - no more than 6-8 short sentences. 
+#     Use 'times' instead of '*' for multiplication.
+#     Use 'divided by' instead of '/'.
+#     Use simple words and concepts: {data.problem}"""
+
+#     try:
+#         # Call Gemini API to generate explanation
+#         model = genai.GenerativeModel("models/gemini-1.5-pro")
+
+#         response = model.generate_content(input_text)
+
+#         # Ensure response is valid
+#         if not response or not hasattr(response, "text") or not response.text.strip():
+#             return {"error": "Failed to generate a valid explanation"}
+
+#         # Get the original explanation text
+#         original_text = response.text.strip()
+        
+#         # Create a clean display version (what the user will see)
+#         display_text = original_text
+#         display_text = display_text.replace("*", " times ")
+#         display_text = display_text.replace("//", " divided by ")
+#         display_text = display_text.replace("/", " divided by ")
+#         display_text = display_text.replace("+", " plus ")
+#         display_text = display_text.replace("-", " minus ")
+#         display_text = display_text.replace("=", " equals ")
+#         display_text = display_text.replace("**", " to the power of ")
+        
+#         # Create a separate TTS version with SSML tags (what will be spoken)
+#         tts_text = original_text
+#         tts_text = tts_text.replace("*", " times ")
+#         tts_text = tts_text.replace("//", " divided by ")
+#         tts_text = tts_text.replace("/", " divided by ")
+#         tts_text = tts_text.replace("+", " plus ")
+#         tts_text = tts_text.replace("-", " minus ")
+#         tts_text = tts_text.replace("=", " equals ")
+#         tts_text = tts_text.replace("**", " to the power of ")
+        
+#         # Build SSML document properly
+#         ssml_text = "<speak>\n"
+#         sentences = tts_text.split(". ")
+#         for i, sentence in enumerate(sentences):
+#             if sentence.strip():  # Skip empty sentences
+#                 ssml_text += sentence.strip()
+#                 if i < len(sentences) - 1:  # Don't add period and pause after last sentence
+#                     ssml_text += ".<break time='700ms'/>\n"
+#                 else:
+#                     ssml_text += "."
+#         ssml_text += "\n</speak>"
+        
+#         # Use the SSML for text-to-speech
+#         synthesis_input = texttospeech.SynthesisInput(ssml=ssml_text)
+        
+#         voice = texttospeech.VoiceSelectionParams(
+#             language_code="en-US", 
+#             ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
+#         )
+        
+#         audio_config = texttospeech.AudioConfig(
+#             audio_encoding=texttospeech.AudioEncoding.MP3,
+#             speaking_rate=0.8,
+#             pitch=0.0,
+#             volume_gain_db=1.0
+#         )
+
+#         tts_response = tts_client.synthesize_speech(
+#             input=synthesis_input, voice=voice, audio_config=audio_config
+#         )
+
+#         # Encode audio to base64
+#         audio_base64 = base64.b64encode(tts_response.audio_content).decode("utf-8")
+
+#         # Return clean display text and audio
+#         return {"explanation": display_text, "audio": audio_base64}
+
+#     except Exception as e:
+#         return {"error": str(e)}
+
 @app.post("/solve-math-tts")
 async def solve_math_tts(data: MathProblem):
-    input_text = f"Explain step-by-step for downsyndrom children. Answer should be text-to-speech friendly and easy to understand: {data.problem}"
+    input_text = f"""Create a very short, simple step-by-step explanation for children with Down syndrome. 
+    Keep it brief - no more than 5-6 short sentences. 
+    Use 'times' instead of '*' for multiplication.
+    Use 'divided by' instead of '/'.
+    Use simple words and concepts: {data.problem}"""
 
     try:
         # Call Gemini API to generate explanation
@@ -459,23 +544,88 @@ async def solve_math_tts(data: MathProblem):
         if not response or not hasattr(response, "text") or not response.text.strip():
             return {"error": "Failed to generate a valid explanation"}
 
-        explanation_text = response.text.strip()  # Ensure clean text
-
-        # Convert text to speech using Google TTS
-        synthesis_input = texttospeech.SynthesisInput(text=explanation_text)
+        # Get the original explanation text
+        original_text = response.text.strip()
+        
+        # Create a clean display version with emojis (what the user will see)
+        display_text = original_text
+        display_text = display_text.replace("*", " times ")
+        display_text = display_text.replace("//", " divided by ")
+        display_text = display_text.replace("/", " divided by ")
+        display_text = display_text.replace("+", " plus ")
+        display_text = display_text.replace("-", " minus ")
+        display_text = display_text.replace("=", " equals ")
+        display_text = display_text.replace("**", " to the power of ")
+        
+        # Add emojis to the display text
+        # Split by sentences to add emojis at appropriate places
+        display_sentences = display_text.split(". ")
+        enhanced_display = []
+        
+        math_emojis = ["🔢", "🧮", "✏️", "📝", "🤔"]
+        success_emojis = ["🎉", "👍", "⭐", "🌟", "🏆"]
+        
+        for i, sentence in enumerate(display_sentences):
+            if sentence.strip():
+                # Add math emojis to instruction sentences
+                if "add" in sentence.lower() or "subtract" in sentence.lower() or "multiply" in sentence.lower() or "divide" in sentence.lower() or "times" in sentence.lower():
+                    enhanced_display.append(f"{sentence} {math_emojis[i % len(math_emojis)]}")
+                # Add encouraging emojis for conclusion sentences
+                elif "that's" in sentence.lower() or "answer" in sentence.lower() or "result" in sentence.lower() or "equals" in sentence.lower():
+                    enhanced_display.append(f"{sentence} {success_emojis[i % len(success_emojis)]}")
+                else:
+                    enhanced_display.append(sentence)
+        
+        display_text = ". ".join(enhanced_display)
+        if not display_text.endswith("."):
+            display_text += "."
+        
+        # Create a separate TTS version with SSML tags (what will be spoken)
+        tts_text = original_text
+        tts_text = tts_text.replace("*", " times ")
+        tts_text = tts_text.replace("//", " divided by ")
+        tts_text = tts_text.replace("/", " divided by ")
+        tts_text = tts_text.replace("+", " plus ")
+        tts_text = tts_text.replace("-", " minus ")
+        tts_text = tts_text.replace("=", " equals ")
+        tts_text = tts_text.replace("**", " to the power of ")
+        
+        # Build SSML document properly
+        ssml_text = "<speak>\n"
+        sentences = tts_text.split(". ")
+        for i, sentence in enumerate(sentences):
+            if sentence.strip():  # Skip empty sentences
+                ssml_text += sentence.strip()
+                if i < len(sentences) - 1:  # Don't add period and pause after last sentence
+                    ssml_text += ".<break time='700ms'/>\n"
+                else:
+                    ssml_text += "."
+        ssml_text += "\n</speak>"
+        
+        # Use the SSML for text-to-speech
+        synthesis_input = texttospeech.SynthesisInput(ssml=ssml_text)
+        
         voice = texttospeech.VoiceSelectionParams(
-            language_code="en-US", ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
+            language_code="en-US", 
+            ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
         )
-        audio_config = texttospeech.AudioConfig(audio_encoding=texttospeech.AudioEncoding.MP3)
+        
+        audio_config = texttospeech.AudioConfig(
+            audio_encoding=texttospeech.AudioEncoding.MP3,
+            speaking_rate=0.8,
+            pitch=0.0,
+            volume_gain_db=1.0
+        )
 
         tts_response = tts_client.synthesize_speech(
             input=synthesis_input, voice=voice, audio_config=audio_config
         )
 
-        # Encode audio to base64 to send as JSON
+        # Encode audio to base64
         audio_base64 = base64.b64encode(tts_response.audio_content).decode("utf-8")
 
-        return {"explanation": explanation_text, "audio": audio_base64}
+        # Return enhanced display text and audio
+        return {"explanation": display_text, "audio": audio_base64}
 
     except Exception as e:
         return {"error": str(e)}
