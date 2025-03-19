@@ -766,12 +766,12 @@ const Dashboard = () => {
           Your Learning Adventure
         </h2>
         <Button 
-          variant="outline" 
-          onClick={fetchData} 
-          className="flex items-center gap-2 bg-white hover:bg-blue-50 border-2 border-blue-300 text-blue-700 rounded-full py-2 px-4 shadow-md transition-all hover:shadow-lg"
-        >
-          <RotateCcw size={18} /> Refresh
-        </Button>
+  variant="outline" 
+  onClick={() => navigate('/LevelSelection')} 
+  className="flex items-center gap-2 bg-blue hover:bg-blue-50 border-2 border-blue-300 text-blue-500 rounded-full py-2 px-4 shadow-md transition-all hover:shadow-lg"
+>
+  <RotateCcw size={18} /> Back to Level Selection
+</Button>
       </div>
 
       {/* Prediction Result Card - Positioned at the top */}
