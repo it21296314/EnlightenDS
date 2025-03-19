@@ -21,11 +21,12 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+   font-family: 'Sour Gummy', sans-serif;
  }
  
  body {
    background: var(--light);
-   font-family: 'Quicksand', sans-serif;
+   font-family: 'Sour Gummy', sans-serif;
    color: var(--dark);
    overflow-x: hidden;
  }
@@ -127,7 +128,7 @@
  .logo {
    display: flex;
    align-items: center;
-   font-family: 'Montserrat', sans-serif;
+   font-family: 'Sour Gummy', sans-serif;
    font-weight: 700;
    font-size: 28px;
  }
@@ -182,6 +183,7 @@
    position: relative;
    padding: 5px 0;
    transition: color 0.3s ease;
+   font-family: 'Sour Gummy', sans-serif;
  }
  
  .main-nav a:hover {
@@ -209,20 +211,20 @@
    text-align: center;
    padding: 80px 20px;
    position: relative;
-   opacity: 0;
+   opacity: 1;
    transform: translateY(30px);
    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
  }
  
- .welcome-section.animate-in {
+ /* .welcome-section.animate-in {
    opacity: 1;
    transform: translateY(0);
  }
- 
+  */
  .welcome-section h1 {
    font-size: 48px;
    margin-bottom: 20px;
-   font-family: 'Montserrat', sans-serif;
+   font-family: 'Sour Gummy', sans-serif;
    font-weight: 700;
    background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red));
    -webkit-background-clip: text;
@@ -409,7 +411,7 @@
    font-size: 24px;
    font-weight: 700;
    margin-bottom: 15px;
-   font-family: 'Montserrat', sans-serif;
+   font-family: 'Sour Gummy', sans-serif;
  }
  
  .card-description {
@@ -489,7 +491,7 @@
  
  .who-we-are-section h2 {
    font-size: 40px;
-   font-family: 'Montserrat', sans-serif;
+   font-family: 'Sour Gummy', sans-serif;
    font-weight: 700;
    margin-bottom: 50px;
    text-align: center;
@@ -602,7 +604,7 @@
   
   .system-features h2 {
     font-size: 40px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Sour Gummy', sans-serif;
     font-weight: 700;
     margin-bottom: 60px;
     position: relative;
@@ -702,7 +704,7 @@
   
   .how-it-works h2 {
     font-size: 40px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Sour Gummy', sans-serif;
     font-weight: 700;
     margin-bottom: 70px;
     position: relative;
@@ -840,7 +842,7 @@
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 20px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Sour Gummy', sans-serif;
     background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red));
     -webkit-background-clip: text;
     background-clip: text;
