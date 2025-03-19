@@ -530,10 +530,10 @@
 // // export default Dashboard;
 
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation ,useNavigate} from "react-router-dom";
 import { Card, CardContent } from "../../components/UI/card";
 import { Button } from "../../components/UI/button";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+// import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { RotateCcw, Award, Star, ArrowRight, ChevronUp } from "lucide-react"; // Icons
 import QuizProgressChart from '../maths/QuizProgressChart';
 import PerformanceDashboard from "./OverallPerformace";
@@ -549,6 +549,7 @@ const Dashboard = () => {
   const [showConfetti, setShowConfetti] = useState(false);
   
   const location = useLocation();
+  const navigate = useNavigate();
   const { childId, difficulty, category } = location.state || {};
 
   useEffect(() => {
@@ -721,6 +722,38 @@ const Dashboard = () => {
     }
   };
 
+  const handleRedirection = () => {
+    if (!category || !difficulty) {
+      console.error("Missing category or difficulty");
+      return;
+    }
+    
+    // If ready to move to next level
+    if (prediction && prediction.probability.ready >= 0.7) {
+      let nextDifficulty = difficulty;
+      
+      // Determine next difficulty level
+      if (difficulty === "beginner") {
+        nextDifficulty = "intermediate";
+      } else if (difficulty === "intermediate") {
+        nextDifficulty = "advanced";
+      }
+      // If already advanced, keep at advanced
+      
+      console.log(`Moving to next level: ${category}/${nextDifficulty}`);
+      navigate(`/questions/${category}/${nextDifficulty}`, { 
+        state: { childId } 
+      });
+    } 
+    // If not ready, redirect to same level for more practice
+    else {
+      console.log(`Continuing practice at same level: ${category}/${difficulty}`);
+      navigate(`/questions/${category}/${difficulty}`, { 
+        state: { childId } 
+      });
+    }
+  };
+
 
 
   return (
@@ -783,14 +816,20 @@ const Dashboard = () => {
                 </div>
                 
                 <div className="mt-4">
-                  {prediction.probability.ready >= 0.7 ? (
-                    <Button className="w-full bg-green-500 hover:bg-green-600 text-white rounded-full py-3 flex items-center justify-center gap-2 shadow-md transition-all hover:shadow-lg">
-                      Move to Next Level <ArrowRight size={18} />
-                    </Button>
-                  ) : (
-                    <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white rounded-full py-3 flex items-center justify-center gap-2 shadow-md transition-all hover:shadow-lg">
-                      Keep Practicing <ChevronUp size={18} />
-                    </Button>
+                  {prediction.probability.ready >= 70 ? (
+                    <Button 
+                    onClick={handleRedirection}
+                    className="w-full bg-green-500 hover:bg-green-600 text-white rounded-full py-3 flex items-center justify-center gap-2 shadow-md transition-all hover:shadow-lg"
+                  >
+                    Move to Next Level <ArrowRight size={18} />
+                  </Button>
+                ) : (
+                  <Button 
+                    onClick={handleRedirection}
+                    className="w-full bg-blue-500 hover:bg-blue-600 text-white rounded-full py-3 flex items-center justify-center gap-2 shadow-md transition-all hover:shadow-lg"
+                  >
+                    Keep Practicing <ChevronUp size={18} />
+                  </Button>
                   )}
                 </div>
               </div>
