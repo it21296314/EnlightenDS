@@ -129,6 +129,7 @@
   padding: 12px 25px;
   font-size: 16px;
   border: none;
+  margin-top: -10px;
   border-radius: 30px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -141,6 +142,7 @@
 .speech-practice-record-btn {
   background-color: #2196F3;
   color: white;
+  font-family: 'Sour Gummy', sans-serif;
 }
 
 .speech-practice-record-btn:hover {
@@ -150,6 +152,7 @@
 .speech-practice-next-btn {
   background-color: #4CAF50;
   color: white;
+  font-family: 'Sour Gummy', sans-serif;
 }
 
 .speech-practice-next-btn:hover {
@@ -175,6 +178,10 @@
   font-size: 16px;
   margin-bottom: 10px;
   color: #555;
+}
+.speech-practice-word-title{
+  font-family: 'Sour Gummy', sans-serif;
+  
 }
 
 .speech-practice-feedback {

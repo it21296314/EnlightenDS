@@ -381,7 +381,7 @@ const ReportViewer = ({ userId }) => {
 
   return (
     <div className="report-container">
-      <h1 className="report-title">AI Feedback Report</h1>
+      <h1 className="report-title">Feedback Report</h1>
       
       <div className="report-section">
         <div className="report-info">

@@ -110,7 +110,7 @@
 /* Emotion detection container */
 .emotion-game-detection-container {
   position: absolute;
-    top: 30%; /* Changed from 50% to move upward */
+    top: 210px; /* Changed from 50% to move upward */
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -143,7 +143,7 @@
   height: auto;
   margin-left: 15px;
   border-radius: 50%;
-  border: 3px solid white;
+  border: 2px  white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
@@ -164,7 +164,7 @@
   border: 8px solid white !important;
   border-radius: 15px !important;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3) !important;
-  transform: rotate(-2deg);
+
   max-width: 100%;
 }
 
@@ -174,14 +174,15 @@
   margin-top: 15px;
   padding: 10px 15px;
   border-radius: 15px;
-  border: 3px dashed #ff9e9e;
-  transform: rotate(2deg);
+  border: 3px  #ff9e9e;
+ 
   width: 80%;
 }
 
 .emotion-game-status h3 {
-  font-size: 24px;
-  color: #ff6b6b;
+  font-size: 15px;
+  font-family: 'Sour Gummy', sans-serif;
+  color: #d1976e;
   margin: 0;
 }
 
@@ -191,14 +192,14 @@
   width: 100%;
   height: 200px;
   overflow: hidden;
-  margin-top: auto;
-  margin-bottom: 20px;
+ 
+   margin-top: 250px;
 }
 
 /* Character */
 .emotion-game-character {
   position: absolute;
-  bottom: 0;
+  /* bottom: 80px; */
   left: 10px;
   z-index: 5;
 }
@@ -207,6 +208,7 @@
   width: 120px;
   height: 180px;
   object-fit: contain;
+  margin-top: 10px;
   filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.3));
 }
 

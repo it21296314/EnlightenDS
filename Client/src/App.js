@@ -24,7 +24,8 @@ import Level2G from './screens/pronunciation/Level2G/Level2G';
 import Question from './components/maths/Question';
 import BallCountingAnimation from './components/maths/count';
 import DashboardMath from './screens/maths/Dashboard';
-// Import the new DetectionPage
+import MainPronunciation from './screens/pronunciation/MainPronunciation/MainPronunciation';
+import GameMainPage from './screens/pronunciation/GameMainPage/GameMainPage';
 import DetectionPage from './screens/detection/DetectionPage';
 
 import Navbar from './components/Header';
@@ -39,38 +40,41 @@ function App() {
 
 
 
-        <Route path="/" element={<SignIn />} />
-        <Route path="/SignUp" element={<SignUp/>} />
-        <Route path="/Home" element={<Home/>} />
-        <Route path="/MainPage" element={<MainPage />} />
-        <Route path="/LevelSelection" element={<LevelSelection />} />
-        <Route path="/questions/:category/:difficulty" element={<QuestionDisplay />} />
-        <Route path="/answer-feedback" element={<AnswerFeedback />} />
-        <Route path="/next-question" element={<NextQuestion />} />
-        <Route path="/quiz/:category/:difficulty" element={<QuizPage />} />
-        <Route path="/quiz-summary" element={<QuizSummary />} />
-        <Route path="/results" element={<ResultsPage />} />
-        <Route path="/ani" element={<Question />} />
-        <Route path="/ball" element={<BallCountingAnimation />} />
-        <Route path="/dashboard/math" element={<DashboardMath />} />
-        <Route path="/detection" element={<DetectionPage />} />
- 
-        
-      
-        <Route path="/pro" element={<PronunciationHome />} />
-        <Route path="/head" element={<Navbar/>} />
+          <Route path="/" element={<SignIn />} />
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/MainPage" element={<MainPage />} />
+          <Route path="/LevelSelection" element={<LevelSelection />} />
+          <Route path="/questions/:category/:difficulty" element={<QuestionDisplay />} />
+          <Route path="/answer-feedback" element={<AnswerFeedback />} />
+          <Route path="/next-question" element={<NextQuestion />} />
+          <Route path="/quiz/:category/:difficulty" element={<QuizPage />} />
+          <Route path="/quiz-summary" element={<QuizSummary />} />
+          <Route path="/results" element={<ResultsPage />} />
+          <Route path="/ani" element={<Question />} />
+          <Route path="/ball" element={<BallCountingAnimation />} />
+          <Route path="/dashboard/math" element={<DashboardMath />} />
+          <Route path="/detection" element={<DetectionPage />} />
 
-         
+
+
+          <Route path="/pro" element={<PronunciationHome />} />
+          <Route path="/head" element={<Navbar />} />
+
+
           {/* IT21293030 ROUTES */}
+          <Route path="/proMain" element={<MainPronunciation />} />
+         
           <Route path="/pro" element={<PronunciationHome />} />
           <Route path="/beginner-category" element={<BeginnerCategory />} />
-          <Route path="/pronunciation/checker/:category" element={<PronunciationChecker />}/>
+          <Route path="/pronunciation/checker/:category" element={<PronunciationChecker />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/quiz/:category" element={<SpeechPracticeSession />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/game" element={<GameMainPage />} />
           <Route path="/level1" element={<Level1G />} />
           <Route path="/level2" element={<Level2G />} />
-          
+
         </Routes>
       </BrowserRouter>
     </div>
