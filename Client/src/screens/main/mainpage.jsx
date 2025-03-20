@@ -341,7 +341,7 @@ const [child, setChild] = useState(null); // Manages child profile state
   const navItems = [
     { label: "Home", path: "/" },
     { label: "Detection", path: "/detection" },
-    { label: "Pronunciation", path: "/categories" },
+    { label: "Pronunciation", path: "/proMain" },
     { label: "Mathematics", path: "/LevelSelection" },
     { label: "Talents", path: "/talents" },
     { label: "About Us", path: "/about" },
