@@ -40,7 +40,7 @@ export default function Menu(){
 						Language
           </button>
 					</Link>
-					<Link to="/vocabluary">
+					<Link to="/main">
 						<button type="submit" className="btn w-100" style={{ fontSize: "24px", backgroundColor: "#4083A8", color: "white", height: "100%", fontWeight: "700", marginLeft:"10" }}>
 						Main Page
           </button>
@@ -64,7 +64,7 @@ export default function Menu(){
 				<p className='ha'>Are you ready to test your knowledge and challenge yourself?</p>
 				<br></br>
 				<p className='ha'> Welcome to our interactive quiz platform where you can engage in fun and educational quizzes on various topics.</p>
-				<br></br>
+				
 				<p className='ha'>Quiz Rules:</p>
 				<p className='ha'>Once you choose an answer it cannot be altered</p>
 			</ol>

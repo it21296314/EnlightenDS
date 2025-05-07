@@ -81,64 +81,7 @@
     border-radius: 5px;
   }
   */
-/* 
-  .App {
-    text-align: center;
-    padding: 20px;
-  }
   
-  canvas {
-    display: block;
-    margin: 20px auto;
-  }
-  
-  .controls {
-    margin-top: 20px;
-  }
-  
-  button {
-    margin: 5px;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
- 
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  input[type='range'] {
-    margin-left: 10px;
-  }
-  
-  .bodyq1{ */
-
-    /* The image used */
-    /* background-image: url(../../assets/img/cartoon-drawing-images-background-copy-space_1179130-585806.avif); */
-
-    /* Full height */
-    /* height: 100%;  */
-
-    /* Center and scale the image nicely */
-    /* background-position: center; */
-    /* background-repeat: no-repeat; */
-    /* background-size: cover; */
-    /* margin-top: 0px;
-    height: 1080px; */
-/* } */
-
-/* .blush{
-padding-top: -50%;
-}
-   */
-
-
-   
   .App {
     text-align: center;
     padding: 20px;

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
 .login_container {
 	width: 100%;
 	min-height: 100vh;
@@ -55,6 +57,7 @@
 	font-size: 25px;
 	color: #0e0009bd;
 	text-align:justify;
+	font-family: 'Sour Gummy', sans-serif;
 }
 
 .ha-list {
@@ -200,3 +203,9 @@ button {
     margin-top: 0px;
     height: 1080px;
 }
+
+/* .button line{
+	margin-left: 5cm;
+	margin-right: 100cm;
+	padding-left: 100cm;
+} */

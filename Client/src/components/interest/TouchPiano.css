@@ -110,10 +110,9 @@
   z-index: 1;
 } */
 
-
 .piano-container {
   text-align: center;
-      background: linear-gradient(to bottom, #ffb6c1, #ff69b4, #db7093);
+      background: linear-gradient(to bottom, #65bed2, #3d38ce, #7085db);
       padding: 10px 10px 30px;
   border-radius: 0;
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
@@ -318,7 +317,7 @@ h1 {
 
 
 .save-button {
-  background: linear-gradient(to bottom, #f000a0, #f69dc8);
+  background: linear-gradient(to bottom, #68abdf, #71beb7);
   color: black;
   border: none;
   padding: 12px 24px;

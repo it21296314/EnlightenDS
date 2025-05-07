@@ -1,0 +1,48 @@
+
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Talent Prediction API</title>
+                <style>
+                    body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+                    h1 { color: #333; }
+                    code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; }
+                    pre { background: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+                </style>
+            </head>
+            <body>
+                <h1>Talent Prediction API</h1>
+                <p>Use this API to predict talent categories based on user interaction data.</p>
+                
+                <h2>Endpoints:</h2>
+                <ul>
+                    <li><code>/predict</code> - Make a single prediction</li>
+                    <li><code>/batch_predict</code> - Make predictions for multiple inputs</li>
+                    <li><code>/health</code> - Check API health status</li>
+                    <li><code>/feature_info</code> - Get information about required features</li>
+                </ul>
+                
+                <h2>Example Usage:</h2>
+                <pre>
+fetch('/predict', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        'quiz_time': 600,
+        'quiz_score': 4,
+        'piano_time': 450,
+        'piano_key_count': 200,
+        'drawing_time': 900,
+        'drawing_similarity': 75,
+        'gender': 'F',
+        'age': 8
+    }),
+})
+.then(response => response.json())
+.then(data => console.log(data));
+                </pre>
+            </body>
+            </html>
+            

@@ -208,7 +208,7 @@ function ButtonSection() {
     e.preventDefault();
     setIsLoading(true);
     console.log("Making API request with data:", {
-      category: "Language",
+      category: "Easy English Questions",
       subcategory: value,
       userId: userId, // Using a dummy ID for development
     });
@@ -222,7 +222,7 @@ function ButtonSection() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            category: "Language",
+            category: "Easy English Questions",
             subcategory: value,
             userId: userId, // Using a dummy ID for development
           }),

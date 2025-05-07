@@ -97,24 +97,24 @@ export default function Main(){
 			
 		<section className="layout">
 			<div></div>
-			<div>
+			<div >
 		<Stack direction="row" spacing={15} alignContent={'center'} >
  
           <Link to="/menu">
             <button type="submit" className="btn w-100" style={{ fontSize: "24px", backgroundColor: "#4083A8", color: "white", height: "100%", fontWeight: "700" }}>
-              Learning Skills
+              Learning 
             </button>
           </Link>
 						
           <Link to="/DrawingCanvas">
-            <button type="submit" className="btn w-100" style={{ fontSize: "24px", backgroundColor: "#4083A8", color: "white", height: "100%", fontWeight: "700", marginLeft:"10" }}>
-              Artistic Skills
+            <button type="submit" className="btn w-100" style={{ fontSize: "24px", backgroundColor: "#4083A8", color: "white", height: "100%", fontWeight: "700" }}>
+              Drawing
             </button>
           </Link>
           
           <Link to="/TouchPiano">
             <button type="submit" className="btn w-100" style={{ fontSize: "24px", backgroundColor: "#4083A8", color: "white", height: "100%", fontWeight: "700", marginLeft:"10" }}>
-              Musical Skills
+              Motor Skills
             </button>
           </Link>
         </Stack>
@@ -125,19 +125,19 @@ export default function Main(){
         <br></br>
         <br></br>
 	
-        <div className="content-section">
+        <div >
           <p className='ha'>Welcome to the Talent Discovery Platform!</p>
           <br></br>
           <p className='ha'>This interactive platform is designed to help identify and nurture the unique talents and abilities of children with Down syndrome.</p>
-          <br></br>
-          <p className='ha'>Explore Different Skill Areas:</p>
+          {/* <br></br> */}
+          {/* <p className='ha'>Explore Different Skill Areas:</p>
           <ul className='ha-list'>
             <li className='ha'>Learning Skills - Engage with educational activities that are fun and accessible</li>
             <li className='ha'>Artistic Skills - Express creativity through drawing and visual arts</li>
             <li className='ha'>Musical Skills - Discover musical talents with our interactive piano</li>
-          </ul>
-          <br></br>
-          <p className='ha'>Each activity is designed to be supportive, encouraging, and adapted to various abilities. Take your time and enjoy exploring!</p>
+          </ul> */}
+          {/* <br></br> */}
+          <p className='ha'> Take your time and enjoy exploring!</p>
         </div>
 			
         <div>

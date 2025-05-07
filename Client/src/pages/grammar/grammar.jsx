@@ -24,7 +24,7 @@ function ButtonSection() {
     e.preventDefault();
     setIsLoading(true);
     console.log("Making API request with data:", {
-      category: "basic maths",
+      category: "Basic Maths",
       subcategory: value,
       userId: userId, // Using a dummy ID for development
     });
@@ -38,7 +38,7 @@ function ButtonSection() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            category: "basic maths",
+            category: "Basic Maths",
             subcategory: value,
             userId: userId, // Using a dummy ID for development
           }),
