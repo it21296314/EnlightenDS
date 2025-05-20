@@ -24,7 +24,7 @@ function PronunciationHome() {
         </button>
         <button
           className="pronunciation-home-btn advanced-home-btn"
-          onClick={() => navigate("/level1")}
+          onClick={() => navigate("/game")}
         >
           Gamified
         </button>

@@ -95,6 +95,12 @@ const SpeechPracticeSession = () => {
     }
   };
 
+  const playWordAudio = () => {
+    if (images[currentImageIndex] && images[currentImageIndex].audioUrl) {
+      new Audio(`http://localhost:5000${images[currentImageIndex].audioUrl}`).play();
+    }
+  };
+
   if (images.length === 0) {
     return (
       <div className="speech-practice-container">
@@ -114,7 +120,6 @@ const SpeechPracticeSession = () => {
       </div>
       {images[currentImageIndex] && (
         <div>
-
           <div className="speech-practice-progress">
             {images.map((_, index) => (
               <div
@@ -124,15 +129,19 @@ const SpeechPracticeSession = () => {
             ))}
           </div>
           <div className="speech-practice-progress-xx">
-
             <div className="speech-practice-image-container">
               <img
                 className="speech-practice-word-image"
                 src={`http://localhost:5000${images[currentImageIndex].imageUrl}`}
                 alt={images[currentImageIndex].word}
-                onClick={() => new Audio(`http://localhost:5000${images[currentImageIndex].audioUrl}`).play()}
+                onClick={playWordAudio}
               />
               <span className="speech-practice-audio-hint">Click image to hear pronunciation</span>
+              
+              {/* Added Word Display */}
+              <h3 className="speech-practice-word-title">
+                Word: {images[currentImageIndex].word}
+              </h3>
             </div>
             <div className="feedback-header-xx">
               {(spokenWord || feedback) && (
@@ -146,7 +155,6 @@ const SpeechPracticeSession = () => {
                 </div>
               )}
             </div>
-
           </div>
           <div className="speech-practice-controls">
             <button className="speech-practice-record-btn" onClick={startRecording}>
@@ -156,7 +164,6 @@ const SpeechPracticeSession = () => {
               {currentImageIndex === images.length - 1 ? "Finish" : "Next"}
             </button>
           </div>
-
         </div>
       )}
     </div>

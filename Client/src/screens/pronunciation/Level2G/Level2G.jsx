@@ -138,7 +138,7 @@ function Level2G() {
       </div>
 
       <div className="l2g-checker-container">
-       
+
 
         <div className='l2g-timer-emotion-container'>
           <div className="l2g-button-container">
@@ -153,6 +153,7 @@ function Level2G() {
                   <WordPronunciation targetWord={currentWord} onPronunciationComplete={handlePronunciationCorrect} />
                 </div>
               )}
+
               {phase !== 'pronunciation' && (
                 <div className="l2g-smile-message">
                   {emotion === "Happy" ? "Running! 🏃" : (
@@ -163,10 +164,12 @@ function Level2G() {
                   )}
                 </div>
               )}
+              <div className='emotion-sld'>
+                {phase === 'emotion' && (
+                  <EmotionDetection onSmileDetected={handleSmileDetected} isActive={phase === 'emotion'} />
+                )}
+              </div>
 
-              {phase === 'emotion' && (
-                <EmotionDetection onSmileDetected={handleSmileDetected} isActive={phase === 'emotion'} />
-              )}
             </div>
           )}
 
