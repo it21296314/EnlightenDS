@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useParams, useNavigate } from "react-router-dom"; 
 import axios from "axios";
 import "./PronunciationChecker.css"; // Import the CSS 
 
 const PronunciationChecker = () => {
-    const { category } = useParams(); // Get the category from the URL 
-    const navigate = useNavigate(); // Use navigate for the Back button
+    const { category } = useParams(); 
+    const navigate = useNavigate(); 
     const [images, setImages] = useState([]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [spokenWord, setSpokenWord] = useState("");
     const [feedback, setFeedback] = useState("");
 
     useEffect(() => {
-        fetchImages(category); // Fetch images based on the category from URL 
-    }, [category]); // Re-run fetchImages whenever the category changes 
+        fetchImages(category); 
+    }, [category]); 
 
     const fetchImages = async (category) => {
         try {
             const response = await axios.get(`http://localhost:5000/get-images/${category}`);
             setImages(response.data.images);
-            setCurrentImageIndex(0); // Reset to the first image 
+            setCurrentImageIndex(0); 
         } catch (error) {
             console.error("Error fetching images:", error);
         }
