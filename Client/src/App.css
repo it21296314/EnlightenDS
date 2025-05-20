@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 100vh; /* Ensures content can scroll if larger than viewport */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +26,31 @@
 
 .App-link {
   color: #61dafb;
+}
+
+/* Enable scrolling for the entire page but hide scrollbars */
+html, body {
+  overflow-y: auto; /* Enable vertical scrolling */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* You already have this for Chrome, Safari and Opera */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* If you want the App component itself to be scrollable */
+.App {
+  height: auto;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.App::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes App-logo-spin {

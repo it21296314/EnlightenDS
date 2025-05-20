@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+/* html, body {
+  overflow: hidden; 
+} */
+.game-container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Sour Gummy', sans-serif;
+}
+
+/* Background videos */
+.emotion-game-background-wrapper {
+  display: flex;
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.emotion-game-background-video {
+  width: 100vw;
+  height: 109vh;
+  object-fit: cover;
+}
+
+/* Game UI container */
+.emotion-game-checker-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main game content area */
+.emotion-game-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Controls row - contains start button and timer */
+.emotion-game-controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* Button container */
+.emotion-game-button-container {
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+
+.emotion-game-start-btn {
+  font-family: 'Sour Gummy', sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  padding: 10px 30px;
+  border-radius: 25px;
+  background: linear-gradient(to bottom, #ffde59, #ff914d);
+  color: #fff;
+  border: 5px solid #fff;
+  box-shadow: 0 8px 0 #cc7333, 0 15px 20px rgba(0, 0, 0, 0.35);
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.emotion-game-start-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 0 #cc7333, 0 8px 10px rgba(0, 0, 0, 0.35);
+}
+
+.emotion-game-start-btn:active {
+  transform: translateY(4px) scale(0.95);
+  box-shadow: 0 2px 0 #cc7333, 0 4px 5px rgba(0, 0, 0, 0.35);
+}
+
+/* Timer */
+.emotion-game-timer {
+  background: linear-gradient(to bottom, #ddb62c, #cc7333);
+  color: white;
+  font-weight: bold;
+  font-size: 50px;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 8px solid white;
+  box-shadow: 0 10px 0 #d1976e, 0 15px 25px rgba(0, 0, 0, 0.35);
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  transform: rotate(5deg);
+}
+
+/* Emotion detection container */
+.emotion-game-detection-container {
+  position: absolute;
+    top: 210px; /* Changed from 50% to move upward */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+}
+
+.emotion-game-detection-placeholder {
+  flex: 1;
+}
+
+.emotion-game-smile-message {
+  font-size: 30px;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: linear-gradient(to bottom, #4facfe, #00f2fe);
+  color: white;
+  box-shadow: 0 6px 0 #2a8ad4, 0 10px 15px rgba(0, 0, 0, 0.25);
+  min-width: 200px;
+}
+
+.emotion-game-smile-image {
+  width: 50px;
+  height: auto;
+  margin-left: 15px;
+  border-radius: 50%;
+  border: 2px  white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.emotion-game-smile-image:hover {
+  transform: scale(1.5) rotate(15deg);
+}
+
+/* Webcam container */
+.emotion-game-webcam-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.emotion-game-webcam {
+  border: 8px solid white !important;
+  border-radius: 15px !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3) !important;
+
+  max-width: 100%;
+}
+
+.emotion-game-status {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  margin-top: 15px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: 3px  #ff9e9e;
+ 
+  width: 80%;
+}
+
+.emotion-game-status h3 {
+  font-size: 15px;
+  font-family: 'Sour Gummy', sans-serif;
+  color: #d1976e;
+  margin: 0;
+}
+
+/* Game area */
+.emotion-game-area {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+ 
+   margin-top: 250px;
+}
+
+/* Character */
+.emotion-game-character {
+  position: absolute;
+  /* bottom: 80px; */
+  left: 10px;
+  z-index: 5;
+}
+
+.emotion-game-character-img {
+  width: 120px;
+  height: 180px;
+  object-fit: contain;
+  margin-top: 10px;
+  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Win and game over messages */
+.emotion-game-win-message,
+.emotion-game-over-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 60px;
+  font-weight: bold;
+  padding: 30px 50px;
+  border-radius: 30px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 8px solid;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emotion-game-win-message {
+  color: #4CAF50;
+  border-color: #4CAF50;
+  animation: pulse 1s infinite alternate;
+}
+
+.emotion-game-over-message {
+  color: #FF5252;
+  border-color: #FF5252;
+}
+
+.emotion-game-result-image {
+  width: 150px;
+  height: auto;
+  margin-top: 15px;
+  border-radius: 15px;
+  border: 4px solid white;
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .emotion-game-controls-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .emotion-game-webcam {
+    width: 90%;
+    height: auto;
+  }
+  
+  .emotion-game-timer {
+    height: 100px;
+    width: 100px;
+    font-size: 36px;
+  }
+  
+  .emotion-game-win-message,
+  .emotion-game-over-message {
+    font-size: 40px;
+    padding: 20px 30px;
+    width: 80%;
+  }
+}

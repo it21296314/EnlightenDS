@@ -1,0 +1,324 @@
+/* GameMainPage.css */
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Nunito:wght@600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.game-container {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom, #7db9e8 0%, #a4d4ff 100%);
+  font-family: 'Sour Gummy', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Background Elements */
+.stars-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.star {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 0.8; transform: scale(1.2); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+
+.clouds {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.cloud {
+  position: absolute;
+  width: 120px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 100px;
+  animation: float 20s infinite linear;
+}
+
+.cloud:before, .cloud:after {
+  content: '';
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 100%;
+}
+
+.cloud:before {
+  width: 60px;
+  height: 60px;
+  top: -20px;
+  left: 15px;
+}
+
+.cloud:after {
+  width: 80px;
+  height: 80px;
+  top: -30px;
+  right: 15px;
+}
+
+@keyframes float {
+  0% { transform: translateX(-150px); }
+  100% { transform: translateX(calc(100vw + 150px)); }
+}
+
+/* Header */
+.game-header {
+  text-align: center;
+  padding-top: 40px;
+  position: relative;
+  z-index: 10;
+}
+
+.game-title {
+    font-family: 'Sour Gummy', sans-serif;
+  font-size: 4rem;
+  color: #fff;
+  text-shadow: 
+    0 2px 0 #ff8a00,
+    0 4px 0 #ff5e00,
+    0 6px 0 #ff0000,
+    0 8px 10px rgba(0,0,0,0.4);
+  transform: rotate(-2deg);
+  margin-bottom: 10px;
+}
+
+.rainbow-underline {
+  height: 6px;
+  width: 300px;
+  margin: 0 auto;
+  background: linear-gradient(to right, 
+    violet, indigo, blue, green, yellow, orange, red);
+  border-radius: 3px;
+  margin-bottom: 40px;
+}
+
+/* Level Selection */
+.level-selection {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 60px;
+  position: relative;
+  
+  z-index: 10;
+}
+
+.level-card {
+  background-color: white;
+  width: 400px;
+  height: 350px;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transform: perspective(800px) rotateY(0deg);
+  transition: transform 0.5s, box-shadow 0.5s;
+  cursor: pointer;
+}
+
+.level-card:hover {
+  transform: perspective(800px) rotateY(5deg) translateY(-10px);
+  box-shadow: -10px 10px 20px rgba(0,0,0,0.2);
+}
+
+.level-number {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  background-color: #ff6b6b;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.level-icon {
+  font-size: 3rem;
+  margin: 10px 0;
+}
+
+.level-title {
+  color: #333;
+  margin: 10px 10px;
+  gap: 10px;
+  font-family: 'Sour Gummy', sans-serif;
+}
+
+.level-description {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.level-button {
+  background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  user-select: none;
+  margin-top: auto;
+}
+
+.level-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 10px rgba(0,0,0,0.15);
+}
+
+.level-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Character */
+.character {
+  position: absolute;
+  bottom: 40px;
+  right: 60px;
+  width: 100px;
+  height: 100px;
+  z-index: 20;
+  animation: bounce 2s infinite ease-in-out;
+}
+
+.character-body {
+  width: 100%;
+  height: 100%;
+  background-color: #ffdb58;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.character-eye {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  top: 30px;
+}
+
+.eye-left {
+  left: 25px;
+}
+
+.eye-right {
+  right: 25px;
+}
+
+.character-eye:after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #333;
+  border-radius: 50%;
+  top: 5px;
+  left: 5px;
+  animation: blink 4s infinite;
+}
+
+@keyframes blink {
+  0%, 45%, 50%, 55%, 100% { transform: scale(1); }
+  47%, 53% { transform: scaleY(0.1); }
+}
+
+.character-mouth {
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  background-color: #ff6b6b;
+  border-radius: 0 0 20px 20px;
+  bottom: 25px;
+  left: 30px;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Footer */
+.game-footer {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  z-index: 10;
+}
+
+.footer-bubble {
+  background-color: white;
+  padding: 15px 25px;
+  border-radius: 30px;
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 1.2rem;
+  color: #333;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.footer-bubble:after {
+  content: '';
+  position: absolute;
+  left: 20px;
+  bottom: -10px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  transform: rotate(45deg);
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.05);
+  z-index: -1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .game-title {
+    font-size: 3rem;
+  }
+  
+  .level-selection {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .rainbow-underline {
+    width: 200px;
+  }
+}

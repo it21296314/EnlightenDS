@@ -10,20 +10,23 @@ function PronunciationHome() {
   };
 
   return (
-    <div className="pronunciationHome">
-      <h1>Pronunciation Platform</h1>
-      <div className="button-container">
+    <div className="pronunciation-home-wrapper">
+      <div className="pronunciation-home-header">
+        <h1>Practice Platform</h1>
+      </div>
+      
+      <div className="pronunciation-home-buttons">
         <button
-          className="big-button beginner"
+          className="pronunciation-home-btn beginner-home-btn"
           onClick={handleBeginnerClick}
         >
-          Beginner
+          Non-gamified
         </button>
         <button
-          className="big-button advanced"
-          onClick={() => navigate("/pronunciation/checker/advanced")}
+          className="pronunciation-home-btn advanced-home-btn"
+          onClick={() => navigate("/game")}
         >
-          Advanced
+          Gamified
         </button>
       </div>
     </div>

@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.categories-container {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 690px;
+    background-image: url('../../../../public/images/selectQuiz.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .categories-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+  
+  .content-wrapper {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    width: 100%;
+  }
+  
+  h1 {
+
+    font-family: 'Sour Gummy', sans-serif; 
+    font-size: 42px;
+    color: #000000;
+    margin-bottom: 30px;
+    font-weight: bold;
+    
+  }
+  
+  /* Modified for one button per row */
+  .categories-list {
+    list-style: none;
+    font-family: 'Sour Gummy', sans-serif; 
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .category-item {
+    margin: 0;
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  /* Matching buttons to screenshot */
+  .category-link {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #f5a623; /* Solid orange color matching screenshot */
+    padding: 18px 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    display: block;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 2px solid #e09400; /* Slightly darker border */
+    text-transform: uppercase;
+  }
+  
+  .category-link:hover {
+    background-color: #e09400;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Media query for better responsiveness */
+  @media (max-width: 768px) {
+    .categories-list {
+      max-width: 90%;
+    }
+    
+    .category-item {
+      width: 80%;
+    }
+    
+    h1 {
+      font-size: 32px;
+    }
+  }
