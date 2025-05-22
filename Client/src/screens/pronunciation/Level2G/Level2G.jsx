@@ -158,7 +158,7 @@ function Level2G() {
                 <div className="l2g-smile-message">
                   {emotion === "Happy" ? "Running! 🏃" : (
                     <>
-                      Smile!
+                      Smile please!
                       <img src="/images/pronunciation/smile.gif" alt="Smile" className="l2g-smile-image" />
                     </>
                   )}
