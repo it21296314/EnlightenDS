@@ -24,25 +24,6 @@ import Level2G from './screens/pronunciation/Level2G/Level2G';
 import Question from './components/maths/Question';
 import BallCountingAnimation from './components/maths/count';
 import DashboardMath from './screens/maths/Dashboard';
-import Code from "./pages/Quiz/code";
-import Page from "./pages/Quiz/page";
-import Questions from "./pages/Quiz/questions";
-import Grammar from "./pages/grammar/grammar";
-// import Homepage from "./pages/home/homepage";
-// import Login from "./pages/login";
-// import Main from "./pages/main";
-import Menu from "./pages/menu/menu";
-import Reading from "./pages/reading/reading";
-// import Signup from "./pages/signup";
-import Quiz from "./pages/Quiz/Quiz";
-import Vocabluary from "./pages/vocabluary/vocabluary";
-import QuestionDisplayComponent from "./pages/QuestionDisplayComponent/QuestionDisplayComponent";
-import DrawingCanvas from "./components/interest/DrawingCanvas";
-// import Piano from './components/interest/Piano';
-// import { ChakraProvider } from "@chakra-ui/react";
-import TouchPiano from "./components/interest/TouchPiano";
-import Main from "./pages/main/main";
-
 import MainPronunciation from './screens/pronunciation/MainPronunciation/MainPronunciation';
 import GameMainPage from './screens/pronunciation/GameMainPage/GameMainPage';
 import DetectionPage from './screens/detection/DetectionPage';
@@ -88,24 +69,8 @@ function App() {
           <Route path="/beginner-category" element={<BeginnerCategory />} />
           <Route path="/pronunciation/checker/:category" element={<PronunciationChecker />} />
           <Route path="/categories" element={<Categories />} />
-          {/* <Route path="/quiz/:category" element={<SpeechPracticeSession />} /> */}
+          <Route path="/quiz/:category" element={<SpeechPracticeSession />} />
           <Route path="/dashboard" element={<Dashboard />} />
-        <Route
-        path="/quiz/:questionCollectionId"
-        element={<QuestionDisplayComponent />}
-      />
-          <Route path="/grammar" exact element={<Grammar />} />
-      <Route path="/reading" exact element={<Reading />} />
-      <Route path="/questions" exact element={<Questions />} />
-      <Route path="/page" exact element={<Page />} />
-      <Route path="/quiz" exact element={<Quiz />} />
-      <Route path="/main" exact element={<Main />} />
-     
-      <Route path="/code" exact element={<Code />} />
-      <Route path="/vocabluary" exact element={<Vocabluary />} />
-      <Route path="/menu" exact element={<Menu />} />
-      <Route path="/DrawingCanvas" element={<DrawingCanvas/>} />
-      <Route path="/TouchPiano" element={<TouchPiano/>} />
           <Route path="/game" element={<GameMainPage />} />
           <Route path="/level1" element={<Level1G />} />
           <Route path="/level2" element={<Level2G />} />
