@@ -1,62 +1,62 @@
-import React, { useState, useRef } from "react";
-import PropTypes from "prop-types"; // For prop validation
+import React, { useState, useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const Recorder = ({ setAudioFile }) => {
-  const [isRecording, setIsRecording] = useState(false); // State for recording status
-  const [audioBlob, setAudioBlob] = useState(null); // State for the recorded audio blob
-  const mediaRecorderRef = useRef(null); // Ref to persist the MediaRecorder instance
+  const [isRecording, setIsRecording] = useState(false);
+  const [audioBlob, setAudioBlob] = useState(null);
+  const mediaRecorderRef = useRef(null);
+  const audioRef = useRef(null); // NEW: Ref to the audio element
 
-  // Start recording audio
+  // Set volume after blob is available
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 2.0; // Max volume (range is 0.0 to 1.0)
+    }
+  }, [audioBlob]);
+
   const startRecording = () => {
-    setIsRecording(true); // Set recording state to true
+    setIsRecording(true);
 
-    // Request access to the microphone
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then((stream) => {
-        // Create a new MediaRecorder instance
         mediaRecorderRef.current = new MediaRecorder(stream);
-        const chunks = []; // Array to store audio chunks
+        const chunks = [];
 
-        // Push audio data into chunks
         mediaRecorderRef.current.ondataavailable = (e) => {
           chunks.push(e.data);
         };
 
-        // On stop, create a Blob from chunks and update states
         mediaRecorderRef.current.onstop = () => {
           const blob = new Blob(chunks, { type: "audio/wav" });
-          setAudioBlob(blob); // Set the recorded audio blob
-          setAudioFile(blob); // Pass the blob to the parent component
+          setAudioBlob(blob);
+          setAudioFile(blob);
         };
 
-        // Start recording
         mediaRecorderRef.current.start();
       })
       .catch((error) => {
-        console.error("Error accessing microphone:", error); // Log errors
-        alert("Microphone access is required to record audio."); // Notify the user
-        setIsRecording(false); // Reset recording state
+        console.error("Error accessing microphone:", error);
+        alert("Microphone access is required to record audio.");
+        setIsRecording(false);
       });
   };
 
-  // Stop recording audio
   const stopRecording = () => {
     if (mediaRecorderRef.current && mediaRecorderRef.current.state === "recording") {
-      setIsRecording(false); // Set recording state to false
-      mediaRecorderRef.current.stop(); // Stop the recording
+      setIsRecording(false);
+      mediaRecorderRef.current.stop();
     }
   };
 
   return (
     <div style={{ textAlign: "center", margin: "20px" }}>
-      {/* Start/Stop Recording Button */}
       <button
         onClick={isRecording ? stopRecording : startRecording}
         style={{
           padding: "10px 20px",
           fontSize: "16px",
           borderRadius: "5px",
-          backgroundColor: isRecording ? "#dc3545" : "#28a745", // Red for stop, green for start
+          backgroundColor: isRecording ? "#dc3545" : "#28a745",
           color: "white",
           border: "none",
           cursor: "pointer",
@@ -65,10 +65,10 @@ const Recorder = ({ setAudioFile }) => {
         {isRecording ? "Stop Recording" : "Start Recording"}
       </button>
 
-      {/* Audio Playback */}
       {audioBlob && (
         <audio
-          src={URL.createObjectURL(audioBlob)} // Create an object URL for the Blob
+          ref={audioRef} // NEW: attach ref
+          src={URL.createObjectURL(audioBlob)}
           controls
           style={{ display: "block", marginTop: "20px" }}
         >
@@ -79,9 +79,8 @@ const Recorder = ({ setAudioFile }) => {
   );
 };
 
-// Prop validation
 Recorder.propTypes = {
-  setAudioFile: PropTypes.func.isRequired, // Function to handle the recorded audio Blob
+  setAudioFile: PropTypes.func.isRequired,
 };
 
 export default Recorder;
