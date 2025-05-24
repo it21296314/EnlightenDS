@@ -140,7 +140,7 @@ function Level1G() {
               <div className="emotion-game-smile-message">
                 {emotion === "Happy" ? "Running! 🏃" : (
                   <>
-                    Smile!
+                    Please Smile!
                     <img src="/images/pronunciation/smile.gif" alt="Smile" className="emotion-game-smile-image" />
                   </>
                 )}
