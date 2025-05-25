@@ -9,7 +9,7 @@ from routes.analytics import analytics_bp
 from routes.detect_emotion import detect_emotion_bp
 from routes.randomimages import randomimage_bp
 from routes.chart import chart_bp
-
+from routes.routes import routes
 load_dotenv()
 from routes.predict import predict_bp
 from routes.status import status_bp
@@ -26,7 +26,7 @@ app.register_blueprint(analytics_bp)
 app.register_blueprint(detect_emotion_bp)
 app.register_blueprint(randomimage_bp)
 app.register_blueprint(chart_bp, url_prefix="/charts")
-
+app.register_blueprint(routes)
 app.register_blueprint(predict_bp)
 app.register_blueprint(status_bp)
 

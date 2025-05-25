@@ -26,7 +26,7 @@ import BallCountingAnimation from './components/maths/count';
 import DashboardMath from './screens/maths/Dashboard';
 import MainPronunciation from './screens/pronunciation/MainPronunciation/MainPronunciation';
 import GameMainPage from './screens/pronunciation/GameMainPage/GameMainPage';
-import DetectionPage from './screens/detection/DetectionPage';
+import DetectionPage from './screens/detection/Detection';
 
 import Navbar from './components/Header';
 function App() {
