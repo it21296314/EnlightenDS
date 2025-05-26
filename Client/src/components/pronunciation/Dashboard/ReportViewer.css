@@ -107,14 +107,45 @@
   line-height: 1.6;
 }
 
-/* Heading styles in feedback */
-.ai-feedback-section h3 {
+/* Main heading styles in feedback (h3) */
+/* .ai-feedback-section h3 {
   color: #2064c8;
   background-color: #f0f7ff;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1rem;
   border-radius: 5px;
-  margin: 1.5rem 0 0.8rem;
+  margin: 1.5rem 0 1rem;
   border-left: 5px solid #ffd700;
+  font-size: 1.2rem;
+  font-weight: bold;
+} */
+
+/* Secondary heading styles in feedback (h4) */
+.ai-feedback-section h4 {
+  color: #1e5bb0;
+  font-size: 1.1rem;
+  margin: 1rem 0 0.5rem;
+  font-weight: bold;
+}
+
+/* Sub-point styles */
+.sub-point {
+  margin: 0.8rem 0 0.8rem 1rem;
+  position: relative;
+  padding-left: 1.5rem;
+  line-height: 1.5;
+}
+
+.sub-point:before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.sub-point strong {
+  color: #1e5bb0;
+  font-weight: bold;
 }
 
 /* Practice category styles */
@@ -133,6 +164,7 @@
   font-style: italic;
   color: #4191e1;
   margin: 0.5rem 0 0.5rem 1.5rem;
+  line-height: 1.4;
 }
 
 /* Strategy point styles */
@@ -140,6 +172,7 @@
   margin: 0.8rem 0 0.8rem 1rem;
   position: relative;
   padding-left: 1.5rem;
+  line-height: 1.5;
 }
 
 .strategy-point:before {

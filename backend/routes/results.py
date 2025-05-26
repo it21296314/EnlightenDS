@@ -67,7 +67,7 @@ def generate_report():
         """
 
         try:
-            model = genai.GenerativeModel("gemini-1.5-pro-latest")
+            model = genai.GenerativeModel("gemini-2.0-flash")
             response = model.generate_content(feedback_prompt)
             feedback = response.text if response.text else "AI feedback could not be generated at this time."
         except Exception as e:
